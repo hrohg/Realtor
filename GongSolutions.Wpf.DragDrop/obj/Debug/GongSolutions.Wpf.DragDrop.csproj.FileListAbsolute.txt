@@ -1,0 +1,10 @@
+C:\Users\VS Projects\Realtor\Realtor\GongSolutions.Wpf.DragDrop\bin\Debug\GongSolutions.Wpf.DragDrop.dll
+C:\Users\VS Projects\Realtor\Realtor\GongSolutions.Wpf.DragDrop\bin\Debug\GongSolutions.Wpf.DragDrop.pdb
+C:\Users\VS Projects\Realtor\Realtor\GongSolutions.Wpf.DragDrop\obj\Debug\GongSolutions.Wpf.DragDrop.dll
+C:\Users\VS Projects\Realtor\Realtor\GongSolutions.Wpf.DragDrop\obj\Debug\GongSolutions.Wpf.DragDrop.pdb
+C:\Users\VS Projects\Realtor\Realtor\GongSolutions.Wpf.DragDrop\obj\Debug\GongSolutions.Wpf.DragDrop.csprojResolveAssemblyReference.cache
+C:\Hrayr\VS Projects\Realtor\Realtor\GongSolutions.Wpf.DragDrop\bin\Debug\GongSolutions.Wpf.DragDrop.dll
+C:\Hrayr\VS Projects\Realtor\Realtor\GongSolutions.Wpf.DragDrop\bin\Debug\GongSolutions.Wpf.DragDrop.pdb
+C:\Hrayr\VS Projects\Realtor\Realtor\GongSolutions.Wpf.DragDrop\obj\Debug\GongSolutions.Wpf.DragDrop.csprojResolveAssemblyReference.cache
+C:\Hrayr\VS Projects\Realtor\Realtor\GongSolutions.Wpf.DragDrop\obj\Debug\GongSolutions.Wpf.DragDrop.dll
+C:\Hrayr\VS Projects\Realtor\Realtor\GongSolutions.Wpf.DragDrop\obj\Debug\GongSolutions.Wpf.DragDrop.pdb

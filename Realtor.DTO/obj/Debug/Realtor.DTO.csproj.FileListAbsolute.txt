@@ -1,0 +1,10 @@
+C:\Users\VS Projects\Realtor\Realtor\Realtor.DTO\bin\Debug\Realtor.DTO.dll
+C:\Users\VS Projects\Realtor\Realtor\Realtor.DTO\bin\Debug\Realtor.DTO.pdb
+C:\Users\VS Projects\Realtor\Realtor\Realtor.DTO\obj\Debug\Realtor.DTO.csprojResolveAssemblyReference.cache
+C:\Users\VS Projects\Realtor\Realtor\Realtor.DTO\obj\Debug\Realtor.DTO.dll
+C:\Users\VS Projects\Realtor\Realtor\Realtor.DTO\obj\Debug\Realtor.DTO.pdb
+C:\Hrayr\VS Projects\Realtor\Realtor\Realtor.DTO\bin\Debug\Realtor.DTO.dll
+C:\Hrayr\VS Projects\Realtor\Realtor\Realtor.DTO\bin\Debug\Realtor.DTO.pdb
+C:\Hrayr\VS Projects\Realtor\Realtor\Realtor.DTO\obj\Debug\Realtor.DTO.dll
+C:\Hrayr\VS Projects\Realtor\Realtor\Realtor.DTO\obj\Debug\Realtor.DTO.pdb
+C:\Hrayr\VS Projects\Realtor\Realtor\Realtor.DTO\obj\Debug\Realtor.DTO.csprojResolveAssemblyReference.cache

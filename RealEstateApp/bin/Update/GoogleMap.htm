@@ -1,0 +1,107 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title>Realtor</title>
+	<style type="text/css">
+		html
+		{
+			height: 100%;
+		}
+		body
+		{
+			height: 100%;
+			margin: 0px;
+			padding: 0px;
+		}
+		#map_canvas
+		{
+			height: 100%;
+		}
+	</style>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	<script type="text/javascript">
+		var map;
+		var geocoder = null;
+		var existing_marker = null;
+
+		function initialize() {
+			geocoder = new google.maps.Geocoder();
+			var myLatlng = new google.maps.LatLng(40.183333, 44.516667);
+			var myOptions = {
+				zoom: 16,
+				center: myLatlng,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			}
+			map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+			google.maps.event.addListener(map, 'click', function (event) {
+				placeMarker(event.latLng);
+			});
+
+			LoadPlace('__xxxxxxxxxxxx__');
+		}
+
+		function placeMarker(location) {
+			if (existing_marker != null) {
+				existing_marker.setMap(null);
+			}
+			var clickedLocation = new google.maps.LatLng(location);
+			var marker = new google.maps.Marker({
+				position: location,
+				map: map
+			});
+			//map.setCenter(location);
+			existing_marker = marker;
+			hfMarker_location.value = location.toString();
+		}
+
+		function codeAddress() {
+			var address = document.getElementById("address").value;
+			geocoder.geocode({ 'address': address }, function (results, status) 
+			{
+				if (status == google.maps.GeocoderStatus.OK) {
+					map.setCenter(results[0].geometry.location);
+				}
+				else 
+				{
+					alert("Տրված հասցեն չի գտնվել");
+				}
+			});
+		}
+
+		function TextKeyPress() {
+			if (event.keyCode == 13) {
+				event.cancelBubble = true;
+				event.returnValue = false;
+				codeAddress();
+			}
+		}
+
+		function ShowMarker(lat, lng) {
+			var location = new google.maps.LatLng(40.183333, 44.516667);
+			placeMarker(location);
+		}
+
+		function LoadPlace(placeName) {
+			if (placeName.length > 0) {
+				document.getElementById("address").value = placeName;
+				document.getElementById("btnSearch").click();
+			}
+		}
+	</script>
+</head>
+<body onload="initialize();" >
+	<div style="white-space: nowrap; width: 100%; vertical-align: top; margin-top:5px; margin-bottom:5px">
+		Address:&nbsp;
+		<input type="text" style="width: 300px; border: 1px solid; height: 23px" id="address"
+			onkeypress="javascript:TextKeyPress()" />&nbsp;
+		<input type="button" value=" Search " onclick="javascript:codeAddress()" style="border: 1px solid;
+			height: 23px" id="btnSearch" />
+		<input type="hidden" id="hfMarker_location" />
+	</div>
+	<div id="map_canvas">
+	</div>
+</body>
+</html>

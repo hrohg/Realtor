@@ -1,0 +1,15 @@
+C:\Users\VS Projects\Realtor\Realtor\CustomControls\bin\Debug\CustomControls.dll
+C:\Users\VS Projects\Realtor\Realtor\CustomControls\bin\Debug\CustomControls.pdb
+C:\Users\VS Projects\Realtor\Realtor\CustomControls\bin\Debug\Odyssey.dll
+C:\Users\VS Projects\Realtor\Realtor\CustomControls\bin\Debug\WPFToolkit.dll
+C:\Users\VS Projects\Realtor\Realtor\CustomControls\bin\Debug\WPFToolkit.pdb
+C:\Users\VS Projects\Realtor\Realtor\CustomControls\obj\Debug\CustomControls.dll
+C:\Users\VS Projects\Realtor\Realtor\CustomControls\obj\Debug\CustomControls.pdb
+C:\Users\VS Projects\Realtor\Realtor\CustomControls\obj\Debug\CustomControls.csprojResolveAssemblyReference.cache
+C:\Hrayr\VS Projects\Realtor\Realtor\CustomControls\bin\Debug\CustomControls.dll
+C:\Hrayr\VS Projects\Realtor\Realtor\CustomControls\bin\Debug\CustomControls.pdb
+C:\Hrayr\VS Projects\Realtor\Realtor\CustomControls\bin\Debug\Odyssey.dll
+C:\Hrayr\VS Projects\Realtor\Realtor\CustomControls\bin\Debug\WPFToolkit.pdb
+C:\Hrayr\VS Projects\Realtor\Realtor\CustomControls\obj\Debug\CustomControls.csprojResolveAssemblyReference.cache
+C:\Hrayr\VS Projects\Realtor\Realtor\CustomControls\obj\Debug\CustomControls.dll
+C:\Hrayr\VS Projects\Realtor\Realtor\CustomControls\obj\Debug\CustomControls.pdb

@@ -1,0 +1,348 @@
+﻿<Window x:Class="RealEstateApp.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:UserControls="clr-namespace:UserControls;assembly=UserControls" 
+    xmlns:CustomControls="clr-namespace:RealEstateApp.CustomControls;assembly=CustomControls" 
+	xmlns:Converters="clr-namespace:Shared.Converters;assembly=Shared" 
+	WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="SingleBorderWindow" 
+        Name="mainWidnow" Icon="pack://application:,,,/Shared;component/Images/Application.png" Loaded="mainWidnow_Loaded">
+    <Window.Resources>
+        <Converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <Converters:BoolToClientModeCheckBoxToolTipTextConverter x:Key="BoolToClientModeCheckBoxToolTipTextConverter" />
+        <Converters:BoolToVisibilityInvertConverter x:Key="BoolToVisibilityInvertConverter" />
+        <Converters:IsAdminOrDirectorToObjectVisibilityConverter x:Key="IsAdminOrDirectorToObjectVisibilityConverter" />
+		<Converters:DataUpdateButtonVisibilityConverter x:Key="DataUpdateButtonVisibilityConverter" />
+        <Converters:ServerIPToItemVisibilityConverter x:Key="ServerIPToItemVisibilityConverter" />
+		<Converters:SiteDataUpdateButtonVisibilityConverter x:Key="SiteDataUpdateButtonVisibilityConverter" />
+    </Window.Resources>
+    <Grid Background="{DynamicResource PanelLightBrush}">
+        <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True" >
+            <Grid DockPanel.Dock="Top" Height="30" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Menu Name="mnuMainMenu" HorizontalAlignment="Stretch" FontWeight="Bold">
+                    <MenuItem x:Name="MiAdmin" Header="Admin">
+                        <MenuItem Header="Merge DB's">
+                            <MenuItem Header="Merge Users Table" Click="MiMergeUsers_Click"/>
+                            <MenuItem Header="Merge BlackList Tables" Click="MiMergeBlackLists_Click"/>
+                            <MenuItem Header="Merge Settings Tables" Click="MiMergeSettings_Click"/>
+                            <MenuItem Header="Merge Estate Table" Click="MiMergeEstate_Click"/>
+                            <MenuItem Header="Merge EstateImages Table" Click="MiMergeEstateImages_Click"/>
+                            <MenuItem Header="Merge Estate Settings Tables" Click="MiMergeEstateSettings_Click"/>
+                            <MenuItem Header="Correct DB's" Click="MiCorrectDb_Click"/>
+                            <MenuItem Header="Sort images" Click="MiSortImages_Click"/>
+                            </MenuItem>
+                    </MenuItem>
+                    <MenuItem Name="mnuFile" Header="{Binding Source={StaticResource CultureResources},Path=[Realtor]}">
+                        <MenuItem Name="mnuFile_RefreshData" Header="{Binding Source={StaticResource CultureResources},Path=[RefreshData]}" Click="mnuFile_RefreshData_Click"/>
+                        <MenuItem Header="{Binding Source={StaticResource CultureResources},Path=[YerevanMap]}" Click="mnuMap_Click"/>
+                        <MenuItem Header="{Binding Source={StaticResource CultureResources},Path=[ArmeniaMap]}" Click="mnuMapArmenia_Click"/>
+                        <MenuItem>
+                            <MenuItem.Header>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[Language]}" VerticalAlignment="Center"/>
+                                    <Image Source="pack://application:,,,/Shared;component/Images/DownTriangleIcon.png" Width="10" Height="10" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </MenuItem.Header>
+                            <MenuItem Header="Հայերեն" Tag="hy-AM" Click="mnu_File_Language_Click"/>
+                            <MenuItem Header="Русский" Tag="ru-RU" Click="mnu_File_Language_Click"/>
+                            <MenuItem Header="English" Tag="en-US" Click="mnu_File_Language_Click"/>
+                            <!--<MenuItem Header="Czech" Tag="cs-CZ" Click="mnu_File_Language_Click"/>-->
+                        </MenuItem>
+                        <MenuItem Name="mnuFile_Exit" Header="{Binding Source={StaticResource CultureResources},Path=[Exit]}" Click="mnuFile_Exit_Click"/>
+                    </MenuItem>
+
+                    <MenuItem Name="mnuUsers" Header="{Binding Source={StaticResource CultureResources},Path=[Users]}">
+                        <MenuItem.Visibility>
+                            <MultiBinding Converter="{StaticResource IsAdminOrDirectorToObjectVisibilityConverter}">
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="User.IsAdminOrDirector" />
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="OfflineMode" />
+                            </MultiBinding>
+                        </MenuItem.Visibility>
+                        <MenuItem Name="mnuUsers_Add" Header="{Binding Source={StaticResource CultureResources},Path=[AddUserPPP]}" Click="mnuUsers_Add_Click"/>
+                        <MenuItem Name="mnuAllUsers" Header="{Binding Source={StaticResource CultureResources},Path=[AllUsersPPP]}" Click="mnuAllUsers_Click"/>
+                    </MenuItem>
+
+                    <MenuItem Name="mnuTools" Header="{Binding Source={StaticResource CultureResources},Path=[Dictionaries]}" >
+                        <MenuItem.Visibility>
+                            <MultiBinding Converter="{StaticResource IsAdminOrDirectorToObjectVisibilityConverter}">
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="User.IsAdminOrDirector" />
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="OfflineMode" />
+                            </MultiBinding>
+                        </MenuItem.Visibility>
+                        <MenuItem Name="mnuTools_CountryManagement"  Header="{Binding Source={StaticResource CultureResources},Path=[CountriesPPP]}" Click="mnuTools_CountryManagement_Click"/>
+                        <MenuItem Name="mnuTools_StatesManagement"  Header="{Binding Source={StaticResource CultureResources},Path=[StateRegionsPPP]}" Click="mnuTools_StatesManagement_Click"/>
+                        <MenuItem Name="mnuTools_CityManagement"  Header="{Binding Source={StaticResource CultureResources},Path=[CitiesPPP]}" Click="mnuTools_CityManagement_Click"/>
+                        <MenuItem Name="mnuTools_RegionManagement"  Header="{Binding Source={StaticResource CultureResources},Path=[RegionsPPP]}" Click="mnuTools_RegionManagement_Click"/>
+                        <MenuItem Name="mnuTools_StreetManagement"  Header="{Binding Source={StaticResource CultureResources},Path=[StreetsPPP]}" Click="mnuTools_StreetManagement_Click"/>
+                        <MenuItem Name="mnuTools_BuildingTypesManagement"  Header="{Binding Source={StaticResource CultureResources},Path=[BuildingStructuresPPP]}" Click="mnuTools_BuildingTypesManagement_Click" />
+                        <MenuItem Name="mnuTools_ProjectManagement"  Header="{Binding Source={StaticResource CultureResources},Path=[BuildingProjectsPPP]}" Click="mnuTools_ProjectManagement_Click"/>
+                        <MenuItem Name="mnuTools_RemontManagement"  Header="{Binding Source={StaticResource CultureResources},Path=[RemontTypesPPP]}" Click="mnuTools_RemontManagement_Click"/>
+                        <MenuItem Name="mnuTools_RoofingManagement"  Header="{Binding Source={StaticResource CultureResources},Path=[RoofingsPPP]}" Click="mnuTools_RoofingManagement_Click" />
+                        <MenuItem Name="mnuTools_CurrencyManagement"  Header="{Binding Source={StaticResource CultureResources},Path=[CurrenciesPPP]}" Click="mnuTools_CurrencyManagement_Click" />
+                        <MenuItem Name="mnuTools_ConvenientManagement"  Header="{Binding Source={StaticResource CultureResources},Path=[CommercialConvenientsPPP]}" Click="mnuTools_Convenients_Click" />
+                        <!--<MenuItem Name="mnuTools_SignificanceOfTheUsesManagement"  Header="{Binding Source={StaticResource CultureResources},Path=[SignificanceOfTheUsesPPP]}" Click="mnuTools_SignificanceOfTheUsesManagement_Click" />
+                        <MenuItem Name="mnuTools_OperationalSignificancesManagement"  Header="{Binding Source={StaticResource CultureResources},Path=[OperationalSignificancesPPP]}" Click="mnuTools_OperationalSignificancesManagement_Click" />-->
+                        <MenuItem Name="mnuTools_CreateDatabase" Header="{Binding Source={StaticResource CultureResources},Path=[CreateArchive]}" Click="mnuTools_CreateDatabase_Click" 
+                                  Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ServerIP, Converter={StaticResource ServerIPToItemVisibilityConverter}}"/>
+						<MenuItem Name="mnuTools_DeletedEstates" Header="{Binding Source={StaticResource CultureResources},Path=[DeletedEstates]}" Click="mnuTools_DeletedEstates_Click" />
+                        <MenuItem Name="mnuTools_DeletedClients" Header="{Binding Source={StaticResource CultureResources},Path=[DeletedClients]}" Click="mnuTools_DeletedClients_Click" />
+                        <MenuItem Name="mnuTools_ImageCleaner" Header="{Binding Source={StaticResource CultureResources},Path=[CleanImages]}" Click="mnuTools_CleanImages_Click" 
+                                  Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=User.IsAdminOrDirector, Converter={StaticResource BoolToVisibilityConverter}}"/>
+						<MenuItem Name="mnuTools_Test" Header="{Binding Source={StaticResource CultureResources},Path=[Settings]}" Click="mnuTools_Test_Click" />
+                    </MenuItem>
+                    <MenuItem x:Name="mnuStatistics" Header="{Binding Source={StaticResource CultureResources},Path=[DoneDealings]}" 
+							  Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=User.IsAdminOrDirector, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <!--<MenuItem.Visibility>
+                            <MultiBinding Converter="{StaticResource IsAdminOrDirectorToObjectVisibilityConverter}">
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="User.IsAdminOrDirector" />
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="OfflineMode" />
+                            </MultiBinding>
+                        </MenuItem.Visibility>-->
+                        <MenuItem Header="{Binding Source={StaticResource CultureResources},Path=[Statistics]}" x:Name="mnu_StatisticAboutAgencyOrBroker" Click="mnu_StatisticAboutAgencyOrBroker_Click"
+						  Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=User.IsDirector, Converter={StaticResource BoolToVisibilityConverter}}" />
+                        <MenuItem x:Name="mnuStatistics_SelledEstates" Header="{Binding Source={StaticResource CultureResources},Path=[SoldEstates]}" Click="mnuStatistics_SelledEstates_Click"/>
+                        <MenuItem x:Name="mnuStatistics_RentedEstates" Header="{Binding Source={StaticResource CultureResources},Path=[RentedEstates]}" Click="mnuStatistics_RentedEstates_Click"/>
+                    </MenuItem>
+                    <!--<MenuItem Header="Արխիվ">
+                    <MenuItem Name="mnuTools_CreateBackup" Header="Ստեղծել Արխիվ"  Click="mnuTools_CreateBackup_Click"/>
+                    <MenuItem Name="mnuTools_RestoreBakup" Header="Վերականգնել Արխիվը" Click="mnuTools_RestoreBakup_Click"/>
+                </MenuItem>-->
+
+                    <MenuItem Name="mnuHelp" Header="{Binding Source={StaticResource CultureResources},Path=[Help]}">
+                        <MenuItem Name="mnuHelp_Help" Header="{Binding Source={StaticResource CultureResources},Path=[Help]}" Click="mnuHelp_Help_Click"/>
+                        <MenuItem Name="mnuHelp_EnterCode" Header="{Binding Source={StaticResource CultureResources},Path=[InputCurCode]}" Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=IsWithoutVerification, Converter={StaticResource BoolToVisibilityInvertConverter}}">
+                            <MenuItem Name="mnuHelp_EnterCode_Input" Click="mnuHelp_EnterCode_Input_Click" Header="{Binding Source={StaticResource CultureResources},Path=[EnterCode]}"/>
+                            <MenuItem Name="mnuHelp_EnterCode_FromFile" Click="mnuHelp_EnterCode_FromFile_Click" Header="{Binding Source={StaticResource CultureResources},Path=[SelectFile]}"/>
+                        </MenuItem>
+                        <MenuItem Name="mnuHelp_About" Header="{Binding Source={StaticResource CultureResources},Path=[AboutProgramPPP]}" Click="mnuHelp_About_Click"/>
+                    </MenuItem>
+                </Menu>
+                <Border Background="{StaticResource PanelLightBrush}" Grid.Column="1" Height="30">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[ApplicationIsRunningInOfflineMode]}"
+                           Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=OfflineMode, Converter={StaticResource BoolToVisibilityConverter}}"
+                           FontWeight="Bold" FontSize="12" Foreground="Red" VerticalAlignment="Center" 
+                           Margin="10,0"/>
+						<Button Margin="5" Cursor="Hand" Content="{Binding Source={StaticResource CultureResources},Path=[CheckForDataUpdates]}"
+								x:Name="btnUpdateData" Click="btnUpdateData_Click" >
+							<Button.Visibility>
+								<MultiBinding Converter="{StaticResource DataUpdateButtonVisibilityConverter}">
+									<Binding Source="{x:Static UserControls:Session.Inst}" Path="OfflineMode" />
+									<Binding Source="{x:Static UserControls:Session.Inst}" Path="ServerIP" />
+								</MultiBinding>
+							</Button.Visibility>
+							<Button.Template>
+								<ControlTemplate TargetType="Button">
+									<TextBlock TextDecorations="Underline">
+										<ContentPresenter />
+									</TextBlock>
+								</ControlTemplate>
+							</Button.Template>
+							<Button.Style>
+								<Style TargetType="Button">
+									<Setter Property="Foreground" Value="Blue" />
+									<Style.Triggers>
+										<Trigger Property="IsMouseOver" Value="true">
+											<Setter Property="Foreground" Value="Red" />
+										</Trigger>
+									</Style.Triggers>
+								</Style>
+							</Button.Style>
+						</Button>
+						<Button Margin="5" Cursor="Hand" Content="{Binding Source={StaticResource CultureResources},Path=[CheckForSiteDataUpdates]}"
+								x:Name="btnUpdateSiteData" Click="btnUpdateSiteData_Click" >
+							<Button.Visibility>
+								<MultiBinding Converter="{StaticResource SiteDataUpdateButtonVisibilityConverter}">
+									<Binding Source="{x:Static UserControls:Session.Inst}" Path="IsWebEnabled" />
+									<Binding Source="{x:Static UserControls:Session.Inst}" Path="ServerIP" />
+								</MultiBinding>
+							</Button.Visibility>
+							<Button.Template>
+								<ControlTemplate TargetType="Button">
+									<TextBlock TextDecorations="Underline">
+										<ContentPresenter />
+									</TextBlock>
+								</ControlTemplate>
+							</Button.Template>
+							<Button.Style>
+								<Style TargetType="Button">
+									<Setter Property="Foreground" Value="Blue" />
+									<Style.Triggers>
+										<Trigger Property="IsMouseOver" Value="true">
+											<Setter Property="Foreground" Value="Red" />
+										</Trigger>
+									</Style.Triggers>
+								</Style>
+							</Button.Style>
+						</Button>
+					</StackPanel>
+				</Border>
+            </Grid>
+            <StatusBar Background="{DynamicResource PanelLightBrush}" HorizontalAlignment="Stretch" DockPanel.Dock="Bottom">
+                <StatusBarItem>
+                    <Grid HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <!--<CheckBox x:Name="chkIForShowingClient" IsChecked="{Binding Source={x:Static UserControls:Session.Inst}, Path=IsClientShowingMode}" 
+							  Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="1,5,1,1"
+							  ToolTip="{Binding Source={x:Static UserControls:Session.Inst}, Path=IsClientShowingMode, Converter={StaticResource BoolToClientModeCheckBoxToolTipTextConverter}}"/>-->
+
+                        <WrapPanel Orientation="Horizontal" Background="Transparent" Margin="1,-3,1,1" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1">
+                            <TextBlock x:Name="txbUser" HorizontalAlignment="Left" FontSize="11" Margin="10,0,0,0" Text="{Binding Source={StaticResource CultureResources},Path=[UserP]}"/>
+                            <TextBlock x:Name="txbUserName" HorizontalAlignment="Left" MaxWidth="250" FontSize="11" Margin="3,0,0,0" Text="{Binding Source={x:Static UserControls:Session.Inst}, Path=User.FullName}" TextWrapping="Wrap" BaselineOffset="5" FontWeight="Bold"/>
+                            <TextBlock HorizontalAlignment="Right" FontSize="11" Margin="1,0,0,0" Text=";" />
+
+                            <TextBlock x:Name="txbEstatesCount" HorizontalAlignment="Left" FontSize="11" Margin="10,0,0,0" Text="{Binding Source={StaticResource CultureResources},Path=[EstatesCountP]}" />
+                            <TextBlock x:Name="txbFPName" HorizontalAlignment="Right" FontSize="11" MaxWidth="300" Margin="2,0,0,0" Text="{Binding Source={x:Static UserControls:Session.Inst}, Path=EstatesCount}" TextWrapping="Wrap" BaselineOffset="5" FontWeight="Bold"/>
+                            <TextBlock HorizontalAlignment="Right" FontSize="11" Margin="1,0,0,0" Text=";" />
+
+                            <TextBlock x:Name="txbDemandsCount" HorizontalAlignment="Left" FontSize="11" Margin="10,0,0,0" Text="{Binding Source={StaticResource CultureResources},Path=[ClientsCountP]}" />
+                            <TextBlock x:Name="txbDemands" HorizontalAlignment="Right" FontSize="11" MaxWidth="300" Margin="2,0,0,0" Text="{Binding Source={x:Static UserControls:Session.Inst}, Path=DemandsCount}" TextWrapping="Wrap" BaselineOffset="5" FontWeight="Bold"/>
+                            <TextBlock HorizontalAlignment="Right" FontSize="11" Margin="1,0,0,0" Text=";" />
+
+                            <TextBlock x:Name="txbPersonalDemandsTitle" HorizontalAlignment="Left" FontSize="11" Margin="10,0,0,0" Text="{Binding Source={StaticResource CultureResources},Path=[MyClientsCount]}" />
+                            <TextBlock x:Name="txbPersonalDemandsValue" HorizontalAlignment="Right" FontSize="11" MaxWidth="300" Margin="2,0,0,0" 
+							   Text="{Binding Source={x:Static UserControls:Session.Inst}, Path=User.NeededEstates.Count}" TextWrapping="Wrap" BaselineOffset="5" FontWeight="Bold"/>
+                        </WrapPanel>
+                    </Grid>
+                </StatusBarItem>
+                <StatusBarItem HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal" Grid.Column="2" Margin="5,0">
+
+                        <Button Margin="5" Cursor="Hand" Content="{Binding Source={StaticResource CultureResources},Path=[CheckForUpdates]}"
+								x:Name="btnCheckForUpdates" Click="btnCheckForUpdates_Click" >
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <TextBlock TextDecorations="Underline">
+										<ContentPresenter />
+                                    </TextBlock>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Foreground" Value="Blue" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter Property="Foreground" Value="Red" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard>
+                                        <Storyboard x:Name="sbProgress">
+                                            <DoubleAnimation Storyboard.TargetName="progUpdate" x:Name="updateProgressAnimation"
+												Storyboard.TargetProperty="Value" From="0" To="100" Duration="0:0:3" AutoReverse="True" BeginTime="0:0:0" />
+                                            <!--<DoubleAnimation Storyboard.TargetName="progUpdate" x:Name="updateVisibleAnimation"
+												Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:8" BeginTime="0:0:0"/>-->
+                                            <DoubleAnimation Storyboard.TargetName="progUpdate" 
+												Storyboard.TargetProperty="Width" From="0" To="100" Duration="0:0:1" BeginTime="0:0:0"/>
+                                            <DoubleAnimation Storyboard.TargetName="progUpdate" x:Name="updateWidthAnimation"
+												Storyboard.TargetProperty="Width" From="100" To="0" Duration="0:0:1" BeginTime="0:0:5"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </Button>
+                        <ProgressBar Height="15" Width="0" x:Name="progUpdate" Margin="5,0" VerticalAlignment="Center" />
+                    </StackPanel>
+                </StatusBarItem>
+            </StatusBar>
+
+            <CustomControls:DragDockPanelHost Name="dockPanelHost" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinimizedPosition="Right" >
+
+                <CustomControls:DragDockPanel Name="ddpAddRealEstate" Margin="5" Header="{Binding Source={StaticResource CultureResources},Path=[AddEditEstate]}" Foreground="White" 
+											  >
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="3">
+                        <UserControls:AddEditRealEstate Name="addrealEstate" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                                        RealEstatesListControl="{Binding ElementName=ddpRealEstatesList}"
+                                                        FavoriteEstatesControl="{Binding ElementName=favoritesControl}"/>
+                    </Grid>
+                </CustomControls:DragDockPanel>
+
+                <CustomControls:DragDockPanel Name="ddpRealEstatesList" Margin="5" Header="{Binding Source={StaticResource CultureResources},Path=[Estates]}" Foreground="White" >
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="3">
+                        <UserControls:RealEstatesList Name="EstatesList" EditControl="{Binding ElementName=ddpAddRealEstate}"
+                                                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+													  FavoriteEstatesControl="{Binding ElementName=ddpRealEstatesList}"
+													  EstatesAndDemandsControl="{Binding ElementName=ddpestatesShowedClients}" />
+                    </Grid>
+                </CustomControls:DragDockPanel>
+
+                <CustomControls:DragDockPanel Name="ddpFavoriteEstates" Margin="5" Header="{Binding Source={StaticResource CultureResources},Path=[FavoriteEstatesAndClients]}" Foreground="White" >
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="3">
+                        <TabControl>
+                            <TabItem Header="{Binding Source={StaticResource CultureResources},Path=[FavoriteEstates]}">
+                                <UserControls:FavoriteEstates HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="favoritesControl"/>
+                            </TabItem>
+                            <TabItem Header="{Binding Source={StaticResource CultureResources},Path=[FavoriteClients]}">
+                                <UserControls:FavoriteClients HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="favoriteClientsControl"/>
+                            </TabItem>
+                        </TabControl>
+                    </Grid>
+                </CustomControls:DragDockPanel>
+
+                <CustomControls:DragDockPanel Name="ddpSearch" Margin="5" Header="{Binding Source={StaticResource CultureResources},Path=[Search]}" Foreground="White" >
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="3">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+
+                                <Button Name="btnCheckAddress" Content="{Binding Source={StaticResource CultureResources},Path=[CheckAddress]}" Click="btnCheckAddress_Click"
+									HorizontalAlignment="Right" Margin="10"/>
+
+                                <Button Name="btnSearchChange" Content="{Binding Source={StaticResource CultureResources},Path=[AdvancedSearch]}" CommandParameter="Advanced" Click="btnSearchChange_Click"
+									Margin="10"/>
+
+                            </StackPanel>
+
+                            <UserControls:SearchControl x:Name="searchControl" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                                                    RealEstatesListControlName="{Binding ElementName=ddpRealEstatesList}" Visibility="Collapsed" />
+                            <UserControls:SimpleSearchControl x:Name="simpleSearch" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+															 RealEstatesListControlName="{Binding ElementName=ddpRealEstatesList}" />
+                        </StackPanel>
+
+                    </ScrollViewer>
+                </CustomControls:DragDockPanel>
+
+                <CustomControls:DragDockPanel Name="ddpAddDemand" Margin="5" Header="{Binding Source={StaticResource CultureResources},Path=[AddEditDemand]}" Foreground="White" 
+											  >
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="3" >
+                        <UserControls:AddEditDemand HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="addEditDemand"
+													DemandsListPanel="{Binding ElementName=ddpAllDemands}" />
+                    </Grid>
+                </CustomControls:DragDockPanel>
+
+                <CustomControls:DragDockPanel Name="ddpAllDemands" Margin="5" Header="{Binding Source={StaticResource CultureResources},Path=[Demands]}" Foreground="White" >
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="3">
+                        <UserControls:Demands Name="allDemands" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DemandType="All"
+											  AddEditControlPanel="{Binding ElementName=ddpAddDemand}"
+											  EstatesAndDemandsControl="{Binding ElementName=ddpestatesShowedClients}" 
+                                              FavoriteClientsControl="{Binding ElementName=favoriteClientsControl}"/>
+                    </Grid>
+                </CustomControls:DragDockPanel>
+
+
+
+                <CustomControls:DragDockPanel Name="ddpBlackList" Margin="5" Header="{Binding Source={StaticResource CultureResources},Path=[OtherBrokersList]}" Foreground="white" >
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="3">
+                        <UserControls:BlackList x:Name="blackList" />
+                    </Grid>
+                </CustomControls:DragDockPanel>
+
+                <CustomControls:DragDockPanel x:Name="ddpestatesShowedClients" Margin="5" Header="{Binding Source={StaticResource CultureResources},Path=[EstatesShowedClients]}" Foreground="white" >
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="3">
+                        <UserControls:EstatesShowedClients x:Name="estatesShowedClients" />
+                    </Grid>
+                </CustomControls:DragDockPanel>
+
+            </CustomControls:DragDockPanelHost>
+        </DockPanel>
+    </Grid>
+</Window>

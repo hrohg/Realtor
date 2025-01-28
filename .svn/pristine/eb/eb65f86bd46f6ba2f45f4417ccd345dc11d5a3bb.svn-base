@@ -1,0 +1,85 @@
+﻿<Window x:Class="UserControls.DemandsForEstate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:Converters="clr-namespace:Shared.Converters;assembly=Shared" 
+        xmlns:Controls="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit" x:Name="demandsForEstate" Icon="pack://application:,,,/Shared;component/Images/Application.png"
+        Title="{Binding Source={StaticResource CultureResources},Path=[ClientsForEstates]}" ShowActivated="True" ShowInTaskbar="True" WindowState="Maximized" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Converters:NeededRegionsToStringConverter x:Key="NeededRegionsToStringConverter" />
+        <Converters:UserToTranslatedUserConverter x:Key="UserToTranslatedUserConverter" />
+        <Converters:EstateToRegionStateStringConverter x:Key="EstateToRegionStateStringConverter" />
+        <Converters:NeededEstateTypesToStringConverter x:Key="NeededEstateTypesToStringConverter" />
+        <Converters:DateTimeToFormattedDateTimeConverter x:Key="DateTimeToFormattedDateTimeConverter" />
+        <Converters:StringToOneRowStringConverter x:Key="StringToOneRowStringConverter" />
+        <Converters:IsRentToStringConverter x:Key="IsRentToStringConverter" />
+        <Converters:StringEmptyToNullConverter x:Key="NullToStringEmptyConverter" />
+    </Window.Resources>
+    <Grid Margin="3">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+		<GroupBox Header="{Binding Source={StaticResource CultureResources},Path=[Estate]}" >
+            <Controls:DataGrid AutoGenerateColumns="False" CanUserResizeColumns="True" CanUserReorderColumns="True" CanUserSortColumns="True" SelectionMode="Single"
+							    Grid.ColumnSpan="2" ItemsSource="{Binding Path=Estates, ElementName=demandsForEstate}"  IsReadOnly="True"
+							   HorizontalAlignment="Stretch" VerticalAlignment="Top" x:Name="dgEstates" MouseDoubleClick="dgEstates_MouseDoubleClick" SelectionChanged="dgEstates_SelectionChanged">
+                <Controls:DataGrid.Columns>
+                    <Controls:DataGridTextColumn Binding="{Binding Path=Code, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Code]}" />
+					<Controls:DataGridTextColumn Binding="{Binding Path=OrderType.Name, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[OrdType]}" Width="Auto" SortMemberPath="OrderTypeID"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=EstateType.TypeName, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[TheEstateType]}" Width="Auto" SortMemberPath="EstateTypeID"/>
+					<Controls:DataGridTextColumn Binding="{Binding Mode=OneWay, Converter={StaticResource EstateToRegionStateStringConverter}}" Header="{Binding Source={StaticResource CultureResources},Path=[StateOrRegion]}" Width="Auto" SortMemberPath="RegionID"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=RoomCount, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Room]}" Width="Auto"/>
+					
+					<Controls:DataGridTextColumn Binding="{Binding Path=Street.Name, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Street]}" Width="Auto" SortMemberPath="StreetID"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=ShortAddressString, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Address]}" Width="Auto" CanUserSort="False"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=TotalSquare, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Square]}" Width="Auto"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=BuildingFloorsCount, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[BuildingFloor]}" Width="Auto"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=Floor, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Floor]}" MaxWidth="50" Width="Auto"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=Price, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Price]}" Width="Auto"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=Currency.Name, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Currency]}" Width="Auto" SortMemberPath="CurrencyID"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=AddDate, Mode=OneWay, StringFormat=\{0:dd.MM.yyyy\}}" Header="{Binding Source={StaticResource CultureResources},Path=[Added]}" Width="Auto"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=LastModifiedDate, Mode=OneWay, Converter={StaticResource NullToStringEmptyConverter}, StringFormat=\{0:dd.MM.yyyy\}}" Header="{Binding Source={StaticResource CultureResources},Path=[Updated]}" Width="Auto"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=SellerInfo, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Seller]}" Width="Auto"/>
+					<Controls:DataGridTemplateColumn Header="{Binding Source={StaticResource CultureResources},Path=[AdditionalDetails]}" Width="Auto"  >
+                        <Controls:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=AdditionalInformation, Mode=OneWay, Converter={StaticResource StringToOneRowStringConverter}}" ToolTipService.ToolTip="{Binding Path=AdditionalInformation}"/>
+                            </DataTemplate>
+                        </Controls:DataGridTemplateColumn.CellTemplate>
+                    </Controls:DataGridTemplateColumn>
+					<Controls:DataGridTextColumn Binding="{Binding Path=Rating, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Rating]}" Width="Auto"/>
+                </Controls:DataGrid.Columns>
+            </Controls:DataGrid>
+        </GroupBox>
+		<GroupBox Header="{Binding Source={StaticResource CultureResources},Path=[Pahanjark]}" Grid.Row="1">
+            <Controls:DataGrid AutoGenerateColumns="False" CanUserResizeColumns="True" CanUserReorderColumns="True" CanUserSortColumns="True" 
+							   ItemsSource="{Binding Path=Demands, ElementName=demandsForEstate}"  IsReadOnly="True"
+                               SelectionMode="Single"
+							   HorizontalAlignment="Stretch" VerticalAlignment="Top" x:Name="dgNeededEstates">
+                <Controls:DataGrid.Columns>
+					<Controls:DataGridTextColumn Binding="{Binding Path=User, Mode=OneWay, Converter={StaticResource UserToTranslatedUserConverter}}" Header="{Binding Source={StaticResource CultureResources},Path=[Broker]}" Width="Auto" />
+					<Controls:DataGridTextColumn Binding="{Binding Path=IsNeedForRent, Mode=OneWay, Converter={StaticResource IsRentToStringConverter}}" Header="{Binding Source={StaticResource CultureResources},Path=[OrdType]}" Width="Auto" />
+					<Controls:DataGridTextColumn Binding="{Binding Path=NeededEstateTypes, Mode=OneWay, Converter={StaticResource NeededEstateTypesToStringConverter}}" Header="{Binding Source={StaticResource CultureResources},Path=[EstateType]}" Width="Auto" />
+					<Controls:DataGridTextColumn Binding="{Binding Path=RoomsCountInterval, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Room]}" Width="Auto"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=SquareInterval, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Square]}" Width="Auto"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=PriceInterval, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Price]}" Width="Auto"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=Currency.Name, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Currency]}" Width="Auto"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=NeededRegions, Mode=OneWay, Converter={StaticResource NeededRegionsToStringConverter}}" Header="{Binding Source={StaticResource CultureResources},Path=[StateOrRegion]}" Width="Auto"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=BuyerInfo, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Client]}" Width="Auto"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=AddDate, Mode=OneWay, StringFormat=\{0:dd.MM.yyyy\}}" Header="{Binding Source={StaticResource CultureResources},Path=[Added]}" Width="Auto"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=LastModifiedDate, Mode=OneWay, Converter={StaticResource NullToStringEmptyConverter}, StringFormat=\{0:dd.MM.yyyy\}}" Header="{Binding Source={StaticResource CultureResources},Path=[Updated]}" Width="Auto"/>
+					<Controls:DataGridTemplateColumn Header="{Binding Source={StaticResource CultureResources},Path=[AdditData]}" Width="Auto" >
+                        <Controls:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=AdditionalDetails, Mode=OneWay, Converter={StaticResource StringToOneRowStringConverter}}" ToolTipService.ToolTip="{Binding Path=AdditionalDetails}"/>
+                            </DataTemplate>
+                        </Controls:DataGridTemplateColumn.CellTemplate>
+                    </Controls:DataGridTemplateColumn>
+                </Controls:DataGrid.Columns>
+            </Controls:DataGrid>
+        </GroupBox>
+		<Button x:Name="btnOK" Content="{Binding Source={StaticResource CultureResources},Path=[Close]}" Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Click="btnOK_Click"/>
+    </Grid>
+</Window>

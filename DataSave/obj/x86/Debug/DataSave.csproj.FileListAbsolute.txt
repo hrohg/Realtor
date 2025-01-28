@@ -1,0 +1,5 @@
+C:\Users\VS Projects\Realtor\Realtor\DataSave\bin\Debug\DataSave.exe
+C:\Users\VS Projects\Realtor\Realtor\DataSave\bin\Debug\DataSave.pdb
+C:\Users\VS Projects\Realtor\Realtor\DataSave\obj\x86\Debug\DataSave.exe
+C:\Users\VS Projects\Realtor\Realtor\DataSave\obj\x86\Debug\DataSave.pdb
+C:\Users\VS Projects\Realtor\Realtor\DataSave\obj\x86\Debug\DataSave.csprojResolveAssemblyReference.cache

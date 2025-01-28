@@ -1,0 +1,14 @@
+C:\Users\VS Projects\Realtor\Realtor\Realtor.UploadService.Facade\bin\Debug\Realtor.UploadService.Facade.dll
+C:\Users\VS Projects\Realtor\Realtor\Realtor.UploadService.Facade\bin\Debug\Realtor.UploadService.Facade.pdb
+C:\Users\VS Projects\Realtor\Realtor\Realtor.UploadService.Facade\bin\Debug\Realtor.DTO.dll
+C:\Users\VS Projects\Realtor\Realtor\Realtor.UploadService.Facade\bin\Debug\Realtor.DTO.pdb
+C:\Users\VS Projects\Realtor\Realtor\Realtor.UploadService.Facade\obj\Debug\Realtor.UploadService.Facade.csprojResolveAssemblyReference.cache
+C:\Users\VS Projects\Realtor\Realtor\Realtor.UploadService.Facade\obj\Debug\Realtor.UploadService.Facade.dll
+C:\Users\VS Projects\Realtor\Realtor\Realtor.UploadService.Facade\obj\Debug\Realtor.UploadService.Facade.pdb
+C:\Hrayr\VS Projects\Realtor\Realtor\Realtor.UploadService.Facade\bin\Debug\Realtor.UploadService.Facade.dll
+C:\Hrayr\VS Projects\Realtor\Realtor\Realtor.UploadService.Facade\bin\Debug\Realtor.UploadService.Facade.pdb
+C:\Hrayr\VS Projects\Realtor\Realtor\Realtor.UploadService.Facade\bin\Debug\Realtor.DTO.dll
+C:\Hrayr\VS Projects\Realtor\Realtor\Realtor.UploadService.Facade\bin\Debug\Realtor.DTO.pdb
+C:\Hrayr\VS Projects\Realtor\Realtor\Realtor.UploadService.Facade\obj\Debug\Realtor.UploadService.Facade.csprojResolveAssemblyReference.cache
+C:\Hrayr\VS Projects\Realtor\Realtor\Realtor.UploadService.Facade\obj\Debug\Realtor.UploadService.Facade.dll
+C:\Hrayr\VS Projects\Realtor\Realtor\Realtor.UploadService.Facade\obj\Debug\Realtor.UploadService.Facade.pdb

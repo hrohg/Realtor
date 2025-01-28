@@ -1,0 +1,5 @@
+C:\Users\VS Projects\Realtor\Realtor\Realtor.DTO\bin\Release\Realtor.DTO.dll
+C:\Users\VS Projects\Realtor\Realtor\Realtor.DTO\bin\Release\Realtor.DTO.pdb
+C:\Users\VS Projects\Realtor\Realtor\Realtor.DTO\obj\Release\Realtor.DTO.csprojResolveAssemblyReference.cache
+C:\Users\VS Projects\Realtor\Realtor\Realtor.DTO\obj\Release\Realtor.DTO.dll
+C:\Users\VS Projects\Realtor\Realtor\Realtor.DTO\obj\Release\Realtor.DTO.pdb

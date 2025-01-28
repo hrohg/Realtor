@@ -1,0 +1,50 @@
+﻿<Window x:Class="RealEstateApp.Users"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit"
+    xmlns:Converters="clr-namespace:Shared.Converters;assembly=Shared"
+    Title="{Binding Source={StaticResource CultureResources},Path=[Users]}" ShowInTaskbar="True" WindowState="Maximized"
+		x:Name="usersForm" Icon="pack://application:,,,/Shared;component/Images/Application.png" KeyUp="usersForm_KeyUp">
+    <Window.Resources>
+        <Converters:RoleIDToRoleConverter x:Key="RoleIDToRoleConverter"/>
+        <Converters:BrokersRegionsToStringConverter x:Key="BrokersRegionsToStringConverter" />
+        <Converters:BrokerOrderTypesToStringConverter x:Key="BrokerOrderTypesToStringConverter" />
+        <Converters:BrokerEstateTypesToStringConverter x:Key="BrokerEstateTypesToStringConverter" />
+		<Converters:BrokerStatesToStringConverter x:Key="BrokerStatesToStringConverter" />
+    </Window.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="3" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition />
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+			<Button x:Name="btnAdd" Content="{Binding Source={StaticResource CultureResources},Path=[AddUser]}" Click="btnAdd_Click" Margin="0,0,10,0" HorizontalAlignment="Right" Width="150" />
+            <Controls:DataGrid ItemsSource="{Binding Path=AppUsers, ElementName=usersForm}" x:Name="dgUsers" Grid.Row="1"
+						   AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" >
+                <Controls:DataGrid.Columns>
+					<Controls:DataGridTextColumn Binding="{Binding Path=UserName}" Header="{Binding Source={StaticResource CultureResources},Path=[Username]}" Width="150"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=Name}" Header="{Binding Source={StaticResource CultureResources},Path=[Name]}" Width="150"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=Family}" Header="{Binding Source={StaticResource CultureResources},Path=[Family]}" Width="150"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=RoleID, Converter={StaticResource RoleIDToRoleConverter}}" Header="{Binding Source={StaticResource CultureResources},Path=[Type]}" Width="120" CanUserSort="False"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=BrokersRegions, Converter={StaticResource BrokersRegionsToStringConverter}}" Header="{Binding Source={StaticResource CultureResources},Path=[Regions]}" MaxWidth="250" CanUserSort="False"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=BrokerOrderTypes, Converter={StaticResource BrokerOrderTypesToStringConverter}}" Header="{Binding Source={StaticResource CultureResources},Path=[OrderTypes]}" MaxWidth="200" CanUserSort="False"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=BrokerEstateTypes, Converter={StaticResource BrokerEstateTypesToStringConverter}}" Header="{Binding Source={StaticResource CultureResources},Path=[EstateTypes]}" MaxWidth="250" CanUserSort="False"/>
+					<Controls:DataGridTextColumn Binding="{Binding Path=BrokerStates, Converter={StaticResource BrokerStatesToStringConverter}}" Header="{Binding Source={StaticResource CultureResources},Path=[StateRegions]}" MaxWidth="250" CanUserSort="False"/>
+                    <Controls:DataGridTemplateColumn>
+                        <Controls:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+									<Button x:Name="btnEditUser" Tag="{Binding}" Content="{Binding Source={StaticResource CultureResources},Path=[Edit]}" Click="btnEditUser_Click"/>
+									<Button x:Name="btnDeleteUser" Tag="{Binding}" Content="{Binding Source={StaticResource CultureResources},Path=[Delete]}" Click="btnDeleteUser_Click" Margin="2,0,2,0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </Controls:DataGridTemplateColumn.CellTemplate>
+                    </Controls:DataGridTemplateColumn>
+                </Controls:DataGrid.Columns>
+            </Controls:DataGrid>
+			<Button x:Name="btnClose" Content="{Binding Source={StaticResource CultureResources},Path=[Close]}" Grid.Row="2" HorizontalAlignment="Right" Width="100" Margin="0,5,10,0" 
+					Click="btnClose_Click" VerticalAlignment="Bottom"/>
+        </Grid>
+    </ScrollViewer>
+</Window>

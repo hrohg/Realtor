@@ -1,0 +1,33 @@
+﻿<Window x:Class="RealEstateApp.BuildingTypesManagement"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+	xmlns:Controls="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit" Title="{Binding Source={StaticResource CultureResources},Path=[BuildingTypes]}" x:Name="buildingTypeManagement"
+	Icon="pack://application:,,,/Shared;component/Images/Application.png" Loaded="buildingTypeManagement_Loaded" WindowState="Maximized" KeyUp="buildingTypeManagement_KeyUp" >
+	<Grid Margin="3">
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition Height="30" />
+		</Grid.RowDefinitions>
+		<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+			<DataGrid x:Name="dgBuildingTypes" ItemsSource="{Binding Path=BuildingTypes, ElementName=buildingTypeManagement}" 
+						   AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="False" CanUserSortColumns="True" 
+						   CanUserResizeRows="False" RowEditEnding="dgBuildingTypes_RowEditEnding">
+				<DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=NameAm, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Շենքի տեսակ" Width="150"/>
+                    <DataGridTextColumn Binding="{Binding Path=NameRu, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Тип здания" Width="150"/>
+                    <DataGridTextColumn Binding="{Binding Path=NameEn, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Building Type" Width="150"/>
+					<!--<Controls:DataGridTextColumn Binding="{Binding Path=NameCz}" Header="Building Type cz" Width="150"/>-->
+					<!--<Controls:DataGridTextColumn Binding="{Binding Path=NameKz}" Header="{Binding Source={StaticResource CultureResources},Path=[BuildingType]}" Width="150"/>-->
+					<DataGridTemplateColumn>
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate>
+								<Button CommandParameter="{Binding}" Content="{Binding Source={StaticResource CultureResources},Path=[Delete]}" Width="70" Click="ButtonDelete_Click"/>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					</DataGridTemplateColumn>
+				</DataGrid.Columns>
+			</DataGrid>
+		</ScrollViewer>
+		<Button x:Name="btnOk" Content="{Binding Source={StaticResource CultureResources},Path=[Close]}" Grid.Row="1" Click="btnOk_Click" Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" />
+	</Grid>
+</Window>

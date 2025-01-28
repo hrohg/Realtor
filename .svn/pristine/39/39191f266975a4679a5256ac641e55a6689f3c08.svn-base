@@ -1,0 +1,63 @@
+CREATE TABLE [dbo].[Countries](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[NameAm] [nvarchar](100) NULL,
+	[NameEn] [nvarchar](100) NULL,
+	[NameRu] [nvarchar](100) NULL,
+	[OriginalID] [int] NULL,
+	[LastModifiedDate] [datetime] NULL,
+	[IsDeleted] [bit] NULL,
+ CONSTRAINT [PK_Countries] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+ALTER TABLE dbo.Cities ADD
+	CountryID int NULL
+
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Cities ADD CONSTRAINT
+	FK_Cities_Countries FOREIGN KEY
+	(
+	CountryID
+	) REFERENCES dbo.Countries
+	(
+	ID
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Cities SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+ALTER TABLE dbo.Estates ADD
+	CountryID int NULL,
+	Address nvarchar(500) NULL
+
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Countries SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Estates ADD CONSTRAINT
+	FK_Estates_Countries FOREIGN KEY
+	(
+	CountryID
+	) REFERENCES dbo.Countries
+	(
+	ID
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Estates SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+ALTER TABLE dbo.Estates ADD
+	IsOverseas bit NULL

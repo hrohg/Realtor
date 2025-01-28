@@ -1,0 +1,372 @@
+﻿<UserControl x:Class="UserControls.RealEstatesList"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:Converters="clr-namespace:Shared.Converters;assembly=Shared"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Foreground="Black"
+    xmlns:UserControls="clr-namespace:UserControls"
+    xmlns:MicrosoftControls="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit"
+	xmlns:CusomControls="clr-namespace:CustomControls.ValidPanel;assembly=CustomControls" 
+	Name="realEstatesList" Loaded="realEstatesList_Loaded" >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Converters:EstateToRegionStateStringConverter x:Key="EstateToRegionStateStringConverter"/>
+            <Converters:StringToOneRowStringConverter x:Key="StringToOneRowStringConverter" />
+            <Converters:UploadVisibilityConverter x:Key="UploadVisibilityConverter" />
+            <Converters:StringEmptyToNullConverter x:Key="NullToStringEmptyConverter" />
+            <Converters:StringEmptyToNullConverter x:Key="StringEmptyToNullConverter" />
+            
+            <Converters:FullAddressVisibilityConverter x:Key="FullAddressVisibilityConverter" />
+            <Converters:SelectedItemsCountToContextMenuItemVisibilityConverter x:Key="SelectedItemsCountToContextMenuItemVisibilityConverter" />
+            <Converters:EstateToEstateFullAddressStringWithoutRegionConverter x:Key="EstateToEstateFullAddressStringWithoutRegionConverter" />
+            <Converters:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
+            <Converters:EstateToRoomsCountStringConverter x:Key="EstateToRoomsCountStringConverter" />
+            <Converters:RoleToObjectVisibilityConverter x:Key="RoleToObjectVisibilityConverter" />
+            <Converters:EstateToFloorViewForListConverter x:Key="EstateToFloorViewForListConverter" />
+            <Converters:IsSoldToBackgroundColorConverter x:Key="IsSoldToBackgroundColorConverter" />
+            <Converters:IsAdminOrDirectorToObjectVisibilityConverter x:Key="IsAdminOrDirectorToObjectVisibilityConverter" />
+            <Converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+			<Converters:LastModifiedDateToTextColorConverter x:Key="LastModifiedDateToTextColorConverter" />
+            <Converters:EstateImagesToPhotoVisibilityConverter x:Key="EstateImagesToPhotoVisibilityConverter" />
+            <Style TargetType="{x:Type MicrosoftControls:DataGridRow}" BasedOn="{StaticResource {x:Type MicrosoftControls:DataGridRow}}">
+                <Style.Setters>
+					<Setter Property="Background" Value="{Binding Converter={StaticResource IsSoldToBackgroundColorConverter}}" />
+					<!--<Setter Property="Foreground" Value="{Binding Path=LastModifiedDate, Converter={StaticResource LastModifiedDateToTextColorConverter}}" />-->
+                </Style.Setters>
+            </Style>
+			<Style TargetType="MicrosoftControls:DataGridCell" BasedOn="{StaticResource {x:Type MicrosoftControls:DataGridCell}}">
+				<Setter Property="Foreground" Value="{Binding Path=LastModifiedDate, Converter={StaticResource LastModifiedDateToTextColorConverter}}" />
+			</Style>
+
+            <DataTemplate x:Key="RoomTemplate">
+                <TextBlock Text="{Binding Mode=OneWay, Converter={StaticResource EstateToRoomsCountStringConverter}}" />
+            </DataTemplate>
+
+            <DataTemplate x:Key="PriceHeaderTemplate">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[Price]}" />
+                    <ComboBox ItemsSource="{Binding Path=GridCurrencies, ElementName=realEstatesList}" Height="20" Margin="3,0,0,0" FontSize="11"
+										SelectedItem="{Binding Path=SelectedGridCurrency, Mode=TwoWay, ElementName=realEstatesList}" 
+										DisplayMemberPath="Name" IsEditable="False"/>
+                </StackPanel>
+            </DataTemplate>
+
+            <DataTemplate x:Key="PriceTemplate">
+                <TextBlock Text="{Binding Path=Price, Mode=OneWay}" />
+            </DataTemplate>
+
+            <DataTemplate x:Key="AdditionalInformationTemplate">
+                <TextBlock Text="{Binding Path=AdditionalInformation, Mode=OneWay, Converter={StaticResource StringToOneRowStringConverter}}" ToolTipService.ToolTip="{Binding Path=AdditionalInformation}"/>
+            </DataTemplate>
+
+            <DataTemplate x:Key="OtherColumnTemplate">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="pack://application:,,,/Shared;component/Images/water.png" 
+									   ToolTip="{Binding Source={StaticResource CultureResources},Path=[Garage]}" 
+									   Visibility="{Binding Path=HasGarage, Converter={StaticResource BoolToVisibilityConverter}}"
+									   Height="21" Margin="2,0,0,0" />
+                    <Image Source="pack://application:,,,/Shared;component/Images/photo.png" 
+									   ToolTip="{Binding Source={StaticResource CultureResources},Path=[Photos]}" 
+									   Visibility="{Binding Path=EstateImages, Converter={StaticResource EstateImagesToPhotoVisibilityConverter}}"
+									   Height="21" Margin="2,0,0,0" />
+                    <Image Source="pack://application:,,,/Shared;component/Images/garage.png" 
+									   ToolTip="{Binding Source={StaticResource CultureResources},Path=[Garage]}" 
+									   Visibility="{Binding Path=HasGarage, Converter={StaticResource BoolToVisibilityConverter}}"
+									   Height="21" Margin="2,0,0,0" />
+                    <Image Source="pack://application:,,,/Shared;component/Images/gas.png" 
+									   ToolTip="{Binding Source={StaticResource CultureResources},Path=[Gas]}" 
+									   Visibility="{Binding Path=IsHasGas, Converter={StaticResource BoolToVisibilityConverter}}"
+									   Height="21" Margin="2,0,0,0"/>
+                    <Image Source="pack://application:,,,/Shared;component/Images/furniture.png" 
+									   ToolTip="{Binding Source={StaticResource CultureResources},Path=[Furniture]}" 
+									   Visibility="{Binding Path=IsHasFurniture, Converter={StaticResource BoolToVisibilityConverter}}"
+									   Height="21" Margin="2,0,0,0"/>
+                    <Image Source="pack://application:,,,/Shared;component/Images/washer.png" 
+									   ToolTip="{Binding Source={StaticResource CultureResources},Path=[Washer]}" 
+									   Visibility="{Binding Path=IsHasWasher, Converter={StaticResource BoolToVisibilityConverter}}"
+									   Height="21" Margin="2,0,0,0"/>
+                    <Image Source="pack://application:,,,/Shared;component/Images/podval.png" 
+									   ToolTip="{Binding Source={StaticResource CultureResources},Path=[Podval]}" 
+									   Visibility="{Binding Path=HasPadval, Converter={StaticResource BoolToVisibilityConverter}}"
+									   Height="21" Margin="2,0,0,0"/>
+                </StackPanel>
+            </DataTemplate>
+            
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Margin="3" x:Name="grdRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,0,10,0" x:Name="grdHeader">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Expander Grid.ColumnSpan="2" Header="{Binding Source={StaticResource CultureResources},Path=[SearchCriteria]}" Margin="2" >
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <CusomControls:ValidPanel x:Name="vPanel">
+                        <Grid DataContext="{Binding Path=SearchParameters, ElementName=realEstatesList}" KeyUp="Grid_KeyUp">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="8*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[CodeP]}" HorizontalAlignment="Right"/>
+                            <TextBox Text="{Binding Path=Code, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True, Converter={StaticResource StringEmptyToNullConverter}}" Grid.Column="2"/>
+
+                            <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[TelephoneOrNameP]}" HorizontalAlignment="Right" Grid.Row="1"/>
+							<TextBox Text="{Binding Path=TelephoneOrName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True, Converter={StaticResource StringEmptyToNullConverter}}" Grid.Column="2" Grid.Row="1"/>
+
+                            <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[StreetP]}" HorizontalAlignment="Right" Grid.Row="2"/>
+                            <TextBox Text="{Binding Path=StreetName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True, Converter={StaticResource StringEmptyToNullConverter}}" Grid.Column="2" Grid.Row="2"/>
+
+                            <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[RoomCountP]}" Grid.Row="3" HorizontalAlignment="Right"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="3">
+                                <TextBox Name="txtRoomCountFrom" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+					         Text="{Binding Path=RoomCountFrom, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource StringEmptyToNullConverter}}" />
+                                <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[to]}" Margin="3,0,3,0"/>
+                                <TextBox Name="txtRoomCountTo" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+					         Text="{Binding Path=RoomCountTo, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource StringEmptyToNullConverter}}" />
+                            </StackPanel>
+
+                            <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[FloorP]}" HorizontalAlignment="Right" Grid.Row="4"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="4" Grid.Column="2">
+                                <TextBox Text="{Binding Path=FloorFrom, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Mode=TwoWay, Converter={StaticResource StringEmptyToNullConverter}}" 
+					                 Name="txtFloorFrom" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[to]}" Margin="3,0,3,0"/>
+                                <TextBox Text="{Binding Path=FloorTo, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource StringEmptyToNullConverter}}" 
+					                Name="txtFloorTo" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[PriceP]}" HorizontalAlignment="Right" Grid.Row="5"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="5" Grid.Column="2">
+
+                                <TextBox Text="{Binding Path=PriceFrom, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource StringEmptyToNullConverter}}" 
+					                Name="txtPriceFrom" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[to]}" Margin="3,0,3,0"/>
+                                <TextBox Text="{Binding Path=PriceTo, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource StringEmptyToNullConverter}}" 
+					                Name="txtPriceTo" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                                <ComboBox Name="cbCurrencies" Width="30" SelectedItem="{Binding Path=Currency, Mode=TwoWay}" IsEditable="False"
+					                  DisplayMemberPath="Name" ItemsSource="{Binding Path=Currencies, ElementName=realEstatesList}" 
+					                  HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                            </StackPanel>
+
+                            <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[SquareP]}" HorizontalAlignment="Right" Grid.Row="6" VerticalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="6" Grid.Column="2" VerticalAlignment="Center">
+
+                                <TextBox Text="{Binding Path=SquareFrom, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource StringEmptyToNullConverter}}" 
+					                Name="txtSquareFrom" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[to]}" Margin="3,0,3,0"/>
+                                <TextBox Text="{Binding Path=SquareTo, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource StringEmptyToNullConverter}}" 
+					                 Name="txtSquareTo" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <Button Name="btnSearch" Content="{Binding Source={StaticResource CultureResources},Path=[Search]}" Click="btnSearch_Click" Grid.Row="7" Grid.Column="2" 
+                                IsEnabled="{Binding ElementName=vPanel, Path=IsValid}" HorizontalAlignment="Right" Margin="0,0,10,0" />
+                        </Grid>
+                    </CusomControls:ValidPanel>
+                </ScrollViewer>
+            </Expander>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="1" >
+                <!--<Button x:Name="btnExportToExcel" Click="btnExportToExcel_Click" ToolTip="Excel"  Margin="5,0,0,0"
+						Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=User.IsAdminOrDirector, Converter={StaticResource BoolToVisibilityConverter}}">
+					<Image Source="pack://application:,,,/Shared;component/Images/excel.png" Width="23" Height="23"/>
+				</Button>-->
+                <ToggleButton x:Name="tbtnShowOnlyUsersData" IsChecked="{Binding Path=ShowOnlyUsersData, ElementName=realEstatesList}" Margin="5,0,0,0"
+                              ToolTip="{Binding Path=ShowOnlyMyDataButtonTooltip, ElementName=realEstatesList}">
+                    <Image Source="pack://application:,,,/Shared;component/Images/checked.png" Width="23" Height="23"/>
+                </ToggleButton>
+                <Button x:Name="btnPrint" Click="btnPrint_Click" ToolTip="{Binding Source={StaticResource CultureResources},Path=[Print]}"  
+						Margin="5,0,0,0">
+                    <Image Source="pack://application:,,,/Shared;component/Images/Print.png" Width="24" Height="23"/>
+                </Button>
+
+                <Button Name="btnAllEstates" Content="{Binding Source={StaticResource CultureResources},Path=[ShowAll]}" Click="btnAllEstates_Click" Margin="10,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center" Grid.Row="1" HorizontalAlignment="Right">
+                <TextBlock Text="{Binding Path=SearchCriteriaInfo, ElementName=realEstatesList}" VerticalAlignment="Center"/>
+
+                <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[Count]}" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Path=TotalItems, ElementName=realEstatesList}" FontWeight="Bold" VerticalAlignment="Center" />
+
+                <Button Width="23" Height="23" VerticalAlignment="Center" Margin="10,0,0,0" x:Name="btnSettings" Click="btnSettings_Click">
+                    <Image Source="pack://application:,,,/Shared;component/Images/setting.png"/>
+                </Button>
+                <!--<Popup x:Name="settingPopup" IsOpen="{Binding Path=IsChecked, ElementName=btnSettings, Mode=TwoWay}" >
+					<UserControls:EstateListColumnsSelection Width="Auto" ParentControl="{Binding ElementName=settingPopup}"/>
+				</Popup>-->
+            </StackPanel>
+        </Grid>
+
+        <MicrosoftControls:DataGrid AutoGenerateColumns="False" CanUserResizeColumns="True" CanUserReorderColumns="True" CanUserSortColumns="True" 
+                    HorizontalScrollBarVisibility="Visible" EnableColumnVirtualization="False" EnableRowVirtualization="False"
+		            Grid.Row="1" ItemsSource="{Binding Path=RealEstates, ElementName=realEstatesList}"  IsReadOnly="True" Margin="0,5,0,0"
+		            HorizontalAlignment="Stretch" VerticalAlignment="Top" x:Name="dgEstates" MouseDoubleClick="dgEstates_MouseDoubleClick" 
+				    ContextMenuOpening="MenuItem_ContextMenuOpening" CanUserResizeRows="False" SnapsToDevicePixels="False" 
+									PreviewMouseLeftButtonDown="dgEstates_PreviewMouseLeftButtonDown" PreviewMouseMove="dgEstates_PreviewMouseMove"
+                                    SelectionUnit="FullRow" >
+				<MicrosoftControls:DataGrid.ContextMenu>
+                <ContextMenu x:Name="menu" >
+                    <MenuItem Header="{Binding Source={StaticResource CultureResources},Path=[Open]}" Click="mnuOpen_Click" />
+                    <MenuItem x:Name="mnuEdit" Header="{Binding Source={StaticResource CultureResources},Path=[Edit]}" Click="mnuEdit_Click" >
+                        <MenuItem.Visibility>
+                            <MultiBinding Converter="{StaticResource IsAdminOrDirectorToObjectVisibilityConverter}">
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="User.IsAdminOrDirector" />
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="OfflineMode" />
+                            </MultiBinding>
+                        </MenuItem.Visibility>
+                    </MenuItem>
+                    <MenuItem x:Name="mnuDelete" Header="{Binding Source={StaticResource CultureResources},Path=[Delete]}" Click="mnuDelete_Click" >
+                        <MenuItem.Visibility>
+                            <MultiBinding Converter="{StaticResource IsAdminOrDirectorToObjectVisibilityConverter}">
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="User.IsAdminOrDirector" />
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="OfflineMode" />
+                            </MultiBinding>
+                        </MenuItem.Visibility>
+                    </MenuItem>
+					<MenuItem x:Name="mnuPrintSelected" Header="{Binding Source={StaticResource CultureResources},Path=[PrintSelected]}" Click="mnuPrintSelected_Click" />
+                    <MenuItem Header="{Binding Source={StaticResource CultureResources},Path=[AddToFavoriteEstates]}" Click="mnuAddToFavorites_Click" >
+                        <!--<MenuItem.Visibility>
+                            <MultiBinding Converter="{StaticResource IsAdminOrDirectorToObjectVisibilityConverter}">
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="User.IsAdminOrDirector" />
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="OfflineMode" />
+                            </MultiBinding>
+                        </MenuItem.Visibility>-->
+                    </MenuItem>
+                    <MenuItem Header="{Binding Source={StaticResource CultureResources},Path=[MarkSold]}" Click="mnuSellEstate_Click" x:Name="mnuSellRent" >
+                        <MenuItem.Visibility>
+                            <MultiBinding Converter="{StaticResource IsAdminOrDirectorToObjectVisibilityConverter}">
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="User.IsAdminOrDirector" />
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="OfflineMode" />
+                            </MultiBinding>
+                        </MenuItem.Visibility>
+                    </MenuItem>
+                    <MenuItem Header="{Binding Source={StaticResource CultureResources},Path=[SaveAsFile]}" Click="mnuSaveAsXML_Click" x:Name="mnuSaveAsXML" >
+                        <MenuItem.Visibility>
+                            <MultiBinding Converter="{StaticResource IsAdminOrDirectorToObjectVisibilityConverter}">
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="User.IsAdminOrDirector" />
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="OfflineMode" />
+                            </MultiBinding>
+                        </MenuItem.Visibility>
+                    </MenuItem>
+                    <MenuItem Header="{Binding Source={StaticResource CultureResources},Path=[SelectClients]}" Click="mnuSelectDemands_Click" />
+                    <MenuItem Header="{Binding Source={StaticResource CultureResources},Path=[ShowClient]}" Click="mnuShowToClient_Click" x:Name="mnuShowToClient" >
+                        <MenuItem.Visibility>
+                            <MultiBinding Converter="{StaticResource RoleToObjectVisibilityConverter}">
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="User.IsAdminOrDirector" />
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="MainSettings.AllowBrokersToAddData" />
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="OfflineMode" />
+                            </MultiBinding>
+                        </MenuItem.Visibility>
+                    </MenuItem>
+                    <MenuItem Header="{Binding Source={StaticResource CultureResources},Path=[SuggestClient]}" Click="mnuOfferClient_Click" x:Name="mnuOfferClient" >
+                        <MenuItem.Visibility>
+                            <MultiBinding Converter="{StaticResource RoleToObjectVisibilityConverter}">
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="User.IsAdminOrDirector" />
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="MainSettings.AllowBrokersToAddData" />
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="OfflineMode" />
+                            </MultiBinding>
+                        </MenuItem.Visibility>
+                    </MenuItem>
+                    <MenuItem Header="Ցուցադրել Կայքում">
+                        <MenuItem Header="Թարմացնել (առանց նկարների)" Click="mnuUpdateToSiteWithoutImages_Click">
+                            <MenuItem.Visibility>
+                                <MultiBinding Converter="{StaticResource UploadVisibilityConverter}">
+                                    <Binding Source="{x:Static UserControls:Session.Inst}" Path="User.IsAdminOrDirector" />
+                                    <Binding Source="{x:Static UserControls:Session.Inst}" Path="IsWebEnabled" />
+                                </MultiBinding>
+                            </MenuItem.Visibility>
+                        </MenuItem>
+                        <MenuItem Header="Ցուցադրել Կայքում առանց նկարների" Click="mnuUploadToSiteWithoutImages_Click" x:Name="mnuUploadWithoutImages">
+                            <MenuItem.Visibility>
+                                <MultiBinding Converter="{StaticResource UploadVisibilityConverter}">
+                                    <Binding Source="{x:Static UserControls:Session.Inst}" Path="User.IsAdminOrDirector" />
+                                    <Binding Source="{x:Static UserControls:Session.Inst}" Path="IsWebEnabled" />
+                                </MultiBinding>
+                            </MenuItem.Visibility>
+                        </MenuItem>
+                        <MenuItem Header="Ցուցադրել Կայքում" Click="mnuUploadToSite_Click" x:Name="mnuUpload">
+                            <MenuItem.Visibility>
+                                <MultiBinding Converter="{StaticResource UploadVisibilityConverter}">
+                                    <Binding Source="{x:Static UserControls:Session.Inst}" Path="User.IsAdminOrDirector" />
+                                    <Binding Source="{x:Static UserControls:Session.Inst}" Path="IsWebEnabled" />
+                                </MultiBinding>
+                            </MenuItem.Visibility>
+                        </MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="Հեռացնել կայքից">
+                    <MenuItem Header="Հեռացնել կայքից" Click="mnuRemoveFromSite_Click" x:Name="mnuRemove">
+                        <MenuItem.Visibility>
+                            <MultiBinding Converter="{StaticResource UploadVisibilityConverter}">
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="User.IsAdminOrDirector" />
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="IsWebEnabled" />
+                            </MultiBinding>
+                        </MenuItem.Visibility>
+                    </MenuItem>
+                        <MenuItem Header="Նկարները" Click="mnuRemoveFromSiteImagesOnly_Click">
+                            <MenuItem.Visibility>
+                                <MultiBinding Converter="{StaticResource UploadVisibilityConverter}">
+                                    <Binding Source="{x:Static UserControls:Session.Inst}" Path="User.IsAdminOrDirector" />
+                                    <Binding Source="{x:Static UserControls:Session.Inst}" Path="IsWebEnabled" />
+                                </MultiBinding>
+                            </MenuItem.Visibility>
+                        </MenuItem>
+                    </MenuItem>
+                </ContextMenu>
+            </MicrosoftControls:DataGrid.ContextMenu>
+
+        </MicrosoftControls:DataGrid>
+
+        <Grid Grid.Row="2" Height="25" Margin="0,2,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5,0,0,0">
+                <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[ItemsPerPageP]}" VerticalAlignment="Center"/>
+                <ComboBox VerticalAlignment="Center" x:Name="cbItemsPerPage" SelectionChanged="cbItemsPerPage_SelectionChanged" Height="21" IsEditable="False" Margin="5,0,0,0">
+                    <ComboBox.Items>
+                        <ComboBoxItem Content="50" />
+                        <ComboBoxItem Content="100" IsSelected="True" />
+                        <ComboBoxItem Content="200" />
+                        <ComboBoxItem Content="500" />
+                        <ComboBoxItem Content="1000" />
+                        <ComboBoxItem Content="2000" />
+                    </ComboBox.Items>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0" DataContext="{Binding ElementName=realEstatesList}">
+                <Button Margin="3,0" Content="&lt;&lt;" Command="{Binding FirstCommand}" Height="21" Style="{StaticResource LinkButton}"/>
+                <Button Margin="3,0" Content="&lt;" Command="{Binding PreviousCommand}" Height="21" Style="{StaticResource LinkButton}"/>
+                <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="3,0">
+                    <TextBlock Text="{Binding Start}"/>
+                    <TextBlock Text=" - "/>
+                    <TextBlock Text="{Binding End}"/>
+                    <TextBlock Text=" -&gt; "/>
+                    <TextBlock Text="{Binding TotalItems}"/>
+                </StackPanel>
+                <Button Margin="3,0" Content="&gt;" Command="{Binding NextCommand}" Height="21" Style="{StaticResource LinkButton}"/>
+                <Button Margin="3,0" Content="&gt;&gt;" Command="{Binding LastCommand}" Height="21" Style="{StaticResource LinkButton}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

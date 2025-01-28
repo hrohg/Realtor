@@ -1,0 +1,8 @@
+﻿<Window x:Class="RealEstateApp.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" ShowInTaskbar="True"
+        Title="{Binding Source={StaticResource CultureResources},Path=[Help]}" WindowState="Maximized" Icon="pack://application:,,,/Shared;component/Images/Application.png">
+    <Grid Margin="3">
+        <WebBrowser HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="webBrowser" />
+    </Grid>
+</Window>

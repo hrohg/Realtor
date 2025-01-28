@@ -1,0 +1,329 @@
+﻿<UserControl x:Class="UserControls.SearchControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  Foreground="Black" Loaded="searchControl_Loaded"
+    xmlns:Converters="clr-namespace:Shared.Converters;assembly=Shared" xmlns:ValidPanel="clr-namespace:CustomControls.ValidPanel;assembly=CustomControls" Name="searchControl">
+	<UserControl.Resources>
+		<Converters:StringEmptyToNullConverter x:Key="StringEmptyToNullConverter"/>
+		<Converters:IntToVisibilityConverter x:Key="IntToVisibilityConverter"/>
+		<Converters:HasItemsToEnabilityConverter x:Key="HasItemsToEnabilityConverter" />
+		<Converters:BoolToVisibilityInvertConverter x:Key="BoolToVisibilityInvertConverter" />
+		<Converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+	</UserControl.Resources>
+	<ValidPanel:ValidPanel x:Name="vPanel">
+		<StackPanel DataContext="{Binding Path=SearchParameters, ElementName=searchControl}" KeyUp="StackPanel_KeyUp">
+			<StackPanel.ScrollOwner>
+				<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" x:Name="scrollViewer" />
+			</StackPanel.ScrollOwner>
+			<Expander IsExpanded="True" Name="expRoomCount" Header="{Binding Source={StaticResource CultureResources},Path=[MainData]}" HorizontalAlignment="Stretch" Margin="2" >
+				<GroupBox>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="2*"/>
+							<ColumnDefinition Width="10"/>
+							<ColumnDefinition Width="8*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="25"/>
+							<RowDefinition Height="25"/>
+							<RowDefinition Height="25"/>
+							<RowDefinition Height="25"/>
+							<RowDefinition Height="25"/>
+							<RowDefinition Height="25"/>
+						</Grid.RowDefinitions>
+						<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[RoomCountP]}" HorizontalAlignment="Right"/>
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="2">
+							<TextBox Text="{Binding Path=RoomCountFrom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringEmptyToNullConverter}}" 
+    						         Name="txtRoomCountFrom" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+							<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[to]}" Margin="3,0,3,0"/>
+							<TextBox Text="{Binding Path=RoomCountTo, Mode=TwoWay, Converter={StaticResource StringEmptyToNullConverter}}" 
+    						         Name="txtRoomCountTo" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+						</StackPanel>
+						<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[FloorP]}" HorizontalAlignment="Right" Grid.Row="1"/>
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="2">
+							<TextBox Text="{Binding Path=FloorFrom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringEmptyToNullConverter}}" 
+    						         Name="txtFloorFrom" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+							<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[to]}" Margin="3,0,3,0"/>
+							<TextBox Text="{Binding Path=FloorTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringEmptyToNullConverter}}"
+    						         Name="txtFloorTo" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+						</StackPanel>
+						<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[PriceP]}" HorizontalAlignment="Right" Grid.Row="2"/>
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="2">
+
+							<TextBox Text="{Binding Path=PriceFrom, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource StringEmptyToNullConverter}}" 
+    						         Name="txtPriceFrom" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+							<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[to]}" Margin="3,0,3,0"/>
+							<TextBox Text="{Binding Path=PriceTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringEmptyToNullConverter}}" 
+    						         Name="txtPriceTo" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+							<ComboBox Name="cbCurrencies" Width="30" 
+                                      SelectedItem="{Binding Path=Currency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" IsEditable="False" 
+    						          DisplayMemberPath="Name" ItemsSource="{Binding Path=Currencies, ElementName=searchControl}" 
+    						          HorizontalAlignment="Left" Margin="5,0,0,0"/>
+						</StackPanel>
+
+						<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[SquareP]}" HorizontalAlignment="Right" Grid.Row="3"/>
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="2">
+
+							<TextBox Text="{Binding Path=SquareFrom, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Converter={StaticResource StringEmptyToNullConverter}}" 
+    						         Name="txtSquareFrom" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+							<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[to]}" Margin="3,0,3,0"/>
+							<TextBox Text="{Binding Path=SquareTo, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Converter={StaticResource StringEmptyToNullConverter}}" 
+    						         Name="txtSquareTo" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+						</StackPanel>
+
+						<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[StatusP]}" HorizontalAlignment="Right" Grid.Row="4"/>
+						<TextBox Text="{Binding Path=Status, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource StringEmptyToNullConverter}}" 
+					         Name="txtStatus" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="4" Grid.Column="2"/>
+
+						<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[PricePerDayP]}" Grid.Row="5" x:Name="tblkPricePerDayHeader"
+                                   VerticalAlignment="Center" HorizontalAlignment="Right"/>
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="5" Grid.Column="2" x:Name="spPricePerDayHeader">
+
+							<TextBox Text="{Binding Path=PricePerDayFrom, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Converter={StaticResource StringEmptyToNullConverter}}" 
+    						         Name="txtPricePerDayFrom" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+							<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[to]}" Margin="3,0,3,0"/>
+							<TextBox Text="{Binding Path=PricePerDayTo, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Converter={StaticResource StringEmptyToNullConverter}}" 
+    						         Name="txtPricePerDayTo" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+						</StackPanel>
+					</Grid>
+				</GroupBox>
+			</Expander>
+			<Expander IsExpanded="True"  Name="expRealEstateTypes" Header="{Binding Source={StaticResource CultureResources},Path=[EstateType/OrderType]}" HorizontalAlignment="Stretch" Margin="2"  >
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<GroupBox Header="{Binding Source={StaticResource CultureResources},Path=[EstateType]}">
+						<ListView Name="lstRealEstateTypes" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
+    					          ItemsSource="{Binding Path=RealEstateTypes, ElementName=searchControl}" Margin="2">
+							<ListView.ItemTemplate>
+								<DataTemplate>
+                                    <CheckBox Content="{Binding Path=TypeName}" Checked="CheckBoxRealEstateTypes_Checked" MouseEnter="CheckBox_MouseEnter"
+    								          Unchecked="CheckBoxRealEstateTypes_Checked" CommandParameter="{Binding}" Margin="2"/>
+								</DataTemplate>
+							</ListView.ItemTemplate>
+						</ListView>
+					</GroupBox>
+					<GroupBox Header="{Binding Source={StaticResource CultureResources},Path=[OrderType]}" Grid.Column="1">
+						<ListView Name="lstOrderTypes" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
+    					          ItemsSource="{Binding Path=OrderTypes, ElementName=searchControl}" Margin="2">
+							<ListView.ItemTemplate>
+								<DataTemplate>
+                                    <CheckBox Content="{Binding Path=Name}" Checked="CheckBoxOrderTypes_Checked" MouseEnter="CheckBox_MouseEnter"
+    								          Unchecked="CheckBoxOrderTypes_Checked" CommandParameter="{Binding}" Margin="2"/>
+								</DataTemplate>
+							</ListView.ItemTemplate>
+						</ListView>
+					</GroupBox>
+				</Grid>
+			</Expander>
+			<Expander IsExpanded="True"  Name="expRegionStreet" Header="{Binding Source={StaticResource CultureResources},Path=[StateOrStreet]}" HorizontalAlignment="Stretch" Margin="2" >
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="30"/>
+						<RowDefinition Height="50"/>
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition />
+						<ColumnDefinition />
+					</Grid.ColumnDefinitions>
+
+					<StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" >
+						<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[PlaceP]}" VerticalAlignment="Center" />
+						<TextBox x:Name="txtPlaceName" Text="{Binding Path=PlaceName}" Margin="10,0,0,0" Width="300" VerticalAlignment="Center" />
+						<CheckBox x:Name="chkIsOverseas" VerticalAlignment="Center" Content="{Binding Source={StaticResource CultureResources},Path=[OverseasEstate]}"
+								  IsChecked="{Binding Path=IsOverseas, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="15,0,0,0" 
+								  Checked="chkIsOverseas_CheckedChanged" Unchecked="chkIsOverseas_CheckedChanged"/>
+					</StackPanel>
+
+					<StackPanel Orientation="Horizontal" Grid.Row="1">
+						<StackPanel Orientation="Vertical"
+									Visibility="{Binding Path=IsOverseas, Converter={StaticResource BoolToVisibilityInvertConverter}}">
+							<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[State]}" VerticalAlignment="Center"/>
+							<ComboBox ItemsSource="{Binding Path=States, ElementName=searchControl}" x:Name="cbStates" IsEditable="False" VerticalAlignment="Center"
+    					          SelectedValue="{Binding Path=StateID, Mode=TwoWay}" Width="120" SelectedValuePath="ID" DisplayMemberPath="Name" Margin="3,0,0,0" SelectionChanged="cbStates_SelectionChanged"
+									  />
+						</StackPanel>
+						<StackPanel Orientation="Vertical"
+									Visibility="{Binding Path=IsOverseas, Converter={StaticResource BoolToVisibilityConverter}}">
+							<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[Country]}" VerticalAlignment="Center"/>
+							<ComboBox ItemsSource="{Binding Path=Countries, ElementName=searchControl}" x:Name="cbCountries" IsEditable="False" VerticalAlignment="Center"
+    					          SelectedValue="{Binding Path=CountryID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="120" SelectedValuePath="ID" DisplayMemberPath="Name" Margin="3,0,0,0" SelectionChanged="cbCountries_SelectionChanged"
+									  />
+						</StackPanel>
+						<StackPanel Orientation="Vertical" Margin="5,0,0,0">
+							<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[City]}" Margin="5,0,0,0" VerticalAlignment="Center"/>
+							<ComboBox ItemsSource="{Binding Path=Cities, ElementName=searchControl}" IsEditable="False"  VerticalAlignment="Center"
+    					          SelectedValue="{Binding Path=CityID, Mode=TwoWay}" Width="120" Margin="3,0,0,0" x:Name="cbCities" 
+    					          SelectionChanged="cbCities_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="CityID"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical" Margin="5,0,0,0"
+									Visibility="{Binding Path=IsOverseas, Converter={StaticResource BoolToVisibilityInvertConverter}}">
+							<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[Region]}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+							<ComboBox Name="cbRegions" Grid.Column="2" ItemsSource="{Binding Path=Regions, ElementName=searchControl}" 
+										IsEditable="False" MinWidth="120" HorizontalAlignment="Left" DisplayMemberPath="Name" 
+										IsEnabled="{Binding Path=RegionsSingle, ElementName=searchControl, Converter={StaticResource HasItemsToEnabilityConverter}}"
+										SelectedValue="{Binding Path=RegionID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="cbRegions_SelectionChanged" 
+										SelectedValuePath="RegionID" />
+						</StackPanel>
+						<StackPanel Orientation="Vertical" Margin="5,0,0,0"
+									Visibility="{Binding Path=IsOverseas, Converter={StaticResource BoolToVisibilityInvertConverter}}">
+							<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[Street]}" Margin="0,0,3,0"/>
+							<ComboBox Name="cbStreets" MinWidth="150" IsEditable="True" DisplayMemberPath="Name"
+											 SelectedValue="{Binding Path=StreetID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="StreetID" 
+                                             ItemsSource="{Binding Path=StreetsSingle, ElementName=searchControl}" />
+						</StackPanel>
+
+						<StackPanel Orientation="Vertical" Margin="5,0,0,0"
+									Visibility="{Binding Path=IsOverseas, Converter={StaticResource BoolToVisibilityInvertConverter}}">
+							<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[Apt]}" Margin="5,0,3,0"/>
+							<TextBox MinWidth="120" Name="txtHomeNumber" Text="{Binding Path=HomeNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringEmptyToNullConverter}}" />
+						</StackPanel>
+
+						<StackPanel Orientation="Vertical" Margin="5,0,0,0"
+									Visibility="{Binding Path=IsOverseas, Converter={StaticResource BoolToVisibilityInvertConverter}}">
+							<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[AptP]}" Margin="5,0,3,0"/>
+							<TextBox MinWidth="120" Name="txtAptNumber" 
+                                             Text="{Binding Path=AptNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Converter={StaticResource StringEmptyToNullConverter}}"/>
+						</StackPanel>
+					</StackPanel>
+
+					<GroupBox Header="{Binding Source={StaticResource CultureResources},Path=[Region]}" Grid.Row="2" Visibility="{Binding Path=Items.Count, ElementName=lstRegions, Converter={StaticResource IntToVisibilityConverter}}">
+						<ListView Name="lstRegions" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
+    					          ItemsSource="{Binding Path=Regions, ElementName=searchControl}" Margin="2">
+							<ListView.ItemTemplate>
+								<DataTemplate>
+                                    <CheckBox Content="{Binding Path=Name}" Checked="CheckBoxRegion_Checked" MouseEnter="CheckBox_MouseEnter"
+    								          Unchecked="CheckBoxRegion_Checked" CommandParameter="{Binding}" Margin="2"/>
+								</DataTemplate>
+							</ListView.ItemTemplate>
+						</ListView>
+					</GroupBox>
+					<GroupBox Header="{Binding Source={StaticResource CultureResources},Path=[Street]}" Grid.Column="1" Name="gbStreets" Grid.Row="2" 
+							  Visibility="{Binding Path=IsOverseas, Converter={StaticResource BoolToVisibilityInvertConverter}}">
+						<ListView Name="lstStreets" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
+    					          ItemsSource="{Binding Path=Streets, ElementName=searchControl}" Margin="2" MaxHeight="{Binding Path=ActualHeight, ElementName=lstRegions}">
+							<ListView.ItemTemplate>
+								<DataTemplate>
+                                    <CheckBox Content="{Binding Path=Name}" Checked="CheckBoxStreet_Checked" MouseEnter="CheckBox_MouseEnter"
+    								          Unchecked="CheckBoxStreet_Checked" CommandParameter="{Binding}" Margin="2"/>
+								</DataTemplate>
+							</ListView.ItemTemplate>
+						</ListView>
+					</GroupBox>
+				</Grid>
+			</Expander>
+			<Expander IsExpanded="True"  Name="expRemonts" Header="{Binding Source={StaticResource CultureResources},Path=[StateOrProject]}" HorizontalAlignment="Stretch" Margin="2" >
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition />
+						<ColumnDefinition />
+						<ColumnDefinition />
+					</Grid.ColumnDefinitions>
+					<GroupBox Header="{Binding Source={StaticResource CultureResources},Path=[TheRoomState]}"  VerticalAlignment="Stretch">
+						<ListView Name="lstRemonts" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+    					          ItemsSource="{Binding Path=Remonts, ElementName=searchControl}" Margin="2">
+							<ListView.ItemTemplate>
+								<DataTemplate>
+                                    <CheckBox Content="{Binding Path=Name}" Checked="CheckBoxRemonts_Checked" MouseEnter="CheckBox_MouseEnter"
+    								          Unchecked="CheckBoxRemonts_Checked" CommandParameter="{Binding}" Margin="2"/>
+								</DataTemplate>
+							</ListView.ItemTemplate>
+						</ListView>
+					</GroupBox>
+					<GroupBox Header="{Binding Source={StaticResource CultureResources},Path=[BuildingProject]}" Grid.Column="1" VerticalAlignment="Stretch">
+						<ListView Name="lstProjects" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+    					          ItemsSource="{Binding Path=Projects, ElementName=searchControl}" Margin="2">
+							<ListView.ItemTemplate>
+								<DataTemplate>
+                                    <CheckBox Content="{Binding Path=Name}" Checked="CheckBoxProjects_Checked" MouseEnter="CheckBox_MouseEnter"
+    								          Unchecked="CheckBoxProjects_Checked" CommandParameter="{Binding}" Margin="2"/>
+								</DataTemplate>
+							</ListView.ItemTemplate>
+						</ListView>
+					</GroupBox>
+					<GroupBox Header="{Binding Source={StaticResource CultureResources},Path=[BuildingType]}" Grid.Column="2" VerticalAlignment="Stretch">
+						<ListView Name="lstBuildingTypes" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
+    					          ItemsSource="{Binding Path=BuildingTypes, ElementName=searchControl}" Margin="2">
+							<ListView.ItemTemplate>
+								<DataTemplate>
+                                    <CheckBox Content="{Binding Path=Name}" Checked="CheckBoxBuildingTypes_Checked" MouseEnter="CheckBox_MouseEnter"
+    								          Unchecked="CheckBoxBuildingTypes_Checked" CommandParameter="{Binding}" Margin="2"/>
+								</DataTemplate>
+							</ListView.ItemTemplate>
+						</ListView>
+					</GroupBox>
+				</Grid>
+			</Expander>
+			<Expander IsExpanded="True" Header="{Binding Source={StaticResource CultureResources},Path=[AdditionalDetails]}"  ScrollViewer.IsDeferredScrollingEnabled="True">
+				<GroupBox>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition />
+							<ColumnDefinition />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+						</Grid.RowDefinitions>
+						<StackPanel Orientation="Vertical">
+							<CheckBox IsChecked="{Binding Path=IsWoterAlways, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[AlwaysWater]}"/>
+							<CheckBox IsChecked="{Binding Path=IsHasGas, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[Gas]}"/>
+							<StackPanel Orientation="Vertical" Visibility="{Binding Path=NotEarthPlaceAddonsVisibility, ElementName=searchControl}">
+								<CheckBox IsChecked="{Binding Path=IsHasGarage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[Garage]}"/>
+								<CheckBox IsChecked="{Binding Path=IsInNewBuilding, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[NewBuilding]}"/>
+								<CheckBox IsChecked="{Binding Path=IsHasFurniture, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[Furniture]}"/>
+								<CheckBox IsChecked="{Binding Path=IsEmpty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[Empty]}"/>
+								<CheckBox IsChecked="{Binding Path=IsHasWarmingFloors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[HeatingFloor]}"/>
+								<CheckBox IsChecked="{Binding Path=IsHasBalcony, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[TntBalcony]}"/>
+							</StackPanel>
+							<StackPanel Orientation="Vertical" Visibility="{Binding Path=HouseAddonsVisible, ElementName=searchControl}">
+								<CheckBox IsChecked="{Binding Path=IsHasPool, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[Pool]}"/>
+								<CheckBox IsChecked="{Binding Path=IsHasPlayingRoom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[PlayRoom]}"/>
+							</StackPanel>
+						</StackPanel>
+						<StackPanel Orientation="Vertical" Grid.Column="1">
+							<CheckBox IsChecked="{Binding Path=IsHasExpandingPosibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[ExpandPosibility]}"/>
+							<CheckBox IsChecked="{Binding Path=IsPossibleExchange, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[ExchangePosible]}"/>
+							<CheckBox IsChecked="{Binding Path=IsWithPhoto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[WithPhoto]}"/>
+
+							<StackPanel Orientation="Vertical" Visibility="{Binding Path=NotEarthPlaceAddonsVisibility, ElementName=searchControl}">
+								<CheckBox IsChecked="{Binding Path=IsHasEuroWindows, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[EuroWindows]}"/>
+								<CheckBox IsChecked="{Binding Path=IsHasPodval, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[Podval]}"/>
+								<CheckBox IsChecked="{Binding Path=IsHasConditioner, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[Conditioner]}"/>
+								<CheckBox IsChecked="{Binding Path=IsHasWasher, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[Washer]}"/>
+								<CheckBox IsChecked="{Binding Path=IsHasWarmingSystem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[WarmingSystem]}"/>
+								<CheckBox IsChecked="{Binding Path=IsHasJakuzi, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[Jakuzi]}"/>
+								<CheckBox IsChecked="{Binding Path=IsHasGasHeater, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[GasVararan]}"/>
+							</StackPanel>
+							<StackPanel Orientation="Vertical" Visibility="{Binding Path=OfficePlaceAddonsVisibility, ElementName=searchControl}">
+								<CheckBox IsChecked="{Binding Path=IsHasThreePhaseElectricity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[ThreePhaseElectricity]}"/>
+								<CheckBox IsChecked="{Binding Path=InNullableFloor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[NullableFloor]}"/>
+								<CheckBox IsChecked="{Binding Path=InFirstLine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding Source={StaticResource CultureResources},Path=[FirstLine]}"/>
+								<GroupBox Header="{Binding Source={StaticResource CultureResources},Path=[ConvenientFor]}" Width="Auto">
+									<ItemsControl ItemsSource="{Binding Path=OfficePlaceConvenients, ElementName=searchControl}" x:Name="icConvenients">
+										<ItemsControl.ItemTemplate>
+											<DataTemplate>
+												<CheckBox Content="{Binding Path=Name}" CommandParameter="{Binding}" x:Name="chkConvenient" VerticalAlignment="Center"
+                                              Checked="chkConvenient_Checked" Unchecked="chkConvenient_Checked" Margin="10,0,0,0"/>
+											</DataTemplate>
+										</ItemsControl.ItemTemplate>
+									</ItemsControl>
+								</GroupBox>
+							</StackPanel>
+						</StackPanel>
+					</Grid>
+				</GroupBox>
+			</Expander>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				<Button Name="btnClear" Content="{Binding Source={StaticResource CultureResources},Path=[Clear]}" Click="btnClear_Click" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center"/>
+				<Button Name="btnSearch" Content="{Binding Source={StaticResource CultureResources},Path=[Search]}" Click="btnSearch_Click" HorizontalAlignment="Right" 
+    			        IsEnabled="{Binding ElementName=vPanel, Path=IsValid}"  Margin="10" Grid.Column="1" VerticalAlignment="Center" />
+			</Grid>
+		</StackPanel>
+	</ValidPanel:ValidPanel>
+</UserControl>

@@ -1,0 +1,248 @@
+﻿<UserControl x:Class="UserControls.AddEditDemand"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+	xmlns:Converters="clr-namespace:Shared.Converters;assembly=Shared" 
+	xmlns:ValidPanel="clr-namespace:CustomControls.ValidPanel;assembly=CustomControls" 
+             xmlns:UserControls="clr-namespace:UserControls" x:Name="addEditDemand"
+             Foreground="Black" Loaded="addEditDemand_Loaded">
+	<UserControl.Resources>
+		<Converters:StringEmptyToNullConverter x:Key="StringEmptyToNullConverter"/>
+		<Converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+		<Converters:EstateToActionButtonTextConverter x:Key="EstateToActionButtonTextConverter"/>
+		<Converters:NeededBuildingTypesToVisibleWhenOfficeSelectedConverter x:Key="NeededBuildingTypesToVisibleWhenOfficeSelectedConverter" />
+		<Converters:NullToBoolConverter x:Key="NullToBoolConverter" />
+	</UserControl.Resources>
+	<ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+		<ValidPanel:ValidPanel x:Name="validPanel">
+			<Grid Margin="3" DataContext="{Binding Path=Demand, ElementName=addEditDemand}" KeyDown="Grid_KeyDown">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="30" />
+				</Grid.RowDefinitions>
+				<GroupBox Header="{Binding Source={StaticResource CultureResources},Path=[MainData]}">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="2*"/>
+							<ColumnDefinition Width="10"/>
+							<ColumnDefinition Width="8*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="25"/>
+							<RowDefinition Height="25"/>
+							<RowDefinition Height="25"/>
+							<RowDefinition Height="25"/>
+							<RowDefinition Height="25"/>
+						</Grid.RowDefinitions>
+
+                        <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[CodeP]}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                        <TextBox Name="txtCode" Grid.Column="2" MinWidth="330" HorizontalAlignment="Left"
+                                         Text="{Binding Path=Code, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Mode=TwoWay}" />
+                        
+                        <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[RoomCountP]}" HorizontalAlignment="Right" Grid.Row="1"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1">
+							<TextBox Text="{Binding Path=RoomCountFrom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringEmptyToNullConverter}}" 
+									 Name="txtRoomCountFrom" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+							<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[toP]}" Margin="3,0,3,0"/>
+							<TextBox Text="{Binding Path=RoomCountTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringEmptyToNullConverter}}" 
+									 Name="txtRoomCountTo" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+						</StackPanel>
+                        
+						<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[FloorP]}" HorizontalAlignment="Right" Grid.Row="2"/>
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="2">
+							<TextBox Text="{Binding Path=FloorFrom, Mode=TwoWay, Converter={StaticResource StringEmptyToNullConverter}}" 
+									 Name="txtFloorFrom" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+							<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[toP]}" Margin="3,0,3,0"/>
+							<TextBox Text="{Binding Path=FloorTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringEmptyToNullConverter}}"
+									 Name="txtFloorTo" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+						</StackPanel>
+						<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[PriceP]}" HorizontalAlignment="Right" Grid.Row="3"/>
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="2">
+
+							<TextBox Text="{Binding Path=PriceFrom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringEmptyToNullConverter}}" 
+									 Name="txtPriceFrom" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+							<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[toP]}" Margin="3,0,3,0"/>
+							<TextBox Text="{Binding Path=PriceTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringEmptyToNullConverter}}" 
+									 Name="txtPriceTo" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+							<ComboBox Name="cbCurrencies" Width="30" IsEditable="False" 
+							  DisplayMemberPath="Name" ItemsSource="{Binding Path=Currencies, ElementName=addEditDemand}" 
+							  HorizontalAlignment="Left" Margin="5,0,0,0" SelectedValue="{Binding CurrencyID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                      SelectedValuePath="CurrencyID" SelectedItem="{Binding Path=Currency, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+						</StackPanel>
+						<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[SquareP]}" HorizontalAlignment="Right" Grid.Row="4"/>
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="4" Grid.Column="2">
+							<TextBox Text="{Binding Path=SquareFrom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringEmptyToNullConverter}}" 
+                                     Name="txtSquareFrom" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+							<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[toP]}" Margin="3,0,3,0"/>
+							<TextBox Text="{Binding Path=SquareTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringEmptyToNullConverter}}" 
+                                     Name="txtSquareTo" MinWidth="150" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+						</StackPanel>
+					</Grid>
+				</GroupBox>
+
+				<GroupBox Header="{Binding Source={StaticResource CultureResources},Path=[ContactDetails]}"  Margin="3" Grid.Row="1">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="25"/>
+							<RowDefinition Height="25"/>
+							<RowDefinition Height="25"/>
+							<RowDefinition Height="25"/>
+							<RowDefinition />
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="35*" />
+							<ColumnDefinition Width="5" />
+							<ColumnDefinition Width="65*" />
+						</Grid.ColumnDefinitions>
+
+						<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[NameP]}" HorizontalAlignment="Right"/>
+						<TextBox Name="txtSellerName" Text="{Binding Path=SellerName}" Grid.Column="2"/>
+
+						<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[Telephone1P]}" Grid.Row="1" HorizontalAlignment="Right"/>
+						<TextBox Name="txtTelephone1" Text="{Binding Path=Telephone1, Mode=TwoWay}" Grid.Column="2" Grid.Row="1"/>
+
+						<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[Telephone2P]}" Grid.Row="2" HorizontalAlignment="Right"/>
+						<TextBox Name="txtTelephone2" Text="{Binding Path=Telephone2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Column="2" Grid.Row="2"/>
+                        
+                        <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[EmailP]}" Grid.Row="3" HorizontalAlignment="Right"/>
+						<TextBox Name="txtEmail" Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Column="2" Grid.Row="3"/>
+
+						<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[AdditionalDataP]}" Grid.Row="4" HorizontalAlignment="Right"/>
+						<TextBox Name="txtAdditionalDetails" Text="{Binding Path=AdditionalDetails}" Grid.Column="2" Grid.Row="4" AcceptsReturn="True" AcceptsTab="True" 
+                                     HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="200"/>
+					</Grid>
+				</GroupBox>
+
+				<Grid Grid.Row="2" HorizontalAlignment="Stretch">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<GroupBox Header="{Binding Source={StaticResource CultureResources},Path=[TheOrderType]}" Grid.Column="0" Margin="3">
+						<StackPanel Orientation="Vertical">
+                            <RadioButton x:Name="rbSell" Content="{Binding Source={StaticResource CultureResources},Path=[Buy]}" Checked="rbSell_Checked" GroupName="sellRent" IsChecked="True"/>
+                            <RadioButton x:Name="rbRent" Content="{Binding Source={StaticResource CultureResources},Path=[Rent]}" Checked="rbSell_Checked" GroupName="sellRent"/>
+						</StackPanel>
+					</GroupBox>
+					<GroupBox Header="{Binding Source={StaticResource CultureResources},Path=[TheEstateType]}" Grid.Column="1" Margin="3">
+						<ListView Name="lstRealEstateTypes" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
+                                  ItemsSource="{Binding Path=EstateTypes, ElementName=addEditDemand}" Margin="2">
+							<ListView.ItemTemplate>
+								<DataTemplate>
+									<CheckBox Content="{Binding Path=TypeName}" Checked="CheckBoxRealEstateTypes_Checked" Name="chkEstateType"
+                                      Unchecked="CheckBoxRealEstateTypes_Checked" CommandParameter="{Binding}" Margin="2"/>
+								</DataTemplate>
+							</ListView.ItemTemplate>
+						</ListView>
+					</GroupBox>
+					<GroupBox Header="{Binding Source={StaticResource CultureResources},Path=[Regions]}" Grid.Column="2" Margin="3">
+						<ListView Name="lstRegions" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
+                              ItemsSource="{Binding Path=Regions, ElementName=addEditDemand}" Margin="2">
+							<ListView.ItemTemplate>
+								<DataTemplate>
+									<CheckBox Content="{Binding Path=Name}" Checked="CheckBoxRegion_Checked" Name="chkRegion"
+                                      Unchecked="CheckBoxRegion_Checked" CommandParameter="{Binding}" Margin="2"/>
+								</DataTemplate>
+							</ListView.ItemTemplate>
+						</ListView>
+					</GroupBox>
+				</Grid>
+
+				<Grid Grid.Row="3" HorizontalAlignment="Stretch">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition />
+						<ColumnDefinition />
+						<ColumnDefinition />
+					</Grid.ColumnDefinitions>
+					<GroupBox Header="{Binding Source={StaticResource CultureResources},Path=[TheRoomState]}" Margin="3">
+						<ListView Name="lstRemonts" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+    					          ItemsSource="{Binding Path=Remonts, ElementName=addEditDemand}" Margin="2" >
+							<ListView.ItemTemplate>
+								<DataTemplate>
+									<CheckBox Content="{Binding Path=Name}" Checked="CheckBoxRemonts_Checked" x:Name="chkRemont" 
+    								          Unchecked="CheckBoxRemonts_Checked" CommandParameter="{Binding}" Margin="2"/>
+								</DataTemplate>
+							</ListView.ItemTemplate>
+						</ListView>
+
+					</GroupBox>
+					<GroupBox Header="{Binding Source={StaticResource CultureResources},Path=[BuildingProject]}" Grid.Column="1" VerticalAlignment="Stretch" Margin="3">
+						<ListView Name="lstProjects" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+    					          ItemsSource="{Binding Path=Projects, ElementName=addEditDemand}" Margin="2">
+							<ListView.ItemTemplate>
+								<DataTemplate>
+									<CheckBox Content="{Binding Path=Name}" Checked="CheckBoxProjects_Checked" x:Name="chkProject"
+    								          Unchecked="CheckBoxProjects_Checked" CommandParameter="{Binding}" Margin="2"/>
+								</DataTemplate>
+							</ListView.ItemTemplate>
+						</ListView>
+					</GroupBox>
+					<GroupBox Header="{Binding Source={StaticResource CultureResources},Path=[BuildingType]}" Grid.Column="2" VerticalAlignment="Stretch" Margin="3">
+						<ListView Name="lstBuildingTypes" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" 
+    					          ItemsSource="{Binding Path=BuildingTypes, ElementName=addEditDemand}" Margin="2">
+							<ListView.ItemTemplate>
+								<DataTemplate>
+									<CheckBox Content="{Binding Path=Name}" Checked="CheckBoxBuildingTypes_Checked" x:Name="chkBuildingType"
+    								          Unchecked="CheckBoxBuildingTypes_Checked" CommandParameter="{Binding}" Margin="2"/>
+								</DataTemplate>
+							</ListView.ItemTemplate>
+						</ListView>
+					</GroupBox>
+				</Grid>
+				<Grid Grid.Row="4" HorizontalAlignment="Right"  Margin="3"
+					  Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=User.IsAdminOrDirector, Converter={StaticResource BoolToVisibilityConverter}}">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="35*" />
+						<ColumnDefinition Width="5" />
+						<ColumnDefinition Width="65*" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="30"/>
+					</Grid.RowDefinitions>
+					<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[BrokerP]}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+					<ComboBox IsEditable="False" x:Name="cbBrokers" ItemsSource="{Binding Path=Brokers, ElementName=addEditDemand}"
+                              SelectedItem="{Binding Path=User, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+							  SelectedValue="{Binding Path=BrokerID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" HorizontalAlignment="Left"
+							  SelectedValuePath="ID" DisplayMemberPath="FullName"/>
+				</Grid>
+
+				<GroupBox Grid.Row="5" Margin="3">
+					<Grid >
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition />
+							<ColumnDefinition />
+						</Grid.ColumnDefinitions>
+						<StackPanel Orientation="Vertical">
+							<CheckBox IsChecked="{Binding Path=IsHasGarage, Mode=TwoWay, Converter={StaticResource NullToBoolConverter}}" Content="{Binding Source={StaticResource CultureResources},Path=[Garage]}" />
+							<CheckBox IsChecked="{Binding Path=IsInNewBuilding, Mode=TwoWay, Converter={StaticResource NullToBoolConverter}}" Content="{Binding Source={StaticResource CultureResources},Path=[NewBuilding]}" />
+							<CheckBox IsChecked="{Binding Path=IsExchangePossible, Mode=TwoWay, Converter={StaticResource NullToBoolConverter}}" Content="{Binding Source={StaticResource CultureResources},Path=[ExchangePosible]}" />
+							<CheckBox IsChecked="{Binding Path=IsHasGas, Mode=TwoWay, Converter={StaticResource NullToBoolConverter}}" Content="{Binding Source={StaticResource CultureResources},Path=[Gas]}" />
+							<CheckBox IsChecked="{Binding Path=IsInNullableFloor, Mode=TwoWay, Converter={StaticResource NullToBoolConverter}}" Content="{Binding Source={StaticResource CultureResources},Path=[NullableFloor]}" 
+								  />
+							<!--Visibility="{Binding Path=NeededBuildingTypes, Converter={StaticResource NeededBuildingTypesToVisibleWhenOfficeSelectedConverter}}"-->
+						</StackPanel>
+
+						<StackPanel Orientation="Vertical" Grid.Column="1">
+							<CheckBox IsChecked="{Binding Path=IsEmpty, Mode=TwoWay, Converter={StaticResource NullToBoolConverter}}" Content="{Binding Source={StaticResource CultureResources},Path=[Empty]}" />
+							<CheckBox IsChecked="{Binding Path=IsHasPodval, Mode=TwoWay, Converter={StaticResource NullToBoolConverter}}" Content="{Binding Source={StaticResource CultureResources},Path=[Podval]}" />
+							<CheckBox IsChecked="{Binding Path=IsInFirstLine, Mode=TwoWay, Converter={StaticResource NullToBoolConverter}}" Content="{Binding Source={StaticResource CultureResources},Path=[FirstLine]}" />
+							<CheckBox IsChecked="{Binding Path=IsHasThreePhaseElectricity, Mode=TwoWay, Converter={StaticResource NullToBoolConverter}}" Content="{Binding Source={StaticResource CultureResources},Path=[ThreePhaseElectricity]}" />
+						</StackPanel>
+					</Grid>
+				</GroupBox>
+				
+				<StackPanel Orientation="Horizontal" Grid.Row="6" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Bottom">
+					<Button x:Name="btnOK" Content="{Binding Path=ID, Converter={StaticResource EstateToActionButtonTextConverter}}" Click="btnOK_Click" 
+							IsEnabled="{Binding ElementName=validPanel, Path=IsValid}" />
+					<Button x:Name="btnClear" Content="{Binding Source={StaticResource CultureResources},Path=[Clear]}" Click="btnClear_Click" Margin="10,0,0,0"/>
+				</StackPanel>
+
+			</Grid>
+		</ValidPanel:ValidPanel>
+	</ScrollViewer>
+</UserControl>

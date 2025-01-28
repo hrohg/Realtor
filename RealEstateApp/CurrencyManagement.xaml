@@ -1,0 +1,38 @@
+﻿<Window x:Class="RealEstateApp.CurrencyManagement"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit" xmlns:Converters="clr-namespace:Shared.Converters;assembly=Shared" 
+	Title="{Binding Source={StaticResource CultureResources},Path=[Currency]}" x:Name="currencyManagement"
+	Icon="pack://application:,,,/Shared;component/Images/Application.png" Loaded="CurrencyManagement_OnLoaded"  WindowState="Maximized" KeyUp="currencyManagement_KeyUp" >
+	<Grid>
+		<Grid.Resources>
+			<Converters:StringToIntConverter x:Key="StringToIntConverter"/>
+		</Grid.Resources>
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition Height="30" />
+		</Grid.RowDefinitions>
+		<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+			<DataGrid x:Name="dgCurrency" ItemsSource="{Binding Path=Currencies, ElementName=currencyManagement}" 
+						   AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="False" CanUserSortColumns="True" 
+						   CanUserResizeRows="False" RowEditEnding="dgCurrency_RowEditEnding">
+				<DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=NameAm, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Արժույթ" Width="150"/>
+                    <DataGridTextColumn Binding="{Binding Path=NameRu, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Валюта" Width="150"/>
+                    <DataGridTextColumn Binding="{Binding Path=NameEn, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Currency" Width="150"/>
+					<!--<DataGridTextColumn Binding="{Binding Path=NameCz}" Header="Currency cz" Width="150"/>-->
+					<!--<DataGridTextColumn Binding="{Binding Path=NameKz}" Header="{Binding Source={StaticResource CultureResources},Path=[Currency]}" Width="150"/>-->
+                    <DataGridTextColumn Binding="{Binding Path=ValueInAMD, Converter={StaticResource StringToIntConverter}, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="{Binding Source={StaticResource CultureResources},Path=[ValueInAMD]}" Width="130"/>
+					<DataGridTemplateColumn >
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate>
+								<Button CommandParameter="{Binding}" Content="{Binding Source={StaticResource CultureResources},Path=[Delete]}" Width="70" Click="ButtonDelete_Click"/>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					</DataGridTemplateColumn>
+				</DataGrid.Columns>
+			</DataGrid>
+		</ScrollViewer>
+		<Button x:Name="btnOk" Content="{Binding Source={StaticResource CultureResources},Path=[Close]}" Grid.Row="1" Click="btnOk_Click" Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" />
+	</Grid>
+</Window>

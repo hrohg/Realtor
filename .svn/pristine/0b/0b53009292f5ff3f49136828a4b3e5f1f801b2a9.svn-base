@@ -1,0 +1,9 @@
+﻿<Window x:Class="UserControls.GoogleAddressViewer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Loaded="Window_Loaded"
+        Title="{Binding Source={StaticResource CultureResources},Path=[PlaceOnMap]}" WindowState="Maximized" WindowStyle="ToolWindow" 
+        Icon="pack://application:,,,/Shared;component/Images/Application.png" >
+    <Grid Margin="3">
+        <WebBrowser x:Name="browser" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+    </Grid>
+</Window>

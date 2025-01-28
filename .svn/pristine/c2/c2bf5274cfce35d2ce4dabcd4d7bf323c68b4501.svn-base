@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="UserControls.EstateAttributeTemplate"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Foreground="Black"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Height="25" x:Name="attributeTemplate">
+    <Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="25"/>
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+		<Image Source="pack://application:,,,/Shared;component/Images/checked.png" Height="25" Width="25"/>
+		<TextBlock Text="{Binding Path=Title, ElementName=attributeTemplate}" Margin="5,0,0,0" Grid.Column="1" VerticalAlignment="Center"/>
+	</Grid>
+</UserControl>

@@ -1,0 +1,758 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="REDB" Class="DataClassesDataContext" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=Arsen-pc\sqlexpress;Initial Catalog=REDB;Integrated Security=True" SettingsObjectName="RealEstate.DataAccess.Properties.Settings" SettingsPropertyName="REDBConnectionString2" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.BlackListItems" Member="BlackListItems">
+    <Type Name="BlackListItem">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Comment" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="BlackListItem_BlackListNumber" Member="BlackListNumbers" ThisKey="ID" OtherKey="BlackListItemID" Type="BlackListNumber" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Family" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Telephone1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Telephone2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="RoleID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="User_BrokerEstateType" Member="BrokerEstateTypes" ThisKey="ID" OtherKey="BrokerID" Type="BrokerEstateType" />
+      <Association Name="User_BrokerOrderType" Member="BrokerOrderTypes" ThisKey="ID" OtherKey="BrokerID" Type="BrokerOrderType" />
+      <Association Name="User_BrokersRegion" Member="BrokersRegions" ThisKey="ID" OtherKey="BrokerID" Type="BrokersRegion" />
+      <Association Name="User_BrokerState" Member="BrokerStates" ThisKey="ID" OtherKey="BrokerID" Type="BrokerState" />
+      <Association Name="User_ClientSuggestedEstate" Member="ClientSuggestedEstates" ThisKey="ID" OtherKey="BrokerID" Type="ClientSuggestedEstate" />
+      <Association Name="User_Estate" Member="Estates" ThisKey="ID" OtherKey="BrokerID" Type="Estate" />
+      <Association Name="User_EstatesAndDemand" Member="EstatesAndDemands" ThisKey="ID" OtherKey="BrokerID" Type="EstatesAndDemand" />
+      <Association Name="User_FavoriteClient" Member="FavoriteClients" ThisKey="ID" OtherKey="UserID" Type="FavoriteClient" />
+      <Association Name="User_FavoriteEstate" Member="FavoriteEstates" ThisKey="ID" OtherKey="UserID" Type="FavoriteEstate" />
+      <Association Name="User_NeededEstate" Member="NeededEstates" ThisKey="ID" OtherKey="BrokerID" Type="NeededEstate" />
+      <Association Name="User_RentedEstate" Member="RentedEstates" ThisKey="ID" OtherKey="BrokerID" Type="RentedEstate" />
+      <Association Name="User_SelledEstate" Member="SelledEstates" ThisKey="ID" OtherKey="BrokerID" Type="SelledEstate" />
+      <Association Name="User_UserDisplayColumn" Member="UserDisplayColumns" ThisKey="ID" OtherKey="UserID" Type="UserDisplayColumn" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BlackListNumbers" Member="BlackListNumbers">
+    <Type Name="BlackListNumber">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BlackListItemID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="BlackListItem_BlackListNumber" Member="BlackListItem" ThisKey="BlackListItemID" OtherKey="ID" Type="BlackListItem" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BrokerEstateTypes" Member="BrokerEstateTypes">
+    <Type Name="BrokerEstateType">
+      <Column Name="EstateTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BrokerID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EstateTypeOriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BrokerOriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="User_BrokerEstateType" Member="User" ThisKey="BrokerID" OtherKey="ID" Type="User" IsForeignKey="true" />
+      <Association Name="EstateType_BrokerEstateType" Member="EstateType" ThisKey="EstateTypeID" OtherKey="EstateTypeID" Type="EstateType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BrokerOrderTypes" Member="BrokerOrderTypes">
+    <Type Name="BrokerOrderType">
+      <Column Name="BrokerID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="OrderTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BrokerOriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OrderTypeOriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="User_BrokerOrderType" Member="User" ThisKey="BrokerID" OtherKey="ID" Type="User" IsForeignKey="true" />
+      <Association Name="OrderType_BrokerOrderType" Member="OrderType" ThisKey="OrderTypeID" OtherKey="OrderTypeID" Type="OrderType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BrokersRegions" Member="BrokersRegions">
+    <Type Name="BrokersRegion">
+      <Column Name="BrokerID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RegionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BrokerOriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RegionOriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="User_BrokersRegion" Member="User" ThisKey="BrokerID" OtherKey="ID" Type="User" IsForeignKey="true" />
+      <Association Name="Region_BrokersRegion" Member="Region" ThisKey="RegionID" OtherKey="RegionID" Type="Region" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BrokerStates" Member="BrokerStates">
+    <Type Name="BrokerState">
+      <Column Name="BrokerID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StateID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BrokerOriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StateOriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="User_BrokerState" Member="User" ThisKey="BrokerID" OtherKey="ID" Type="User" IsForeignKey="true" />
+      <Association Name="State_BrokerState" Member="State" ThisKey="StateID" OtherKey="ID" Type="State" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BuildingTypes" Member="BuildingTypes">
+    <Type Name="BuildingType">
+      <Column Name="BuildingTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameAm" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="SortIndex" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NameRu" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NameEn" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NameCz" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NameKz" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="BuildingType_Estate" Member="Estates" ThisKey="BuildingTypeID" OtherKey="BuildingTypeID" Type="Estate" />
+      <Association Name="BuildingType_NeededBuildingType" Member="NeededBuildingTypes" ThisKey="BuildingTypeID" OtherKey="BuildingTypeID" Type="NeededBuildingType" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cities" Member="Cities">
+    <Type Name="City">
+      <Column Name="CityID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameAm" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="StateID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NameRu" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NameEn" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NameCz" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NameKz" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CountryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="City_Estate" Member="Estates" ThisKey="CityID" OtherKey="CityID" Type="Estate" />
+      <Association Name="City_Region" Member="Regions" ThisKey="CityID" OtherKey="CityID" Type="Region" />
+      <Association Name="Country_City" Member="Country" ThisKey="CountryID" OtherKey="ID" Type="Country" IsForeignKey="true" />
+      <Association Name="State_City" Member="State" ThisKey="StateID" OtherKey="ID" Type="State" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ClientSuggestedEstates" Member="ClientSuggestedEstates">
+    <Type Name="ClientSuggestedEstate">
+      <Column Name="EstateID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ClientID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SuggestDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BrokerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Comment" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="User_ClientSuggestedEstate" Member="User" ThisKey="BrokerID" OtherKey="ID" Type="User" IsForeignKey="true" />
+      <Association Name="Estate_ClientSuggestedEstate" Member="Estate" ThisKey="EstateID" OtherKey="EstateID" Type="Estate" IsForeignKey="true" />
+      <Association Name="NeededEstate_ClientSuggestedEstate" Member="NeededEstate" ThisKey="ClientID" OtherKey="ID" Type="NeededEstate" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CommercialPlaceLevels" Member="CommercialPlaceLevels">
+    <Type Name="CommercialPlaceLevel">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameAm" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="NameEn" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="NameRu" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="NameCz" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SortIndex" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Convenients" Member="Convenients">
+    <Type Name="Convenient">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameAm" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="NameEn" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="NameRu" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="NameCz" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="NameKz" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Convenient_EstateConvenient" Member="EstateConvenients" ThisKey="ID" OtherKey="ConvenientID" Type="EstateConvenient" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Countries" Member="Countries">
+    <Type Name="Country">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameAm" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="NameEn" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="NameRu" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Country_City" Member="Cities" ThisKey="ID" OtherKey="CountryID" Type="City" />
+      <Association Name="Country_Estate" Member="Estates" ThisKey="ID" OtherKey="CountryID" Type="Estate" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Currencies" Member="Currencies">
+    <Type Name="Currency">
+      <Column Name="CurrencyID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameAm" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ValueInAMD" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NameRu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NameEn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NameCz" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NameKz" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Currency_Estate" Member="Estates" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="Estate" />
+      <Association Name="Currency_NeededEstate" Member="NeededEstates" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="NeededEstate" />
+      <Association Name="Currency_OldPrice" Member="OldPrices" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="OldPrice" />
+      <Association Name="Currency_RentedEstate" Member="RentedEstates" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="RentedEstate" />
+      <Association Name="Currency_SelledEstate" Member="SelledEstates" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="SelledEstate" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EstateConvenients" Member="EstateConvenients">
+    <Type Name="EstateConvenient">
+      <Column Name="EstateID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ConvenientID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Convenient_EstateConvenient" Member="Convenient" ThisKey="ConvenientID" OtherKey="ID" Type="Convenient" IsForeignKey="true" />
+      <Association Name="Estate_EstateConvenient" Member="Estate" ThisKey="EstateID" OtherKey="EstateID" Type="Estate" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EstateImages" Member="EstateImages">
+    <Type Name="EstateImage">
+      <Column Name="ImageID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EstateID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ImageTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ShowInSite" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsMain" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Estate_EstateImage" Member="Estate" ThisKey="EstateID" OtherKey="EstateID" Type="Estate" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Estates" Member="Estates">
+    <Type Name="Estate">
+      <Column Name="EstateID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EstateTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoomCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BrokerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TotalSquare" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="Floor" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Price" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="CurrencyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RegionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RemontID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Height" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="HasGarage" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SellerName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="PhonePrimary" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="PhoneSecondary" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="HasEuroWindows" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AddressID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsHasCanalisationPosibility" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AdditionalInformation" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Canalisation" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsWoterAlways" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasGas" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ProjectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ExpandingPosibility" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="BuildingTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OrderTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HasPadval" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="BuildingFloorsCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PadvalSquare" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsHasGarden" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="GardenSquare" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsOutDoorFromSteel" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="GasPosibility" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AddDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CityID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StreetID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HomeNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AptNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EarthPlaceTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StateID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GarageTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PriceTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Rating" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PlaceName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="OfficePlaceTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Electricity" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="PricePerDay" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PriceInAMD" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="IsSelledOrOrended" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasDrinkWater" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasVoroqmanJur" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasElectricityPosibility" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsUploadedToWeb" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SignificanceOfTheUseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OperationalSignificanceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="RoofingID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsExchangePossible" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ExchangeWith" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="IsInNewBuilding" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasFurniture" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasConditioner" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasWasher" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="InformationSource" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="PricePerDayInAMD" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="IsHasWarmingSystem" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasInternet" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasAntena" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasTechnique" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="OpenBalcony" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ClosedBalcony" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Nisha" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FrontBalcony" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Arevkox" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Xordanoc" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsEmpty" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasTV" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasDVD" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasJakuzi" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasRefrigerator" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasAriston" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasGeyser" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasWaterContainer" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasPool" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasGasHeater" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasOfficeRoom" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasShowerCab" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasBed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasGate" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasTrees" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasPlayRoom" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasService" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasHeatedFloors" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasLodgeBalcony" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasIntercome" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsInElitarBuilding" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasSecuritySystem" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasParking" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasKitchen" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="InFirstLine" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="InNullableFloor" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasWC" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasThreePhaseElectricity" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasFencing" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AdditionalConvenients" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Lat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Lng" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EuroDesign" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Dishwasher" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Tile" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Metlax" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LodgeBalcony" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Domophone" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Lift" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NotPopulated" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SeparateRooms" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Square" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MakedRooms" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LandFront" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FloorAdditional" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LandNumber" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="IsElectricityCablesChanged" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsPipesChanged" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsCeilingRepaired" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsHasSauna" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasSomething" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AdditionalDetailsSite" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PlaceNameSite" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="WaterHeater" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CountryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="IsOverseas" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ChangeToBrokerDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Estate_ClientSuggestedEstate" Member="ClientSuggestedEstates" ThisKey="EstateID" OtherKey="EstateID" Type="ClientSuggestedEstate" />
+      <Association Name="Estate_EstateConvenient" Member="EstateConvenients" ThisKey="EstateID" OtherKey="EstateID" Type="EstateConvenient" />
+      <Association Name="Estate_EstateImage" Member="EstateImages" ThisKey="EstateID" OtherKey="EstateID" Type="EstateImage" />
+      <Association Name="Estate_EstatesAndDemand" Member="EstatesAndDemands" ThisKey="EstateID" OtherKey="EstateID" Type="EstatesAndDemand" />
+      <Association Name="Estate_EstateVideo" Member="EstateVideos" ThisKey="EstateID" OtherKey="EstateID" Type="EstateVideo" />
+      <Association Name="Estate_FavoriteEstate" Member="FavoriteEstates" ThisKey="EstateID" OtherKey="EstateID" Type="FavoriteEstate" />
+      <Association Name="Estate_OldPrice" Member="OldPrices" ThisKey="EstateID" OtherKey="EstateID" Type="OldPrice" />
+      <Association Name="Estate_RentedEstate" Member="RentedEstates" ThisKey="EstateID" OtherKey="EstateID" Type="RentedEstate" />
+      <Association Name="Estate_SelledEstate" Member="SelledEstates" ThisKey="EstateID" OtherKey="EstateID" Type="SelledEstate" />
+      <Association Name="BuildingType_Estate" Member="BuildingType" ThisKey="BuildingTypeID" OtherKey="BuildingTypeID" Type="BuildingType" IsForeignKey="true" />
+      <Association Name="City_Estate" Member="City" ThisKey="CityID" OtherKey="CityID" Type="City" IsForeignKey="true" />
+      <Association Name="Country_Estate" Member="Country" ThisKey="CountryID" OtherKey="ID" Type="Country" IsForeignKey="true" />
+      <Association Name="Currency_Estate" Member="Currency" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="Currency" IsForeignKey="true" />
+      <Association Name="User_Estate" Member="User" ThisKey="BrokerID" OtherKey="ID" Type="User" IsForeignKey="true" />
+      <Association Name="EstateType_Estate" Member="EstateType" ThisKey="EstateTypeID" OtherKey="EstateTypeID" Type="EstateType" IsForeignKey="true" />
+      <Association Name="OperationalSignificance_Estate" Member="OperationalSignificance" ThisKey="OperationalSignificanceID" OtherKey="ID" Type="OperationalSignificance" IsForeignKey="true" />
+      <Association Name="OrderType_Estate" Member="OrderType" ThisKey="OrderTypeID" OtherKey="OrderTypeID" Type="OrderType" IsForeignKey="true" />
+      <Association Name="Project_Estate" Member="Project" ThisKey="ProjectID" OtherKey="ProjectID" Type="Project" IsForeignKey="true" />
+      <Association Name="Region_Estate" Member="Region" ThisKey="RegionID" OtherKey="RegionID" Type="Region" IsForeignKey="true" />
+      <Association Name="Remont_Estate" Member="Remont" ThisKey="RemontID" OtherKey="RemontID" Type="Remont" IsForeignKey="true" />
+      <Association Name="Roofing_Estate" Member="Roofing" ThisKey="RoofingID" OtherKey="ID" Type="Roofing" IsForeignKey="true" />
+      <Association Name="SignificanceOfTheUse_Estate" Member="SignificanceOfTheUse" ThisKey="SignificanceOfTheUseID" OtherKey="ID" Type="SignificanceOfTheUse" IsForeignKey="true" />
+      <Association Name="State_Estate" Member="State" ThisKey="StateID" OtherKey="ID" Type="State" IsForeignKey="true" />
+      <Association Name="Street_Estate" Member="Street" ThisKey="StreetID" OtherKey="StreetID" Type="Street" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EstatesAndDemands" Member="EstatesAndDemands">
+    <Type Name="EstatesAndDemand">
+      <Column Name="EstateID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DemandID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ShowDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BrokerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EstateOriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DemandOriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Comment" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Estate_EstatesAndDemand" Member="Estate" ThisKey="EstateID" OtherKey="EstateID" Type="Estate" IsForeignKey="true" />
+      <Association Name="User_EstatesAndDemand" Member="User" ThisKey="BrokerID" OtherKey="ID" Type="User" IsForeignKey="true" />
+      <Association Name="NeededEstate_EstatesAndDemand" Member="NeededEstate" ThisKey="DemandID" OtherKey="ID" Type="NeededEstate" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EstateTypes" Member="EstateTypes">
+    <Type Name="EstateType">
+      <Column Name="EstateTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TypeNameAm" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="SortIndex" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TypeNameEn" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TypeNameRu" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TypeNameCz" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TypeNameKz" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="EstateType_BrokerEstateType" Member="BrokerEstateTypes" ThisKey="EstateTypeID" OtherKey="EstateTypeID" Type="BrokerEstateType" />
+      <Association Name="EstateType_Estate" Member="Estates" ThisKey="EstateTypeID" OtherKey="EstateTypeID" Type="Estate" />
+      <Association Name="EstateType_NeededEstateType" Member="NeededEstateTypes" ThisKey="EstateTypeID" OtherKey="EstateTypeID" Type="NeededEstateType" />
+      <Association Name="EstateType_SignificanceOfTheUse" Member="SignificanceOfTheUses" ThisKey="EstateTypeID" OtherKey="EstateTypeID" Type="SignificanceOfTheUse" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EstateVideos" Member="EstateVideos">
+    <Type Name="EstateVideo">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EstateID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FileExtension" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Estate_EstateVideo" Member="Estate" ThisKey="EstateID" OtherKey="EstateID" Type="Estate" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FavoriteClients" Member="FavoriteClients">
+    <Type Name="FavoriteClient">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ClientID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="User_FavoriteClient" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" />
+      <Association Name="NeededEstate_FavoriteClient" Member="NeededEstate" ThisKey="ClientID" OtherKey="ID" Type="NeededEstate" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FavoriteEstates" Member="FavoriteEstates">
+    <Type Name="FavoriteEstate">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EstateID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Estate_FavoriteEstate" Member="Estate" ThisKey="EstateID" OtherKey="EstateID" Type="Estate" IsForeignKey="true" />
+      <Association Name="User_FavoriteEstate" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NeededBuildingTypes" Member="NeededBuildingTypes">
+    <Type Name="NeededBuildingType">
+      <Column Name="DemandID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BuildingTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DemandOriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BuildingTypeOriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="BuildingType_NeededBuildingType" Member="BuildingType" ThisKey="BuildingTypeID" OtherKey="BuildingTypeID" Type="BuildingType" IsForeignKey="true" />
+      <Association Name="NeededEstate_NeededBuildingType" Member="NeededEstate" ThisKey="DemandID" OtherKey="ID" Type="NeededEstate" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NeededEstates" Member="NeededEstates">
+    <Type Name="NeededEstate">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RoomCountFrom" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RoomCountTo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FloorFrom" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FloorTo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PriceFrom" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="PriceTo" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="SquareFrom" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SquareTo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsWoterAlways" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasGas" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="BrokerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SellerName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Telephone1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Telephone2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AdditionalDetails" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PriceFromInAMD" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="PriceToInAMD" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="CurrencyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AddDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsNeedForRent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsHasGarage" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsInNewBuilding" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsExchangePossible" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasFurniture" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsEmpty" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasPodval" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsInNullableFloor" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsInFirstLine" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsHasThreePhaseElectricity" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="NeededEstate_ClientSuggestedEstate" Member="ClientSuggestedEstates" ThisKey="ID" OtherKey="ClientID" Type="ClientSuggestedEstate" />
+      <Association Name="NeededEstate_EstatesAndDemand" Member="EstatesAndDemands" ThisKey="ID" OtherKey="DemandID" Type="EstatesAndDemand" />
+      <Association Name="NeededEstate_FavoriteClient" Member="FavoriteClients" ThisKey="ID" OtherKey="ClientID" Type="FavoriteClient" />
+      <Association Name="NeededEstate_NeededBuildingType" Member="NeededBuildingTypes" ThisKey="ID" OtherKey="DemandID" Type="NeededBuildingType" />
+      <Association Name="NeededEstate_NeededEstateType" Member="NeededEstateTypes" ThisKey="ID" OtherKey="NeededEstateID" Type="NeededEstateType" />
+      <Association Name="NeededEstate_NeededProject" Member="NeededProjects" ThisKey="ID" OtherKey="DemandID" Type="NeededProject" />
+      <Association Name="NeededEstate_NeededRegion" Member="NeededRegions" ThisKey="ID" OtherKey="NeededEstateID" Type="NeededRegion" />
+      <Association Name="NeededEstate_NeededRemont" Member="NeededRemonts" ThisKey="ID" OtherKey="DemandID" Type="NeededRemont" />
+      <Association Name="Currency_NeededEstate" Member="Currency" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="Currency" IsForeignKey="true" />
+      <Association Name="User_NeededEstate" Member="User" ThisKey="BrokerID" OtherKey="ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NeededEstateTypes" Member="NeededEstateTypes">
+    <Type Name="NeededEstateType">
+      <Column Name="NeededEstateID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EstateTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DemandOriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EstateTypeOriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="EstateType_NeededEstateType" Member="EstateType" ThisKey="EstateTypeID" OtherKey="EstateTypeID" Type="EstateType" IsForeignKey="true" />
+      <Association Name="NeededEstate_NeededEstateType" Member="NeededEstate" ThisKey="NeededEstateID" OtherKey="ID" Type="NeededEstate" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NeededProjects" Member="NeededProjects">
+    <Type Name="NeededProject">
+      <Column Name="DemandID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProjectID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DemandOriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProjectOriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="NeededEstate_NeededProject" Member="NeededEstate" ThisKey="DemandID" OtherKey="ID" Type="NeededEstate" IsForeignKey="true" />
+      <Association Name="Project_NeededProject" Member="Project" ThisKey="ProjectID" OtherKey="ProjectID" Type="Project" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NeededRegions" Member="NeededRegions">
+    <Type Name="NeededRegion">
+      <Column Name="NeededEstateID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RegionID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DemandOriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RegionOriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="NeededEstate_NeededRegion" Member="NeededEstate" ThisKey="NeededEstateID" OtherKey="ID" Type="NeededEstate" IsForeignKey="true" />
+      <Association Name="Region_NeededRegion" Member="Region" ThisKey="RegionID" OtherKey="RegionID" Type="Region" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NeededRemonts" Member="NeededRemonts">
+    <Type Name="NeededRemont">
+      <Column Name="DemandID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NeededRemontID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DemandOriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RemontOriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="NeededEstate_NeededRemont" Member="NeededEstate" ThisKey="DemandID" OtherKey="ID" Type="NeededEstate" IsForeignKey="true" />
+      <Association Name="Remont_NeededRemont" Member="Remont" ThisKey="NeededRemontID" OtherKey="RemontID" Type="Remont" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OldPrices" Member="OldPrices">
+    <Type Name="OldPrice">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EstateID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ChangeDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="OldPrice" Member="OldPrice1" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="CurrencyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Currency_OldPrice" Member="Currency" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="Currency" IsForeignKey="true" />
+      <Association Name="Estate_OldPrice" Member="Estate" ThisKey="EstateID" OtherKey="EstateID" Type="Estate" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OperationalSignificances" Member="OperationalSignificances">
+    <Type Name="OperationalSignificance">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameAm" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="SignificanceOfTheUseID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NameRu" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="NameEn" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="NameCz" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="NameKz" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="OperationalSignificance_Estate" Member="Estates" ThisKey="ID" OtherKey="OperationalSignificanceID" Type="Estate" />
+      <Association Name="SignificanceOfTheUse_OperationalSignificance" Member="SignificanceOfTheUse" ThisKey="SignificanceOfTheUseID" OtherKey="ID" Type="SignificanceOfTheUse" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderTypes" Member="OrderTypes">
+    <Type Name="OrderType">
+      <Column Name="OrderTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameAm" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="SortIndex" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NameEn" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NameRu" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NameCz" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NameKz" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="OrderType_BrokerOrderType" Member="BrokerOrderTypes" ThisKey="OrderTypeID" OtherKey="OrderTypeID" Type="BrokerOrderType" />
+      <Association Name="OrderType_Estate" Member="Estates" ThisKey="OrderTypeID" OtherKey="OrderTypeID" Type="Estate" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Projects" Member="Projects">
+    <Type Name="Project">
+      <Column Name="ProjectID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameAm" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="SortIndex" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NameRu" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NameEn" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NameCz" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NameKz" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Project_Estate" Member="Estates" ThisKey="ProjectID" OtherKey="ProjectID" Type="Estate" />
+      <Association Name="Project_NeededProject" Member="NeededProjects" ThisKey="ProjectID" OtherKey="ProjectID" Type="NeededProject" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RealtorSettings" Member="RealtorSettings">
+    <Type Name="RealtorSetting">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RatingFrom" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RatingTo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DaysBeforeToRentClose" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AllowBrokersToAddData" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ShowOpenAddressToBrokers" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AllowBrokersToPrintEstates" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Regions" Member="Regions">
+    <Type Name="Region">
+      <Column Name="RegionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameAm" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CityID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SortIndex" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NameEn" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NameRu" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NameCz" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NameKz" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Region_BrokersRegion" Member="BrokersRegions" ThisKey="RegionID" OtherKey="RegionID" Type="BrokersRegion" />
+      <Association Name="Region_Estate" Member="Estates" ThisKey="RegionID" OtherKey="RegionID" Type="Estate" />
+      <Association Name="Region_NeededRegion" Member="NeededRegions" ThisKey="RegionID" OtherKey="RegionID" Type="NeededRegion" />
+      <Association Name="City_Region" Member="City" ThisKey="CityID" OtherKey="CityID" Type="City" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Remonts" Member="Remonts">
+    <Type Name="Remont">
+      <Column Name="RemontID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameAm" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="SortIndex" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NameRu" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NameKz" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NameEn" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NameCz" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Remont_Estate" Member="Estates" ThisKey="RemontID" OtherKey="RemontID" Type="Estate" />
+      <Association Name="Remont_NeededRemont" Member="NeededRemonts" ThisKey="RemontID" OtherKey="NeededRemontID" Type="NeededRemont" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RentedEstates" Member="RentedEstates">
+    <Type Name="RentedEstate">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EstateID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Price" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="CurrencyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BrokerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PricePerDay" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PriceInAMD" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="PricePerDayInAMD" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Currency_RentedEstate" Member="Currency" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="Currency" IsForeignKey="true" />
+      <Association Name="Estate_RentedEstate" Member="Estate" ThisKey="EstateID" OtherKey="EstateID" Type="Estate" IsForeignKey="true" />
+      <Association Name="User_RentedEstate" Member="User" ThisKey="BrokerID" OtherKey="ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Roofings" Member="Roofings">
+    <Type Name="Roofing">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameAm" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NameEn" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="NameRu" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="NameCz" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="NameKz" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Roofing_Estate" Member="Estates" ThisKey="ID" OtherKey="RoofingID" Type="Estate" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SelledEstates" Member="SelledEstates">
+    <Type Name="SelledEstate">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EstateID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="SellDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BrokerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CurrencyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PriceInAMD" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Currency_SelledEstate" Member="Currency" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="Currency" IsForeignKey="true" />
+      <Association Name="Estate_SelledEstate" Member="Estate" ThisKey="EstateID" OtherKey="EstateID" Type="Estate" IsForeignKey="true" />
+      <Association Name="User_SelledEstate" Member="User" ThisKey="BrokerID" OtherKey="ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SignificanceOfTheUses" Member="SignificanceOfTheUses">
+    <Type Name="SignificanceOfTheUse">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameAm" Type="System.String" DbType="NVarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="EstateTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NameRu" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="NameEn" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="NameCz" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="NameKz" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="SignificanceOfTheUse_Estate" Member="Estates" ThisKey="ID" OtherKey="SignificanceOfTheUseID" Type="Estate" />
+      <Association Name="SignificanceOfTheUse_OperationalSignificance" Member="OperationalSignificances" ThisKey="ID" OtherKey="SignificanceOfTheUseID" Type="OperationalSignificance" />
+      <Association Name="EstateType_SignificanceOfTheUse" Member="EstateType" ThisKey="EstateTypeID" OtherKey="EstateTypeID" Type="EstateType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.States" Member="States">
+    <Type Name="State">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameAm" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NameEn" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="NameRu" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="NameCz" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="NameKz" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="State_BrokerState" Member="BrokerStates" ThisKey="ID" OtherKey="StateID" Type="BrokerState" />
+      <Association Name="State_City" Member="Cities" ThisKey="ID" OtherKey="StateID" Type="City" />
+      <Association Name="State_Estate" Member="Estates" ThisKey="ID" OtherKey="StateID" Type="Estate" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Streets" Member="Streets">
+    <Type Name="Street">
+      <Column Name="StreetID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameAm" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="RegionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NameRu" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NameEn" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NameCz" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NameKz" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OriginalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Street_Estate" Member="Estates" ThisKey="StreetID" OtherKey="StreetID" Type="Estate" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserDisplayColumns" Member="UserDisplayColumns">
+    <Type Name="UserDisplayColumn">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ColumnID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ColumnName" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Show" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="OrderIndex" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="User_UserDisplayColumn" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

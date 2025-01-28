@@ -1,0 +1,62 @@
+﻿<Window x:Class="UserControls.CheckAddressView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Converters="clr-namespace:Shared.Converters;assembly=Shared" 
+        WindowStartupLocation="CenterScreen" WindowState="Normal" WindowStyle="ToolWindow" ResizeMode="NoResize"
+        Height="130" Width="800" x:Name="checkAddress" Icon="pack://application:,,,/Shared;component/Images/Application.png">
+    <Window.Resources>
+        <Converters:HasItemsToEnabilityConverter x:Key="HasItemsToEnabilityConverter" />
+        <Converters:StringEmptyToNullConverter x:Key="StringEmptyToNullConverter" />
+    </Window.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0" DataContext="{Binding Path=SearchParameters, ElementName=checkAddress}" KeyUp="StackPanel_KeyUp">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[State]}" VerticalAlignment="Center"/>
+                    <ComboBox ItemsSource="{Binding Path=States, ElementName=checkAddress}" x:Name="cbStates" IsEditable="False" VerticalAlignment="Center"
+    					          SelectedValue="{Binding Path=StateID, Mode=TwoWay}" Width="120" SelectedValuePath="ID" DisplayMemberPath="Name" Margin="3,0,0,0" SelectionChanged="cbStates_SelectionChanged"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="5,0,0,0">
+                    <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[City]}" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                    <ComboBox ItemsSource="{Binding Path=Cities, ElementName=checkAddress}" IsEditable="False"  VerticalAlignment="Center"
+    					          SelectedValue="{Binding Path=CityID, Mode=TwoWay}" Width="120" Margin="3,0,0,0" x:Name="cbCities" 
+    					          SelectionChanged="cbCities_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="CityID"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="5,0,0,0">
+                    <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[Region]}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <ComboBox Name="cbRegions" Grid.Column="2" ItemsSource="{Binding Path=Regions, ElementName=checkAddress}" 
+										IsEditable="False" MinWidth="120" HorizontalAlignment="Left" DisplayMemberPath="Name" 
+										IsEnabled="{Binding Path=RegionsSingle, ElementName=checkAddress, Converter={StaticResource HasItemsToEnabilityConverter}}"
+										SelectedValue="{Binding Path=RegionID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="cbRegions_SelectionChanged" 
+										SelectedValuePath="RegionID" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="5,0,0,0">
+                    <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[Street]}" Margin="0,0,3,0"/>
+                    <ComboBox Name="cbStreets" MinWidth="150" IsEditable="False" DisplayMemberPath="Name"
+											 SelectedValue="{Binding Path=StreetID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="StreetID" 
+                                             ItemsSource="{Binding Path=StreetsSingle, ElementName=checkAddress}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="5,0,0,0">
+                    <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[Apt]}" Margin="5,0,3,0"/>
+                    <TextBox MinWidth="120" Name="txtHomeNumber" Text="{Binding Path=HomeNumber, Mode=TwoWay, Converter={StaticResource StringEmptyToNullConverter}}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="5,0,0,0">
+                    <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[AptP]}" Margin="5,0,3,0"/>
+                    <TextBox MinWidth="120" Name="txtAptNumber" 
+                                             Text="{Binding Path=AptNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Converter={StaticResource StringEmptyToNullConverter}}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Button x:Name="btnCheck" Content="{Binding Source={StaticResource CultureResources},Path=[Check]}" Click="btnCheck_Click" />
+                <Button x:Name="btnCancel" Content="{Binding Source={StaticResource CultureResources},Path=[Cancel]}" Click="btnCancel_Click" Margin="10,0,0,0"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Window>

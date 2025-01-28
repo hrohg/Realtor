@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="UserControls.BlackList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Converters="clr-namespace:Shared.Converters;assembly=Shared" xmlns:UserControls="clr-namespace:UserControls" xmlns:Controls="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit" mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" x:Name="blackList" Loaded="blackList_Loaded">
+    <UserControl.Resources>
+        <Converters:BlackListNumbersToViewStringConverter x:Key="BlackListNumbersToViewStringConverter" />
+        <Converters:RoleToObjectVisibilityConverter x:Key="RoleToObjectVisibilityConverter" />
+    </UserControl.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid Margin="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <GroupBox Header="{Binding Source={StaticResource CultureResources},Path=[SearchCriteria]}" Margin="2">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[NameP]}" Margin="0,0,5,0" VerticalAlignment="Center" Foreground="Black"/>
+                    <TextBox Width="250" x:Name="txtName" Text="{Binding Path=SearchCriteria.Name, ElementName=blackList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" KeyDown="txtName_KeyUp"/>
+
+                    <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[TelephoneP]}" Margin="7,0,5,0" VerticalAlignment="Center" Foreground="Black"/>
+                    <TextBox Width="200" x:Name="txtPhone" Text="{Binding Path=SearchCriteria.TelephonesString, ElementName=blackList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" KeyDown="txtName_KeyUp"/>
+
+                    <Button x:Name="btnSearch" Click="btnSearch_Click" Height="30" Width="30" Margin="10,0,0,0" 
+						        HorizontalAlignment="Right" Style="{x:Null}" ToolTip="{Binding Source={StaticResource CultureResources},Path=[Search]}">
+                        <Image Source="pack://application:,,,/Shared;component/Images/Search.png" />
+                    </Button>
+
+                    <Button x:Name="btnClear" Click="btnClear_Click" Height="30" Width="30" Margin="5,0,10,0" 
+						        HorizontalAlignment="Right" Style="{x:Null}" ToolTip="{Binding Source={StaticResource CultureResources},Path=[Clear]}">
+                        <Image Source="pack://application:,,,/Shared;component/Images/ClearSearch.png" />
+                    </Button>
+                </StackPanel>
+            </GroupBox>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="60"/>
+                </Grid.ColumnDefinitions>
+
+                <DataGrid x:Name="dgBlackList" ItemsSource="{Binding Path=BlackListItems, ElementName=blackList}" 
+		                   AutoGenerateColumns="False" CanUserAddRows="False" CanUserSortColumns="True" 
+		                   CanUserResizeRows="True" IsReadOnly="True" CanUserDeleteRows="True">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <ContextMenu.Visibility>
+                                <MultiBinding Converter="{StaticResource RoleToObjectVisibilityConverter}">
+                                    <Binding Source="{x:Static UserControls:Session.Inst}" Path="User.IsAdminOrDirector" />
+                                    <Binding Source="{x:Static UserControls:Session.Inst}" Path="MainSettings.AllowBrokersToAddData" />
+                                    <Binding Source="{x:Static UserControls:Session.Inst}" Path="OfflineMode" />
+                                </MultiBinding>
+                            </ContextMenu.Visibility>
+                            <MenuItem x:Name="mnuEdit" Click="mnuEdit_Click" Header="{Binding Source={StaticResource CultureResources},Path=[Edit]}">
+                            </MenuItem>
+                            <MenuItem x:Name="mnuDelete" Click="mnuDelete_Click" Header="{Binding Source={StaticResource CultureResources},Path=[Delete]}">
+                            </MenuItem>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=Name}" Header="{Binding Source={StaticResource CultureResources},Path=[Name]}" />
+                        <DataGridTextColumn Binding="{Binding Path=BlackListNumbers, Converter={StaticResource BlackListNumbersToViewStringConverter}}"  Header="{Binding Source={StaticResource CultureResources},Path=[Numbers]}" />
+                        <DataGridTextColumn Binding="{Binding Path=Comment}" Header="{Binding Source={StaticResource CultureResources},Path=[Comment]}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center">
+                    <StackPanel.Visibility>
+                        <MultiBinding Converter="{StaticResource RoleToObjectVisibilityConverter}">
+                            <Binding Source="{x:Static UserControls:Session.Inst}" Path="User.IsAdminOrDirector" />
+                            <Binding Source="{x:Static UserControls:Session.Inst}" Path="MainSettings.AllowBrokersToAddData" />
+                            <Binding Source="{x:Static UserControls:Session.Inst}" Path="OfflineMode" />
+                        </MultiBinding>
+                    </StackPanel.Visibility>
+                    <Button x:Name="btnAdd" Click="btnAdd_Click" Height="35" Width="35" Margin="2" BorderThickness="0" Background="Transparent" SnapsToDevicePixels="True"
+						        HorizontalAlignment="Center" Style="{x:Null}" ToolTip="{Binding Source={StaticResource CultureResources},Path=[Add]}">
+                        <Image Source="pack://application:,,,/Shared;component/Images/add.png" />
+                    </Button>
+
+                    <Button x:Name="btnEdit" Click="btnEdit_Click" Height="35" Width="35" Margin="2" 
+						        HorizontalAlignment="Center" Style="{x:Null}" ToolTip="{Binding Source={StaticResource CultureResources},Path=[Edit]}">
+                        <Image Source="pack://application:,,,/Shared;component/Images/Edit.png" />
+                    </Button>
+
+                    <Button x:Name="btnDelete" Click="btnDelete_Click" Height="35" Width="35" Margin="2" 
+						        HorizontalAlignment="Center" ToolTip="{Binding Source={StaticResource CultureResources},Path=[Delete]}">
+                        <Image Source="pack://application:,,,/Shared;component/Images/CancelRound.png" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

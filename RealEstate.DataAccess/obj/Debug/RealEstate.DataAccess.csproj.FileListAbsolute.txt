@@ -1,0 +1,12 @@
+C:\Users\VS Projects\Realtor\Realtor\RealEstate.DataAccess\bin\Debug\RealEstate.DataAccess.dll.config
+C:\Users\VS Projects\Realtor\Realtor\RealEstate.DataAccess\bin\Debug\RealEstate.DataAccess.dll
+C:\Users\VS Projects\Realtor\Realtor\RealEstate.DataAccess\bin\Debug\RealEstate.DataAccess.pdb
+C:\Users\VS Projects\Realtor\Realtor\RealEstate.DataAccess\obj\Debug\RealEstate.DataAccess.dll
+C:\Users\VS Projects\Realtor\Realtor\RealEstate.DataAccess\obj\Debug\RealEstate.DataAccess.pdb
+C:\Users\VS Projects\Realtor\Realtor\RealEstate.DataAccess\obj\Debug\RealEstate.DataAccess.csprojResolveAssemblyReference.cache
+C:\Hrayr\VS Projects\Realtor\Realtor\RealEstate.DataAccess\bin\Debug\RealEstate.DataAccess.dll.config
+C:\Hrayr\VS Projects\Realtor\Realtor\RealEstate.DataAccess\bin\Debug\RealEstate.DataAccess.dll
+C:\Hrayr\VS Projects\Realtor\Realtor\RealEstate.DataAccess\bin\Debug\RealEstate.DataAccess.pdb
+C:\Hrayr\VS Projects\Realtor\Realtor\RealEstate.DataAccess\obj\Debug\RealEstate.DataAccess.csprojResolveAssemblyReference.cache
+C:\Hrayr\VS Projects\Realtor\Realtor\RealEstate.DataAccess\obj\Debug\RealEstate.DataAccess.dll
+C:\Hrayr\VS Projects\Realtor\Realtor\RealEstate.DataAccess\obj\Debug\RealEstate.DataAccess.pdb

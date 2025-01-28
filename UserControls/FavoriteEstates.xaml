@@ -1,0 +1,213 @@
+﻿<UserControl x:Class="UserControls.FavoriteEstates"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Converters="clr-namespace:Shared.Converters;assembly=Shared" 
+    xmlns:MicrosoftControls="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit"
+    xmlns:UserControls="clr-namespace:UserControls" Foreground="Black"
+	x:Name="favoriteList" Loaded="favoriteList_Loaded" DragEnter="dgEstates_DragEnter"  AllowDrop="True" Drop="dgEstates_Drop">
+    <UserControl.Resources>
+        
+
+        <LinearGradientBrush x:Key="PanelBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Offset="0" Color="#fffdfdfd" />
+            <GradientStop Offset="0.8" Color="#fff0f0f0" />
+            <GradientStop Offset="1" Color="#ffe0e0e0" />
+        </LinearGradientBrush>
+
+        <Converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <Converters:EstateToRegionStateStringConverter x:Key="EstateToRegionStateStringConverter"/>
+        <Converters:StringToOneRowStringConverter x:Key="StringToOneRowStringConverter" />
+        <Converters:EstateToFloorViewForListConverter x:Key="EstateToFloorViewForListConverter" />
+        <Converters:StringEmptyToNullConverter x:Key="NullToStringEmptyConverter" />
+        <Converters:StringEmptyToNullConverter x:Key="StringEmptyToNullConverter" />
+        <Converters:ShowingColumnsToVisibilityConverter x:Key="ShowingColumnsToVisibilityConverter" />
+        <Converters:FullAddressVisibilityConverter x:Key="FullAddressVisibilityConverter" />
+		<Converters:EstateToEstateFullAddressStringWithoutRegionConverter x:Key="EstateToEstateFullAddressStringWithoutRegionConverter" />
+		<Converters:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
+		<Converters:EstateToRoomsCountStringConverter x:Key="EstateToRoomsCountStringConverter" />
+        <Converters:IsAdminOrDirectorToObjectVisibilityConverter x:Key="IsAdminOrDirectorToObjectVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Margin="3" x:Name="grdRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="0">
+            <!--<Button x:Name="btnExportToExcel" Click="btnExportToExcel_Click" ToolTip="Excel"  Margin="15,0,0,0"
+					Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=User.IsAdminOrDirector, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Image Source="pack://application:,,,/Shared;component/Images/excel.png" Width="23" Height="23"/>
+            </Button>-->
+			<Button x:Name="btnPrint" Click="btnPrint_Click" ToolTip="{Binding Source={StaticResource CultureResources},Path=[Print]}"  Margin="10,0,0,0">
+                <Image Source="pack://application:,,,/Shared;component/Images/Print.png" Width="24" Height="23"/>
+            </Button>
+        </StackPanel>
+       
+    </Grid>
+    <MicrosoftControls:DataGrid AutoGenerateColumns="False" CanUserResizeColumns="True" CanUserReorderColumns="True" CanUserSortColumns="True" 
+		                   Grid.Row="1" ItemsSource="{Binding Path=Estates, ElementName=favoriteList}"  IsReadOnly="True" Margin="0,5,0,0"
+		                   HorizontalAlignment="Stretch" VerticalAlignment="Top" x:Name="dgEstates" MouseDoubleClick="lvRealEstates_MouseDoubleClick" 
+						   CanUserResizeRows="False" SnapsToDevicePixels="False" ContextMenuOpening="MenuItem_ContextMenuOpening" 
+									>
+            <MicrosoftControls:DataGrid.ContextMenu>
+                <ContextMenu x:Name="menu" >
+					<MenuItem Header="{Binding Source={StaticResource CultureResources},Path=[RemoveFromThisList]}" x:Name="mnuDeleteFromThisList" Click="mnuDeleteFromFavorites_Click" />
+					<MenuItem x:Name="mnuOpen" Header="{Binding Source={StaticResource CultureResources},Path=[Open]}" Click="mnuOpen_Click" />
+                    <MenuItem Header="{Binding Source={StaticResource CultureResources},Path=[Delete]}" Click="mnuDelete_Click" Name="mnuDelete" >
+                        <MenuItem.Visibility>
+                            <MultiBinding Converter="{StaticResource IsAdminOrDirectorToObjectVisibilityConverter}">
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="User.IsAdminOrDirector" />
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="OfflineMode" />
+                            </MultiBinding>
+                        </MenuItem.Visibility>
+                    </MenuItem>
+                        <MenuItem Header="{Binding Source={StaticResource CultureResources},Path=[SaveAsFile]}" Click="mnuSaveAsXML_Click" x:Name="mnuSaveAsXML"
+					          Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=User.IsAdminOrDirector, Converter={StaticResource BoolToVisibilityConverter}}" />
+					<MenuItem Header="{Binding Source={StaticResource CultureResources},Path=[SelectClients]}" Click="mnuSelectDemands_Click" />
+                </ContextMenu>
+            </MicrosoftControls:DataGrid.ContextMenu>
+            <MicrosoftControls:DataGrid.Columns>
+                <MicrosoftControls:DataGridTextColumn Binding="{Binding Path=Code, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Code]}" Width="Auto" SortMemberPath="Code"
+											 Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[0].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <MicrosoftControls:DataGridTextColumn Binding="{Binding Path=OrderType.Name, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[SellOrRent]}" Width="Auto" SortMemberPath="OrderType.Name"
+											 Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[1].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <MicrosoftControls:DataGridTemplateColumn Header="{Binding Source={StaticResource CultureResources},Path=[Room]}" Width="Auto"
+											 Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[2].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+                    <MicrosoftControls:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Mode=OneWay, Converter={StaticResource EstateToRoomsCountStringConverter}}" />
+                        </DataTemplate>
+                    </MicrosoftControls:DataGridTemplateColumn.CellTemplate>
+                </MicrosoftControls:DataGridTemplateColumn>
+                <MicrosoftControls:DataGridTextColumn Binding="{Binding Path=EstateType.TypeName, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[TheEstateType]}" Width="Auto" SortMemberPath="EstateTypeID"
+											 Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[3].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
+                <MicrosoftControls:DataGridTextColumn Binding="{Binding Mode=OneWay, Converter={StaticResource EstateToRegionStateStringConverter}}" Header="{Binding Source={StaticResource CultureResources},Path=[StateOrRegion]}" Width="Auto" SortMemberPath="Region.RegionID"
+                                    Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[4].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <MicrosoftControls:DataGridTextColumn Binding="{Binding Path=ShortAddressString, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Address]}" Width="Auto" CanUserSort="False"
+											 Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[5].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <MicrosoftControls:DataGridTextColumn Binding="{Binding Mode=OneWay, Converter={StaticResource EstateToEstateFullAddressStringWithoutRegionConverter}}" Header="{Binding Source={StaticResource CultureResources},Path=[AddressFull]}" Width="Auto" CanUserSort="False">
+                    <MicrosoftControls:DataGridTextColumn.Visibility>
+                        <MultiBinding Converter="{StaticResource FullAddressVisibilityConverter}">
+                            <Binding Source="{x:Static UserControls:Session.Inst}" Path="ApplicationSettings.ShowingColumns[6].Show" />
+                            <Binding Source="{x:Static UserControls:Session.Inst}" Path="IsClientShowingMode"/>
+                        </MultiBinding>
+                    </MicrosoftControls:DataGridTextColumn.Visibility>
+                </MicrosoftControls:DataGridTextColumn>
+
+                <!--Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns, ConverterParameter='Հասցե(լրիվ)', Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"-->
+                <MicrosoftControls:DataGridTextColumn Binding="{Binding Path=SquareString, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Square]}" Width="Auto" SortMemberPath="TotalSquare"
+                                    Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[7].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <MicrosoftControls:DataGridTextColumn Binding="{Binding Mode=OneWay, Converter={StaticResource EstateToFloorViewForListConverter}}" Header="{Binding Source={StaticResource CultureResources},Path=[Floor]}" MaxWidth="50" Width="Auto"
+                                    Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[8].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <MicrosoftControls:DataGridTextColumn Binding="{Binding Path=Remont.Name, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[RemontType]}" Width="Auto"
+											 Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[20].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <MicrosoftControls:DataGridTextColumn Binding="{Binding Path=BuildingType.Name, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[BuildingType]}" Width="Auto"
+											 Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[22].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <MicrosoftControls:DataGridTemplateColumn Width="Auto" CanUserSort="False"
+												 Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[9].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+                    <MicrosoftControls:DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[Price]}" />
+                                <ComboBox ItemsSource="{Binding Path=GridCurrencies, ElementName=realEstatesList}" Height="20" Margin="3,0,0,0" FontSize="11"
+										SelectedItem="{Binding Path=SelectedGridCurrency, Mode=TwoWay, ElementName=realEstatesList}" 
+										DisplayMemberPath="Name" IsEditable="False"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </MicrosoftControls:DataGridTemplateColumn.HeaderTemplate>
+                    <MicrosoftControls:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Price, Mode=OneWay}" />
+                        </DataTemplate>
+                    </MicrosoftControls:DataGridTemplateColumn.CellTemplate>
+                </MicrosoftControls:DataGridTemplateColumn>
+                <MicrosoftControls:DataGridTextColumn Binding="{Binding Path=PricePerDay, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[PricePerDay]}" Width="Auto" SortMemberPath="PricePerDay"
+											 Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[10].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <MicrosoftControls:DataGridTextColumn Binding="{Binding Path=Currency.Name, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Currency]}" Width="Auto" SortMemberPath="Currency.CurrencyID"
+											 Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[11].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <MicrosoftControls:DataGridTextColumn Binding="{Binding Path=AddDate, Mode=OneWay, StringFormat=\{0:dd.MM.yyyy\}}" Header="{Binding Source={StaticResource CultureResources},Path=[Added]}" Width="Auto"
+									Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[12].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <MicrosoftControls:DataGridTextColumn Binding="{Binding Path=LastModifiedDate, Mode=OneWay, Converter={StaticResource NullToStringEmptyConverter}, StringFormat=\{0:dd.MM.yyyy\}}" Header="{Binding Source={StaticResource CultureResources},Path=[Updated]}" Width="Auto"
+                                    Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[13].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <MicrosoftControls:DataGridTextColumn Binding="{Binding Path=Height, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Height]}" Width="Auto"
+											 Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[14].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <MicrosoftControls:DataGridTextColumn Binding="{Binding Path=SellerInfo, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Seller]}" Width="Auto">
+                    <MicrosoftControls:DataGridTextColumn.Visibility>
+                        <MultiBinding Converter="{StaticResource FullAddressVisibilityConverter}">
+                            <Binding Source="{x:Static UserControls:Session.Inst}" Path="ApplicationSettings.ShowingColumns[15].Show" />
+                            <Binding Source="{x:Static UserControls:Session.Inst}" Path="IsClientShowingMode"/>
+                        </MultiBinding>
+                    </MicrosoftControls:DataGridTextColumn.Visibility>
+                </MicrosoftControls:DataGridTextColumn>
+                <MicrosoftControls:DataGridTemplateColumn Header="{Binding Source={StaticResource CultureResources},Path=[AdditionalDetails]}" Width="Auto" 
+												 Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[16].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+                    <MicrosoftControls:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=AdditionalInformation, Mode=OneWay, Converter={StaticResource StringToOneRowStringConverter}}" ToolTipService.ToolTip="{Binding Path=AdditionalInformation}"/>
+                        </DataTemplate>
+                    </MicrosoftControls:DataGridTemplateColumn.CellTemplate>
+                </MicrosoftControls:DataGridTemplateColumn>
+                <MicrosoftControls:DataGridTextColumn Binding="{Binding Path=InformationSource, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[InfSource]}" Width="Auto"
+											 Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[18].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <MicrosoftControls:DataGridTextColumn Binding="{Binding Path=Status, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Status]}" Width="Auto"
+											 Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[19].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <MicrosoftControls:DataGridTextColumn Binding="{Binding Path=User.FullName, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Broker]}" Width="Auto"
+											 Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[17].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+
+                <MicrosoftControls:DataGridTextColumn Binding="{Binding Path=Project.Name, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[TheProject]}" Width="Auto"
+											 Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[21].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+
+                <!--<MicrosoftControls:DataGridTemplateColumn Header="{Binding Source={StaticResource CultureResources},Path=[OtherDetails]}" Width="Auto"
+											 Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns, ConverterParameter='24', Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+
+                    <MicrosoftControls:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <Image Source="pack://application:,,,/Shared;component/Images/water.png" 
+									   ToolTip="{Binding Source={StaticResource CultureResources},Path=[Garage]}" 
+									   Visibility="{Binding Path=HasGarage, Converter={StaticResource BoolToVisibilityConverter}}"
+									   Height="21" Margin="2,0,0,0" />
+                                <Image Source="pack://application:,,,/Shared;component/Images/photo.png" 
+									   ToolTip="{Binding Source={StaticResource CultureResources},Path=[Photos]}" 
+									   Visibility="{Binding Path=EstateImages.Count, Converter={StaticResource IntToVisibilityConverter}}"
+									   Height="21" Margin="2,0,0,0" />
+                                <Image Source="pack://application:,,,/Shared;component/Images/garage.png" 
+									   ToolTip="{Binding Source={StaticResource CultureResources},Path=[Garage]}" 
+									   Visibility="{Binding Path=HasGarage, Converter={StaticResource BoolToVisibilityConverter}}"
+									   Height="21" Margin="2,0,0,0" />
+                                <Image Source="pack://application:,,,/Shared;component/Images/gas.png" 
+									   ToolTip="{Binding Source={StaticResource CultureResources},Path=[Gas]}" 
+									   Visibility="{Binding Path=IsHasGas, Converter={StaticResource BoolToVisibilityConverter}}"
+									   Height="21" Margin="2,0,0,0"/>
+                                <Image Source="pack://application:,,,/Shared;component/Images/furniture.png" 
+									   ToolTip="{Binding Source={StaticResource CultureResources},Path=[Furniture]}" 
+									   Visibility="{Binding Path=IsHasFurniture, Converter={StaticResource BoolToVisibilityConverter}}"
+									   Height="21" Margin="2,0,0,0"/>
+                                <Image Source="pack://application:,,,/Shared;component/Images/washer.png" 
+									   ToolTip="{Binding Source={StaticResource CultureResources},Path=[Washer]}" 
+									   Visibility="{Binding Path=IsHasWasher, Converter={StaticResource BoolToVisibilityConverter}}"
+									   Height="21" Margin="2,0,0,0"/>
+                                <Image Source="pack://application:,,,/Shared;component/Images/podval.png" 
+									   ToolTip="{Binding Source={StaticResource CultureResources},Path=[Podval]}" 
+									   Visibility="{Binding Path=HasPadval, Converter={StaticResource BoolToVisibilityConverter}}"
+									   Height="21" Margin="2,0,0,0"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </MicrosoftControls:DataGridTemplateColumn.CellTemplate>
+                </MicrosoftControls:DataGridTemplateColumn>-->
+            </MicrosoftControls:DataGrid.Columns>
+        </MicrosoftControls:DataGrid>
+  </Grid>
+</UserControl>

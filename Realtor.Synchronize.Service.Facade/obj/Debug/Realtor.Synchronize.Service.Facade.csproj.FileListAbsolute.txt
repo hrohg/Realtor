@@ -1,0 +1,14 @@
+C:\Users\VS Projects\Realtor\Realtor\Realtor.Synchronize.Service.Facade\bin\Debug\Realtor.Synchronize.Service.Facade.dll
+C:\Users\VS Projects\Realtor\Realtor\Realtor.Synchronize.Service.Facade\bin\Debug\Realtor.Synchronize.Service.Facade.pdb
+C:\Users\VS Projects\Realtor\Realtor\Realtor.Synchronize.Service.Facade\bin\Debug\RealEstate.DataAccess.dll
+C:\Users\VS Projects\Realtor\Realtor\Realtor.Synchronize.Service.Facade\bin\Debug\RealEstate.DataAccess.pdb
+C:\Users\VS Projects\Realtor\Realtor\Realtor.Synchronize.Service.Facade\obj\Debug\Realtor.Synchronize.Service.Facade.csprojResolveAssemblyReference.cache
+C:\Users\VS Projects\Realtor\Realtor\Realtor.Synchronize.Service.Facade\obj\Debug\Realtor.Synchronize.Service.Facade.dll
+C:\Users\VS Projects\Realtor\Realtor\Realtor.Synchronize.Service.Facade\obj\Debug\Realtor.Synchronize.Service.Facade.pdb
+C:\Hrayr\VS Projects\Realtor\Realtor\Realtor.Synchronize.Service.Facade\bin\Debug\Realtor.Synchronize.Service.Facade.dll
+C:\Hrayr\VS Projects\Realtor\Realtor\Realtor.Synchronize.Service.Facade\bin\Debug\Realtor.Synchronize.Service.Facade.pdb
+C:\Hrayr\VS Projects\Realtor\Realtor\Realtor.Synchronize.Service.Facade\bin\Debug\RealEstate.DataAccess.dll
+C:\Hrayr\VS Projects\Realtor\Realtor\Realtor.Synchronize.Service.Facade\bin\Debug\RealEstate.DataAccess.pdb
+C:\Hrayr\VS Projects\Realtor\Realtor\Realtor.Synchronize.Service.Facade\obj\Debug\Realtor.Synchronize.Service.Facade.csprojResolveAssemblyReference.cache
+C:\Hrayr\VS Projects\Realtor\Realtor\Realtor.Synchronize.Service.Facade\obj\Debug\Realtor.Synchronize.Service.Facade.dll
+C:\Hrayr\VS Projects\Realtor\Realtor\Realtor.Synchronize.Service.Facade\obj\Debug\Realtor.Synchronize.Service.Facade.pdb

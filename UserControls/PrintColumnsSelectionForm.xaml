@@ -1,0 +1,98 @@
+﻿<Window x:Class="UserControls.PrintColumnsSelectionForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Converters="clr-namespace:Shared.Converters;assembly=Shared" xmlns:drag="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop" Title="{Binding Source={StaticResource CultureResources},Path=[Realtor]}" x:Name="printForm" Loaded="printForm_Loaded" 
+		WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" WindowState="Normal"
+		Icon="pack://application:,,,/Shared;component/Images/Application.png">
+	<Window.Resources>
+		<Converters:ElementsCountToTextColorConverter x:Key="ElementsCountToTextColorConverter" />
+		<Converters:ElementsCountToVisibilityConverter x:Key="ElementsCountToVisibilityConverter" />
+	</Window.Resources>
+	<Grid Margin="5">
+		<Grid.Resources>
+			<Style TargetType="ListBoxItem">
+				<Setter Property="FontSize" Value="13" />
+				<Setter Property="FontWeight" Value="Bold"/>
+			</Style>
+		</Grid.Resources>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+			<ColumnDefinition Width="35"/>
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition Height="45"/>
+		</Grid.RowDefinitions>
+		<GroupBox Header="{Binding Source={StaticResource CultureResources},Path=[Data]}" Margin="3">
+			<ListBox ItemsSource="{Binding Path=LeftSource, ElementName=printForm}" x:Name="lstLeft"
+					 VerticalAlignment="Stretch" HorizontalAlignment="Stretch" SelectionMode="Extended"
+					 drag:DragDrop.IsDragSource="True" drag:DragDrop.IsDropTarget="True"	/>
+		</GroupBox>
+
+		<StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+			<Button x:Name="btnMoveToRight" Height="30" Width="30" HorizontalAlignment="Center" Style="{x:Null}" Click="btnMoveToRight_Click">
+				<Image Source="pack://application:,,,/Shared;component/Images/next.png" />
+			</Button>
+			<Button x:Name="btnMoveToLeft" Height="30" Width="30" Margin="0,5" VerticalAlignment="Center" HorizontalAlignment="Center" Click="btnMoveToLeft_Click" Style="{x:Null}">
+				<Image Source="pack://application:,,,/Shared;component/Images/back.png" />
+			</Button>
+		</StackPanel>
+
+		<GroupBox Header="{Binding Source={StaticResource CultureResources},Path=[PrintColumns]}" Grid.Column="2" Margin="3">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition />
+					<RowDefinition Height="25"/>
+				</Grid.RowDefinitions>
+				<ListBox ItemsSource="{Binding Path=RightSource, ElementName=printForm}" x:Name="lstRight" 
+						 VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="2" SelectionMode="Extended"
+						 drag:DragDrop.IsDragSource="True" drag:DragDrop.IsDropTarget="True">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Grid HorizontalAlignment="Stretch">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto"/>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+								<!--<StackPanel Grid.Column="0" VerticalAlignment="Center" Orientation="Horizontal" Margin="0,0,2,0" HorizontalAlignment="Stretch">
+									<Button x:Name="btnMoveUp" Height="20" Width="20" VerticalAlignment="Center" HorizontalAlignment="Center" Tag="{Binding}" Click="btnMoveUp_Click" Style="{x:Null}">
+										<Image Source="pack://application:,,,/Shared;component/Images/UpL.png" />
+									</Button>
+									<Button x:Name="btnMoveDown" Height="20" Width="20" Margin="3,0" VerticalAlignment="Center" HorizontalAlignment="Center" Tag="{Binding}" Click="btnMoveDown_Click" Style="{x:Null}">
+										<Image Source="pack://application:,,,/Shared;component/Images/DownL.png" />
+									</Button>
+								</StackPanel>-->
+								<TextBlock Text="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1"/>
+
+							</Grid>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+
+				<Grid Margin="0,0,10,0" Grid.Row="1">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition />
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
+					<TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[ColumnsCountMustBeLessThenEqual10]}" 
+							   HorizontalAlignment="Left" Margin="5,0,0,0" Foreground="Red"/>
+					<TextBlock Text="{Binding Path=Items.Count, ElementName=lstRight}" FontWeight="Bold" HorizontalAlignment="Right" Grid.Column="1"
+                            Foreground="{Binding Path=Items.Count, ElementName=lstRight, Converter={StaticResource ElementsCountToTextColorConverter}}"/>
+				</Grid>
+			</Grid>
+		</GroupBox>
+
+		<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Right" Margin="0,0,10,0">
+			<Button x:Name="btnPrint" Height="40" Width="40" HorizontalAlignment="Center" Style="{x:Null}" Click="btnPrint_Click"
+					ToolTip="{Binding Source={StaticResource CultureResources},Path=[Print]}"
+					Visibility="{Binding Path=Items.Count, ElementName=lstRight, Converter={StaticResource ElementsCountToVisibilityConverter}}">
+				<Image Source="pack://application:,,,/Shared;component/Images/Print.png" />
+			</Button>
+			<Button x:Name="btnCancel" Height="40" Width="40" Margin="5,0" VerticalAlignment="Center" HorizontalAlignment="Center" Click="btnCancel_Click" Style="{x:Null}"
+					ToolTip="{Binding Source={StaticResource CultureResources},Path=[Close]}">
+				<Image Source="pack://application:,,,/Shared;component/Images/cancelround.png" />
+			</Button>
+		</StackPanel>
+	</Grid>
+</Window>

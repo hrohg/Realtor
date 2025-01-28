@@ -1,0 +1,2627 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RealtorWebDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="RealtorWebDBModelStoreContainer">
+          <EntitySet Name="aspnet_Membership" EntityType="RealtorWebDBModel.Store.aspnet_Membership" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_Users" EntityType="RealtorWebDBModel.Store.aspnet_Users" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BuildingTypes" EntityType="RealtorWebDBModel.Store.BuildingTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Cities" EntityType="RealtorWebDBModel.Store.Cities" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Convenients" EntityType="RealtorWebDBModel.Store.Convenients" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Currencies" EntityType="RealtorWebDBModel.Store.Currencies" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EstateConvenients" EntityType="RealtorWebDBModel.Store.EstateConvenients" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EstateImages" EntityType="RealtorWebDBModel.Store.EstateImages" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Estates" EntityType="RealtorWebDBModel.Store.Estates" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EstateTypes" EntityType="RealtorWebDBModel.Store.EstateTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NewItems" EntityType="RealtorWebDBModel.Store.NewItems" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OperationalSignificances" EntityType="RealtorWebDBModel.Store.OperationalSignificances" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderTypes" EntityType="RealtorWebDBModel.Store.OrderTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Projects" EntityType="RealtorWebDBModel.Store.Projects" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Regions" EntityType="RealtorWebDBModel.Store.Regions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Remonts" EntityType="RealtorWebDBModel.Store.Remonts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Roofings" EntityType="RealtorWebDBModel.Store.Roofings" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SignificanceOfTheUses" EntityType="RealtorWebDBModel.Store.SignificanceOfTheUses" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SiteParams" EntityType="RealtorWebDBModel.Store.SiteParams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="States" EntityType="RealtorWebDBModel.Store.States" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Streets" EntityType="RealtorWebDBModel.Store.Streets" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TextContents" EntityType="RealtorWebDBModel.Store.TextContents" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TopEstates" EntityType="RealtorWebDBModel.Store.TopEstates" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__aspnet_Me__UserI__1AD3FDA4" Association="RealtorWebDBModel.Store.FK__aspnet_Me__UserI__1AD3FDA4">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cities_States" Association="RealtorWebDBModel.Store.FK_Cities_States">
+            <End Role="States" EntitySet="States" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EstateConvenients_Convenients" Association="RealtorWebDBModel.Store.FK_EstateConvenients_Convenients">
+            <End Role="Convenients" EntitySet="Convenients" />
+            <End Role="EstateConvenients" EntitySet="EstateConvenients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EstateConvenients_Estates" Association="RealtorWebDBModel.Store.FK_EstateConvenients_Estates">
+            <End Role="Estates" EntitySet="Estates" />
+            <End Role="EstateConvenients" EntitySet="EstateConvenients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EstateImages_Estates" Association="RealtorWebDBModel.Store.FK_EstateImages_Estates">
+            <End Role="Estates" EntitySet="Estates" />
+            <End Role="EstateImages" EntitySet="EstateImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_BuildingTypes" Association="RealtorWebDBModel.Store.FK_Estates_BuildingTypes">
+            <End Role="BuildingTypes" EntitySet="BuildingTypes" />
+            <End Role="Estates" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_Cities" Association="RealtorWebDBModel.Store.FK_Estates_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Estates" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_Currencies" Association="RealtorWebDBModel.Store.FK_Estates_Currencies">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="Estates" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_EstateTypes" Association="RealtorWebDBModel.Store.FK_Estates_EstateTypes">
+            <End Role="EstateTypes" EntitySet="EstateTypes" />
+            <End Role="Estates" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_OperationalSignificances" Association="RealtorWebDBModel.Store.FK_Estates_OperationalSignificances">
+            <End Role="OperationalSignificances" EntitySet="OperationalSignificances" />
+            <End Role="Estates" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_OrderTypes" Association="RealtorWebDBModel.Store.FK_Estates_OrderTypes">
+            <End Role="OrderTypes" EntitySet="OrderTypes" />
+            <End Role="Estates" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_Projects" Association="RealtorWebDBModel.Store.FK_Estates_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Estates" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_Regions" Association="RealtorWebDBModel.Store.FK_Estates_Regions">
+            <End Role="Regions" EntitySet="Regions" />
+            <End Role="Estates" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_Remonts" Association="RealtorWebDBModel.Store.FK_Estates_Remonts">
+            <End Role="Remonts" EntitySet="Remonts" />
+            <End Role="Estates" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_Roofings" Association="RealtorWebDBModel.Store.FK_Estates_Roofings">
+            <End Role="Roofings" EntitySet="Roofings" />
+            <End Role="Estates" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_SignificanceOfTheUses" Association="RealtorWebDBModel.Store.FK_Estates_SignificanceOfTheUses">
+            <End Role="SignificanceOfTheUses" EntitySet="SignificanceOfTheUses" />
+            <End Role="Estates" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_States" Association="RealtorWebDBModel.Store.FK_Estates_States">
+            <End Role="States" EntitySet="States" />
+            <End Role="Estates" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_Streets" Association="RealtorWebDBModel.Store.FK_Estates_Streets">
+            <End Role="Streets" EntitySet="Streets" />
+            <End Role="Estates" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OperationalSignificances_SignificanceOfTheUses" Association="RealtorWebDBModel.Store.FK_OperationalSignificances_SignificanceOfTheUses">
+            <End Role="SignificanceOfTheUses" EntitySet="SignificanceOfTheUses" />
+            <End Role="OperationalSignificances" EntitySet="OperationalSignificances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Regions_Cities" Association="RealtorWebDBModel.Store.FK_Regions_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Regions" EntitySet="Regions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SignificanceOfTheUses_EstateTypes" Association="RealtorWebDBModel.Store.FK_SignificanceOfTheUses_EstateTypes">
+            <End Role="EstateTypes" EntitySet="EstateTypes" />
+            <End Role="SignificanceOfTheUses" EntitySet="SignificanceOfTheUses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopEstates_Estates" Association="RealtorWebDBModel.Store.FK_TopEstates_Estates">
+            <End Role="Estates" EntitySet="Estates" />
+            <End Role="TopEstates" EntitySet="TopEstates" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="aspnet_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="PasswordFormat" Type="int" Nullable="false" />
+          <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="MobilePIN" Type="nvarchar" MaxLength="16" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="LoweredEmail" Type="nvarchar" MaxLength="256" />
+          <Property Name="PasswordQuestion" Type="nvarchar" MaxLength="256" />
+          <Property Name="PasswordAnswer" Type="nvarchar" MaxLength="128" />
+          <Property Name="IsApproved" Type="bit" Nullable="false" />
+          <Property Name="IsLockedOut" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+          <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLockoutDate" Type="datetime" Nullable="false" />
+          <Property Name="FailedPasswordAttemptCount" Type="int" Nullable="false" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="int" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="datetime" Nullable="false" />
+          <Property Name="Comment" Type="ntext" />
+        </EntityType>
+        <EntityType Name="aspnet_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="LoweredUserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
+          <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BuildingTypes">
+          <Key>
+            <PropertyRef Name="BuildingTypeID" />
+          </Key>
+          <Property Name="BuildingTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NameAm" Type="nvarchar" MaxLength="255" />
+          <Property Name="SortIndex" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="NameRu" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameEn" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameCz" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameKz" Type="nvarchar" MaxLength="255" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="OriginalID" Type="int" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NameAm" Type="nvarchar" MaxLength="255" />
+          <Property Name="StateID" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="NameRu" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameEn" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameCz" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameKz" Type="nvarchar" MaxLength="255" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="OriginalID" Type="int" />
+        </EntityType>
+        <EntityType Name="Convenients">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NameAm" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="NameEn" Type="nvarchar" MaxLength="200" />
+          <Property Name="NameRu" Type="nvarchar" MaxLength="200" />
+          <Property Name="NameCz" Type="nvarchar" MaxLength="200" />
+          <Property Name="NameKz" Type="nvarchar" MaxLength="200" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="OriginalID" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Currencies">
+          <Key>
+            <PropertyRef Name="CurrencyID" />
+          </Key>
+          <Property Name="CurrencyID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NameAm" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ValueInAMD" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="NameRu" Type="nvarchar" MaxLength="50" />
+          <Property Name="NameEn" Type="nvarchar" MaxLength="50" />
+          <Property Name="NameCz" Type="nvarchar" MaxLength="50" />
+          <Property Name="NameKz" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="OriginalID" Type="int" />
+        </EntityType>
+        <EntityType Name="EstateConvenients">
+          <Key>
+            <PropertyRef Name="EstateID" />
+            <PropertyRef Name="ConvenientID" />
+          </Key>
+          <Property Name="EstateID" Type="int" Nullable="false" />
+          <Property Name="ConvenientID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EstateImages">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EstateID" Type="int" Nullable="false" />
+          <Property Name="ImageTypeID" Type="int" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="OriginalID" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="IsMain" Type="bit" />
+          <Property Name="OrderIndex" Type="int" />
+        </EntityType>
+        <EntityType Name="Estates">
+          <Key>
+            <PropertyRef Name="EstateID" />
+          </Key>
+          <Property Name="EstateID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EstateTypeID" Type="int" Nullable="false" />
+          <Property Name="RoomCount" Type="int" />
+          <Property Name="BrokerID" Type="int" />
+          <Property Name="TotalSquare" Type="real" />
+          <Property Name="Floor" Type="int" />
+          <Property Name="Price" Type="bigint" />
+          <Property Name="CurrencyID" Type="int" />
+          <Property Name="RegionID" Type="int" />
+          <Property Name="RemontID" Type="int" />
+          <Property Name="Height" Type="real" />
+          <Property Name="HasGarage" Type="bit" />
+          <Property Name="SellerNameArm" Type="nvarchar" MaxLength="255" />
+          <Property Name="PhonePrimary" Type="nvarchar" MaxLength="255" />
+          <Property Name="PhoneSecondary" Type="nvarchar" MaxLength="255" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="HasEuroWindows" Type="bit" />
+          <Property Name="AddressID" Type="int" />
+          <Property Name="IsHasCanalisationPosibility" Type="bit" />
+          <Property Name="AdditionalInformationAm" Type="nvarchar(max)" />
+          <Property Name="Canalisation" Type="bit" />
+          <Property Name="IsWoterAlways" Type="bit" />
+          <Property Name="IsHasGas" Type="bit" />
+          <Property Name="ProjectID" Type="int" />
+          <Property Name="ExpandingPosibility" Type="bit" />
+          <Property Name="BuildingTypeID" Type="int" />
+          <Property Name="OrderTypeID" Type="int" />
+          <Property Name="HasPadval" Type="bit" />
+          <Property Name="BuildingFloorsCount" Type="int" />
+          <Property Name="PadvalSquare" Type="int" />
+          <Property Name="IsHasGarden" Type="bit" />
+          <Property Name="GardenSquare" Type="int" />
+          <Property Name="IsOutDoorFromSteel" Type="bit" />
+          <Property Name="GasPosibility" Type="bit" />
+          <Property Name="AddDate" Type="datetime" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="StreetID" Type="int" />
+          <Property Name="HomeNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="AptNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="EarthPlaceTypeID" Type="int" />
+          <Property Name="StateID" Type="int" />
+          <Property Name="GarageTypeID" Type="int" />
+          <Property Name="PriceTypeID" Type="int" />
+          <Property Name="Rating" Type="int" />
+          <Property Name="PlaceNameAm" Type="nvarchar" MaxLength="255" />
+          <Property Name="OfficePlaceTypeID" Type="int" />
+          <Property Name="Electricity" Type="bit" />
+          <Property Name="PricePerDay" Type="int" />
+          <Property Name="PriceInAMD" Type="bigint" />
+          <Property Name="IsChecked" Type="bit" />
+          <Property Name="IsHasDrinkWater" Type="bit" />
+          <Property Name="IsHasVoroqmanJur" Type="bit" />
+          <Property Name="IsHasElectricityPosibility" Type="bit" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="SignificanceOfTheUseID" Type="int" />
+          <Property Name="OperationalSignificanceID" Type="int" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoofingID" Type="int" />
+          <Property Name="IsExchangePossible" Type="bit" />
+          <Property Name="ExchangeWithAm" Type="ntext" />
+          <Property Name="IsInNewBuilding" Type="bit" />
+          <Property Name="IsHasFurniture" Type="bit" />
+          <Property Name="IsHasConditioner" Type="bit" />
+          <Property Name="IsHasWasher" Type="bit" />
+          <Property Name="InformationSource" Type="nvarchar" MaxLength="500" />
+          <Property Name="PricePerDayInAMD" Type="bigint" />
+          <Property Name="IsHasWarmingSystem" Type="bit" />
+          <Property Name="IsHasInternet" Type="bit" />
+          <Property Name="IsHasAntena" Type="bit" />
+          <Property Name="IsHasTechnique" Type="bit" />
+          <Property Name="OpenBalcony" Type="bit" />
+          <Property Name="ClosedBalcony" Type="bit" />
+          <Property Name="Nisha" Type="bit" />
+          <Property Name="FrontBalcony" Type="bit" />
+          <Property Name="Arevkox" Type="bit" />
+          <Property Name="Xordanoc" Type="bit" />
+          <Property Name="IsEmpty" Type="bit" />
+          <Property Name="IsHasTV" Type="bit" />
+          <Property Name="IsHasDVD" Type="bit" />
+          <Property Name="IsHasJakuzi" Type="bit" />
+          <Property Name="IsHasRefrigerator" Type="bit" />
+          <Property Name="IsHasAriston" Type="bit" />
+          <Property Name="IsHasGeyser" Type="bit" />
+          <Property Name="IsHasWaterContainer" Type="bit" />
+          <Property Name="IsHasPool" Type="bit" />
+          <Property Name="IsHasGasHeater" Type="bit" />
+          <Property Name="IsHasOfficeRoom" Type="bit" />
+          <Property Name="IsHasShowerCab" Type="bit" />
+          <Property Name="IsHasBed" Type="bit" />
+          <Property Name="IsHasGate" Type="bit" />
+          <Property Name="IsHasTrees" Type="bit" />
+          <Property Name="IsHasPlayRoom" Type="bit" />
+          <Property Name="IsHasService" Type="bit" />
+          <Property Name="IsHasHeatedFloors" Type="bit" />
+          <Property Name="IsHasLodgeBalcony" Type="bit" />
+          <Property Name="IsHasIntercome" Type="bit" />
+          <Property Name="IsInElitarBuilding" Type="bit" />
+          <Property Name="IsHasSecuritySystem" Type="bit" />
+          <Property Name="IsHasParking" Type="bit" />
+          <Property Name="IsHasKitchen" Type="bit" />
+          <Property Name="InFirstLine" Type="bit" />
+          <Property Name="InNullableFloor" Type="bit" />
+          <Property Name="IsHasWC" Type="bit" />
+          <Property Name="IsHasThreePhaseElectricity" Type="bit" />
+          <Property Name="IsHasFencing" Type="bit" />
+          <Property Name="AdditionalConvenientsAm" Type="nvarchar" MaxLength="500" />
+          <Property Name="Lat" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lng" Type="nvarchar" MaxLength="50" />
+          <Property Name="EuroDesign" Type="bit" />
+          <Property Name="Dishwasher" Type="bit" />
+          <Property Name="Tile" Type="bit" />
+          <Property Name="Metlax" Type="bit" />
+          <Property Name="LodgeBalcony" Type="bit" />
+          <Property Name="Domophone" Type="bit" />
+          <Property Name="Lift" Type="bit" />
+          <Property Name="NotPopulated" Type="bit" />
+          <Property Name="SeparateRooms" Type="bit" />
+          <Property Name="Square" Type="real" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="MakedRooms" Type="int" />
+          <Property Name="LandFront" Type="float" />
+          <Property Name="FloorAdditional" Type="int" />
+          <Property Name="LandNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsElectricityCablesChanged" Type="bit" />
+          <Property Name="IsPipesChanged" Type="bit" />
+          <Property Name="IsCeilingRepaired" Type="bit" />
+          <Property Name="OriginalID" Type="int" />
+          <Property Name="IsHasSauna" Type="bit" />
+          <Property Name="IsHasSomething" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="BrokerNameAm" Type="nvarchar" MaxLength="200" />
+          <Property Name="BrokerPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdditionalInformationEn" Type="nvarchar(max)" />
+          <Property Name="AdditionalInformationRu" Type="nvarchar(max)" />
+          <Property Name="AdditionalInformationIr" Type="nvarchar(max)" />
+          <Property Name="PlaceNameEn" Type="nvarchar" MaxLength="250" />
+          <Property Name="PlaceNameRu" Type="nvarchar" MaxLength="250" />
+          <Property Name="PlaceNameIr" Type="nvarchar" MaxLength="250" />
+          <Property Name="ExchangeWithEn" Type="nvarchar(max)" />
+          <Property Name="ExchangeWithRu" Type="nvarchar(max)" />
+          <Property Name="ExchangeWithIr" Type="nvarchar(max)" />
+          <Property Name="AdditionalConvenientsEn" Type="nvarchar" MaxLength="500" />
+          <Property Name="AdditionalConvenientsRu" Type="nvarchar" MaxLength="500" />
+          <Property Name="AdditionalConvenientsIr" Type="nvarchar" MaxLength="500" />
+          <Property Name="BrokerNameEn" Type="nvarchar" MaxLength="200" />
+          <Property Name="BrokerNameRu" Type="nvarchar" MaxLength="200" />
+          <Property Name="BrokerNameIr" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsUrgently" Type="bit" />
+          <Property Name="IsDaylyRent" Type="bit" />
+          <Property Name="SellerNameRus" Type="nvarchar" MaxLength="255" />
+          <Property Name="SellerNameEng" Type="nvarchar" MaxLength="255" />
+          <Property Name="SellerNamePers" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="EstateTypes">
+          <Key>
+            <PropertyRef Name="EstateTypeID" />
+          </Key>
+          <Property Name="EstateTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TypeNameAm" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="SortIndex" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="TypeNameEn" Type="nvarchar" MaxLength="255" />
+          <Property Name="TypeNameRu" Type="nvarchar" MaxLength="255" />
+          <Property Name="TypeNameCz" Type="nvarchar" MaxLength="255" />
+          <Property Name="TypeNameKz" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="NewItems">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TitleAm" Type="nvarchar(max)" />
+          <Property Name="TitleRu" Type="nvarchar(max)" />
+          <Property Name="TitleEn" Type="nvarchar(max)" />
+          <Property Name="TitleIr" Type="nvarchar(max)" />
+          <Property Name="DescriptionAm" Type="nvarchar(max)" />
+          <Property Name="DescriptionRu" Type="nvarchar(max)" />
+          <Property Name="DescriptionEn" Type="nvarchar(max)" />
+          <Property Name="DescriptionIr" Type="nvarchar(max)" />
+          <Property Name="NewBodyAm" Type="ntext" />
+          <Property Name="NewBodyRu" Type="ntext" />
+          <Property Name="NewBodyEn" Type="ntext" />
+          <Property Name="NewBodyIr" Type="ntext" />
+          <Property Name="AddDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OperationalSignificances">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NameAm" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="SignificanceOfTheUseID" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="NameRu" Type="nvarchar" MaxLength="250" />
+          <Property Name="NameEn" Type="nvarchar" MaxLength="250" />
+          <Property Name="NameCz" Type="nvarchar" MaxLength="250" />
+          <Property Name="NameKz" Type="nvarchar" MaxLength="250" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="OriginalID" Type="int" />
+        </EntityType>
+        <EntityType Name="OrderTypes">
+          <Key>
+            <PropertyRef Name="OrderTypeID" />
+          </Key>
+          <Property Name="OrderTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NameAm" Type="nvarchar" MaxLength="255" />
+          <Property Name="SortIndex" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="NameEn" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameRu" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameCz" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameKz" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="ProjectID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NameAm" Type="nvarchar" MaxLength="255" />
+          <Property Name="SortIndex" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="NameRu" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameEn" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameCz" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameKz" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="OriginalID" Type="int" />
+        </EntityType>
+        <EntityType Name="Regions">
+          <Key>
+            <PropertyRef Name="RegionID" />
+          </Key>
+          <Property Name="RegionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NameAm" Type="nvarchar" MaxLength="255" />
+          <Property Name="CityID" Type="int" Nullable="false" />
+          <Property Name="SortIndex" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="NameEn" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameRu" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameCz" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameKz" Type="nvarchar" MaxLength="255" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="OriginalID" Type="int" />
+        </EntityType>
+        <EntityType Name="Remonts">
+          <Key>
+            <PropertyRef Name="RemontID" />
+          </Key>
+          <Property Name="RemontID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NameAm" Type="nvarchar" MaxLength="255" />
+          <Property Name="SortIndex" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="NameRu" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameKz" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameEn" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameCz" Type="nvarchar" MaxLength="255" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="OriginalID" Type="int" />
+        </EntityType>
+        <EntityType Name="Roofings">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NameAm" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="NameEn" Type="nvarchar" MaxLength="100" />
+          <Property Name="NameRu" Type="nvarchar" MaxLength="100" />
+          <Property Name="NameCz" Type="nvarchar" MaxLength="100" />
+          <Property Name="NameKz" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="OriginalID" Type="int" />
+        </EntityType>
+        <EntityType Name="SignificanceOfTheUses">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NameAm" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="EstateTypeID" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="NameRu" Type="nvarchar" MaxLength="150" />
+          <Property Name="NameEn" Type="nvarchar" MaxLength="150" />
+          <Property Name="NameCz" Type="nvarchar" MaxLength="150" />
+          <Property Name="NameKz" Type="nvarchar" MaxLength="150" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="OriginalID" Type="int" />
+        </EntityType>
+        <EntityType Name="SiteParams">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Value" Type="nvarchar" MaxLength="500" />
+          <Property Name="PublicCode" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NameAm" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="NameEn" Type="nvarchar" MaxLength="100" />
+          <Property Name="NameRu" Type="nvarchar" MaxLength="100" />
+          <Property Name="NameCz" Type="nvarchar" MaxLength="100" />
+          <Property Name="NameKz" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="OriginalID" Type="int" />
+        </EntityType>
+        <EntityType Name="Streets">
+          <Key>
+            <PropertyRef Name="StreetID" />
+          </Key>
+          <Property Name="StreetID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NameAm" Type="nvarchar" MaxLength="255" />
+          <Property Name="RegionID" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="NameRu" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameEn" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameCz" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameKz" Type="nvarchar" MaxLength="255" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="OriginalID" Type="int" />
+        </EntityType>
+        <EntityType Name="TextContents">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ContentEng" Type="ntext" />
+          <Property Name="ContentRus" Type="ntext" />
+          <Property Name="ContentArm" Type="ntext" />
+          <Property Name="ContentIr" Type="ntext" />
+          <Property Name="TitleEng" Type="ntext" />
+          <Property Name="TitleRus" Type="ntext" />
+          <Property Name="TitleArm" Type="ntext" />
+          <Property Name="TitleIr" Type="ntext" />
+          <Property Name="ControlName" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="TopEstates">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EstateID" Type="int" Nullable="false" />
+          <Property Name="AddDate" Type="datetime" Nullable="false" />
+          <Property Name="TitleArm" Type="nvarchar" MaxLength="500" />
+          <Property Name="TitleRus" Type="nvarchar" MaxLength="500" />
+          <Property Name="TitleEng" Type="nvarchar" MaxLength="500" />
+          <Property Name="TitlePers" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <Association Name="FK__aspnet_Me__UserI__1AD3FDA4">
+          <End Role="aspnet_Users" Type="RealtorWebDBModel.Store.aspnet_Users" Multiplicity="1" />
+          <End Role="aspnet_Membership" Type="RealtorWebDBModel.Store.aspnet_Membership" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_Membership">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cities_States">
+          <End Role="States" Type="RealtorWebDBModel.Store.States" Multiplicity="0..1" />
+          <End Role="Cities" Type="RealtorWebDBModel.Store.Cities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="States">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EstateConvenients_Convenients">
+          <End Role="Convenients" Type="RealtorWebDBModel.Store.Convenients" Multiplicity="1" />
+          <End Role="EstateConvenients" Type="RealtorWebDBModel.Store.EstateConvenients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Convenients">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EstateConvenients">
+              <PropertyRef Name="ConvenientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EstateConvenients_Estates">
+          <End Role="Estates" Type="RealtorWebDBModel.Store.Estates" Multiplicity="1" />
+          <End Role="EstateConvenients" Type="RealtorWebDBModel.Store.EstateConvenients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estates">
+              <PropertyRef Name="EstateID" />
+            </Principal>
+            <Dependent Role="EstateConvenients">
+              <PropertyRef Name="EstateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EstateImages_Estates">
+          <End Role="Estates" Type="RealtorWebDBModel.Store.Estates" Multiplicity="1" />
+          <End Role="EstateImages" Type="RealtorWebDBModel.Store.EstateImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estates">
+              <PropertyRef Name="EstateID" />
+            </Principal>
+            <Dependent Role="EstateImages">
+              <PropertyRef Name="EstateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_BuildingTypes">
+          <End Role="BuildingTypes" Type="RealtorWebDBModel.Store.BuildingTypes" Multiplicity="0..1" />
+          <End Role="Estates" Type="RealtorWebDBModel.Store.Estates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuildingTypes">
+              <PropertyRef Name="BuildingTypeID" />
+            </Principal>
+            <Dependent Role="Estates">
+              <PropertyRef Name="BuildingTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_Cities">
+          <End Role="Cities" Type="RealtorWebDBModel.Store.Cities" Multiplicity="0..1" />
+          <End Role="Estates" Type="RealtorWebDBModel.Store.Estates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="Estates">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_Currencies">
+          <End Role="Currencies" Type="RealtorWebDBModel.Store.Currencies" Multiplicity="0..1" />
+          <End Role="Estates" Type="RealtorWebDBModel.Store.Estates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="CurrencyID" />
+            </Principal>
+            <Dependent Role="Estates">
+              <PropertyRef Name="CurrencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_EstateTypes">
+          <End Role="EstateTypes" Type="RealtorWebDBModel.Store.EstateTypes" Multiplicity="1" />
+          <End Role="Estates" Type="RealtorWebDBModel.Store.Estates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstateTypes">
+              <PropertyRef Name="EstateTypeID" />
+            </Principal>
+            <Dependent Role="Estates">
+              <PropertyRef Name="EstateTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_OperationalSignificances">
+          <End Role="OperationalSignificances" Type="RealtorWebDBModel.Store.OperationalSignificances" Multiplicity="0..1" />
+          <End Role="Estates" Type="RealtorWebDBModel.Store.Estates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperationalSignificances">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Estates">
+              <PropertyRef Name="OperationalSignificanceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_OrderTypes">
+          <End Role="OrderTypes" Type="RealtorWebDBModel.Store.OrderTypes" Multiplicity="0..1" />
+          <End Role="Estates" Type="RealtorWebDBModel.Store.Estates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderTypes">
+              <PropertyRef Name="OrderTypeID" />
+            </Principal>
+            <Dependent Role="Estates">
+              <PropertyRef Name="OrderTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_Projects">
+          <End Role="Projects" Type="RealtorWebDBModel.Store.Projects" Multiplicity="0..1" />
+          <End Role="Estates" Type="RealtorWebDBModel.Store.Estates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Estates">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_Regions">
+          <End Role="Regions" Type="RealtorWebDBModel.Store.Regions" Multiplicity="0..1" />
+          <End Role="Estates" Type="RealtorWebDBModel.Store.Estates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regions">
+              <PropertyRef Name="RegionID" />
+            </Principal>
+            <Dependent Role="Estates">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_Remonts">
+          <End Role="Remonts" Type="RealtorWebDBModel.Store.Remonts" Multiplicity="0..1" />
+          <End Role="Estates" Type="RealtorWebDBModel.Store.Estates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Remonts">
+              <PropertyRef Name="RemontID" />
+            </Principal>
+            <Dependent Role="Estates">
+              <PropertyRef Name="RemontID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_Roofings">
+          <End Role="Roofings" Type="RealtorWebDBModel.Store.Roofings" Multiplicity="0..1" />
+          <End Role="Estates" Type="RealtorWebDBModel.Store.Estates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roofings">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Estates">
+              <PropertyRef Name="RoofingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_SignificanceOfTheUses">
+          <End Role="SignificanceOfTheUses" Type="RealtorWebDBModel.Store.SignificanceOfTheUses" Multiplicity="0..1" />
+          <End Role="Estates" Type="RealtorWebDBModel.Store.Estates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SignificanceOfTheUses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Estates">
+              <PropertyRef Name="SignificanceOfTheUseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_States">
+          <End Role="States" Type="RealtorWebDBModel.Store.States" Multiplicity="0..1" />
+          <End Role="Estates" Type="RealtorWebDBModel.Store.Estates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="States">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Estates">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_Streets">
+          <End Role="Streets" Type="RealtorWebDBModel.Store.Streets" Multiplicity="0..1" />
+          <End Role="Estates" Type="RealtorWebDBModel.Store.Estates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Streets">
+              <PropertyRef Name="StreetID" />
+            </Principal>
+            <Dependent Role="Estates">
+              <PropertyRef Name="StreetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OperationalSignificances_SignificanceOfTheUses">
+          <End Role="SignificanceOfTheUses" Type="RealtorWebDBModel.Store.SignificanceOfTheUses" Multiplicity="1" />
+          <End Role="OperationalSignificances" Type="RealtorWebDBModel.Store.OperationalSignificances" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SignificanceOfTheUses">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OperationalSignificances">
+              <PropertyRef Name="SignificanceOfTheUseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Regions_Cities">
+          <End Role="Cities" Type="RealtorWebDBModel.Store.Cities" Multiplicity="1" />
+          <End Role="Regions" Type="RealtorWebDBModel.Store.Regions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="Regions">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SignificanceOfTheUses_EstateTypes">
+          <End Role="EstateTypes" Type="RealtorWebDBModel.Store.EstateTypes" Multiplicity="1" />
+          <End Role="SignificanceOfTheUses" Type="RealtorWebDBModel.Store.SignificanceOfTheUses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstateTypes">
+              <PropertyRef Name="EstateTypeID" />
+            </Principal>
+            <Dependent Role="SignificanceOfTheUses">
+              <PropertyRef Name="EstateTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopEstates_Estates">
+          <End Role="Estates" Type="RealtorWebDBModel.Store.Estates" Multiplicity="1" />
+          <End Role="TopEstates" Type="RealtorWebDBModel.Store.TopEstates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estates">
+              <PropertyRef Name="EstateID" />
+            </Principal>
+            <Dependent Role="TopEstates">
+              <PropertyRef Name="EstateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="aspnet_AnyDataInTables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TablesToCheck" Type="int" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Applications_CreateApplication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ApplicationId" Type="uniqueidentifier" Mode="InOut" />
+        </Function>
+        <Function Name="aspnet_CheckSchemaVersion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Feature" Type="nvarchar" Mode="In" />
+          <Parameter Name="CompatibleSchemaVersion" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_ChangePasswordQuestionAndAnswer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewPasswordQuestion" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewPasswordAnswer" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_CreateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="PasswordSalt" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="PasswordQuestion" Type="nvarchar" Mode="In" />
+          <Parameter Name="PasswordAnswer" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsApproved" Type="bit" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+          <Parameter Name="CreateDate" Type="datetime" Mode="In" />
+          <Parameter Name="UniqueEmail" Type="int" Mode="In" />
+          <Parameter Name="PasswordFormat" Type="int" Mode="In" />
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="InOut" />
+        </Function>
+        <Function Name="aspnet_Membership_FindUsersByEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="EmailToMatch" Type="nvarchar" Mode="In" />
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_FindUsersByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserNameToMatch" Type="nvarchar" Mode="In" />
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_GetAllUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_GetNumberOfUsersOnline" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="MinutesSinceLastInActive" Type="int" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_GetPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaxInvalidPasswordAttempts" Type="int" Mode="In" />
+          <Parameter Name="PasswordAttemptWindow" Type="int" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+          <Parameter Name="PasswordAnswer" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_GetPasswordWithFormat" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UpdateLastLoginActivityDate" Type="bit" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_GetUserByEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_GetUserByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+          <Parameter Name="UpdateLastActivity" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_GetUserByUserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+          <Parameter Name="UpdateLastActivity" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_ResetPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewPassword" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaxInvalidPasswordAttempts" Type="int" Mode="In" />
+          <Parameter Name="PasswordAttemptWindow" Type="int" Mode="In" />
+          <Parameter Name="PasswordSalt" Type="nvarchar" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+          <Parameter Name="PasswordFormat" Type="int" Mode="In" />
+          <Parameter Name="PasswordAnswer" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_SetPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="NewPassword" Type="nvarchar" Mode="In" />
+          <Parameter Name="PasswordSalt" Type="nvarchar" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+          <Parameter Name="PasswordFormat" Type="int" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_UnlockUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_UpdateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Comment" Type="ntext" Mode="In" />
+          <Parameter Name="IsApproved" Type="bit" Mode="In" />
+          <Parameter Name="LastLoginDate" Type="datetime" Mode="In" />
+          <Parameter Name="LastActivityDate" Type="datetime" Mode="In" />
+          <Parameter Name="UniqueEmail" Type="int" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Membership_UpdateUserInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsPasswordCorrect" Type="bit" Mode="In" />
+          <Parameter Name="UpdateLastLoginActivityDate" Type="bit" Mode="In" />
+          <Parameter Name="MaxInvalidPasswordAttempts" Type="int" Mode="In" />
+          <Parameter Name="PasswordAttemptWindow" Type="int" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+          <Parameter Name="LastLoginDate" Type="datetime" Mode="In" />
+          <Parameter Name="LastActivityDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Paths_CreatePath" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+          <Parameter Name="PathId" Type="uniqueidentifier" Mode="InOut" />
+        </Function>
+        <Function Name="aspnet_Personalization_GetApplicationId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ApplicationId" Type="uniqueidentifier" Mode="InOut" />
+        </Function>
+        <Function Name="aspnet_PersonalizationAdministration_DeleteAllState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AllUsersScope" Type="bit" Mode="In" />
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Count" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="aspnet_PersonalizationAdministration_FindState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AllUsersScope" Type="bit" Mode="In" />
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="InactiveSinceDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_PersonalizationAdministration_GetCountOfState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Count" Type="int" Mode="InOut" />
+          <Parameter Name="AllUsersScope" Type="bit" Mode="In" />
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="InactiveSinceDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_PersonalizationAdministration_ResetSharedState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Count" Type="int" Mode="InOut" />
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_PersonalizationAdministration_ResetUserState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Count" Type="int" Mode="InOut" />
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="InactiveSinceDate" Type="datetime" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_PersonalizationAllUsers_GetPageSettings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_PersonalizationAllUsers_ResetPageSettings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_PersonalizationAllUsers_SetPageSettings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+          <Parameter Name="PageSettings" Type="image" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_PersonalizationPerUser_GetPageSettings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_PersonalizationPerUser_ResetPageSettings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_PersonalizationPerUser_SetPageSettings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Path" Type="nvarchar" Mode="In" />
+          <Parameter Name="PageSettings" Type="image" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Profile_DeleteInactiveProfiles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ProfileAuthOptions" Type="int" Mode="In" />
+          <Parameter Name="InactiveSinceDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Profile_DeleteProfiles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserNames" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Profile_GetNumberOfInactiveProfiles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ProfileAuthOptions" Type="int" Mode="In" />
+          <Parameter Name="InactiveSinceDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Profile_GetProfiles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ProfileAuthOptions" Type="int" Mode="In" />
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+          <Parameter Name="UserNameToMatch" Type="nvarchar" Mode="In" />
+          <Parameter Name="InactiveSinceDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Profile_GetProperties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Profile_SetProperties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="PropertyNames" Type="ntext" Mode="In" />
+          <Parameter Name="PropertyValuesString" Type="ntext" Mode="In" />
+          <Parameter Name="PropertyValuesBinary" Type="image" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsUserAnonymous" Type="bit" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_RegisterSchemaVersion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Feature" Type="nvarchar" Mode="In" />
+          <Parameter Name="CompatibleSchemaVersion" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsCurrentVersion" Type="bit" Mode="In" />
+          <Parameter Name="RemoveIncompatibleSchema" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Roles_CreateRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Roles_DeleteRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
+          <Parameter Name="DeleteOnlyIfRoleIsEmpty" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Roles_GetAllRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Roles_RoleExists" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Setup_RemoveAllRoleMembers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Setup_RestorePermissions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_UnRegisterSchemaVersion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Feature" Type="nvarchar" Mode="In" />
+          <Parameter Name="CompatibleSchemaVersion" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_Users_CreateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsUserAnonymous" Type="bit" Mode="In" />
+          <Parameter Name="LastActivityDate" Type="datetime" Mode="In" />
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="InOut" />
+        </Function>
+        <Function Name="aspnet_Users_DeleteUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="TablesToDeleteFrom" Type="int" Mode="In" />
+          <Parameter Name="NumTablesDeletedFrom" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="aspnet_UsersInRoles_AddUsersToRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserNames" Type="nvarchar" Mode="In" />
+          <Parameter Name="RoleNames" Type="nvarchar" Mode="In" />
+          <Parameter Name="CurrentTimeUtc" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="aspnet_UsersInRoles_FindUsersInRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserNameToMatch" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_UsersInRoles_GetRolesForUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_UsersInRoles_GetUsersInRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_UsersInRoles_IsUserInRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_UsersInRoles_RemoveUsersFromRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserNames" Type="nvarchar" Mode="In" />
+          <Parameter Name="RoleNames" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="aspnet_WebEvent_LogEvent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EventId" Type="char" Mode="In" />
+          <Parameter Name="EventTimeUtc" Type="datetime" Mode="In" />
+          <Parameter Name="EventTime" Type="datetime" Mode="In" />
+          <Parameter Name="EventType" Type="nvarchar" Mode="In" />
+          <Parameter Name="EventSequence" Type="decimal" Mode="In" />
+          <Parameter Name="EventOccurrence" Type="decimal" Mode="In" />
+          <Parameter Name="EventCode" Type="int" Mode="In" />
+          <Parameter Name="EventDetailCode" Type="int" Mode="In" />
+          <Parameter Name="Message" Type="nvarchar" Mode="In" />
+          <Parameter Name="ApplicationPath" Type="nvarchar" Mode="In" />
+          <Parameter Name="ApplicationVirtualPath" Type="nvarchar" Mode="In" />
+          <Parameter Name="MachineName" Type="nvarchar" Mode="In" />
+          <Parameter Name="RequestUrl" Type="nvarchar" Mode="In" />
+          <Parameter Name="ExceptionType" Type="nvarchar" Mode="In" />
+          <Parameter Name="Details" Type="ntext" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RealtorWebDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="RealtorWebDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="aspnet_Membership" EntityType="RealtorWebDBModel.aspnet_Membership" />
+          <EntitySet Name="aspnet_Users" EntityType="RealtorWebDBModel.aspnet_Users" />
+          <EntitySet Name="BuildingTypes" EntityType="RealtorWebDBModel.BuildingType" />
+          <EntitySet Name="Cities" EntityType="RealtorWebDBModel.City" />
+          <EntitySet Name="Convenients" EntityType="RealtorWebDBModel.Convenient" />
+          <EntitySet Name="Currencies" EntityType="RealtorWebDBModel.Currency" />
+          <EntitySet Name="EstateImages" EntityType="RealtorWebDBModel.EstateImage" />
+          <EntitySet Name="Estates" EntityType="RealtorWebDBModel.Estate" />
+          <EntitySet Name="EstateTypes" EntityType="RealtorWebDBModel.EstateType" />
+          <EntitySet Name="NewItems" EntityType="RealtorWebDBModel.NewItem" />
+          <EntitySet Name="OperationalSignificances" EntityType="RealtorWebDBModel.OperationalSignificance" />
+          <EntitySet Name="OrderTypes" EntityType="RealtorWebDBModel.OrderType" />
+          <EntitySet Name="Projects" EntityType="RealtorWebDBModel.Project" />
+          <EntitySet Name="Regions" EntityType="RealtorWebDBModel.Region" />
+          <EntitySet Name="Remonts" EntityType="RealtorWebDBModel.Remont" />
+          <EntitySet Name="Roofings" EntityType="RealtorWebDBModel.Roofing" />
+          <EntitySet Name="SignificanceOfTheUses" EntityType="RealtorWebDBModel.SignificanceOfTheUs" />
+          <EntitySet Name="SiteParams" EntityType="RealtorWebDBModel.SiteParam" />
+          <EntitySet Name="States" EntityType="RealtorWebDBModel.State" />
+          <EntitySet Name="Streets" EntityType="RealtorWebDBModel.Street" />
+          <EntitySet Name="TextContents" EntityType="RealtorWebDBModel.TextContent" />
+          <EntitySet Name="TopEstates" EntityType="RealtorWebDBModel.TopEstate" />
+          <AssociationSet Name="FK__aspnet_Me__UserI__1AD3FDA4" Association="RealtorWebDBModel.FK__aspnet_Me__UserI__1AD3FDA4">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_BuildingTypes" Association="RealtorWebDBModel.FK_Estates_BuildingTypes">
+            <End Role="BuildingType" EntitySet="BuildingTypes" />
+            <End Role="Estate" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cities_States" Association="RealtorWebDBModel.FK_Cities_States">
+            <End Role="State" EntitySet="States" />
+            <End Role="City" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_Cities" Association="RealtorWebDBModel.FK_Estates_Cities">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Estate" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Regions_Cities" Association="RealtorWebDBModel.FK_Regions_Cities">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Region" EntitySet="Regions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_Currencies" Association="RealtorWebDBModel.FK_Estates_Currencies">
+            <End Role="Currency" EntitySet="Currencies" />
+            <End Role="Estate" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EstateImages_Estates" Association="RealtorWebDBModel.FK_EstateImages_Estates">
+            <End Role="Estate" EntitySet="Estates" />
+            <End Role="EstateImage" EntitySet="EstateImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_EstateTypes" Association="RealtorWebDBModel.FK_Estates_EstateTypes">
+            <End Role="EstateType" EntitySet="EstateTypes" />
+            <End Role="Estate" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_OperationalSignificances" Association="RealtorWebDBModel.FK_Estates_OperationalSignificances">
+            <End Role="OperationalSignificance" EntitySet="OperationalSignificances" />
+            <End Role="Estate" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_OrderTypes" Association="RealtorWebDBModel.FK_Estates_OrderTypes">
+            <End Role="OrderType" EntitySet="OrderTypes" />
+            <End Role="Estate" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_Projects" Association="RealtorWebDBModel.FK_Estates_Projects">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Estate" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_Regions" Association="RealtorWebDBModel.FK_Estates_Regions">
+            <End Role="Region" EntitySet="Regions" />
+            <End Role="Estate" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_Remonts" Association="RealtorWebDBModel.FK_Estates_Remonts">
+            <End Role="Remont" EntitySet="Remonts" />
+            <End Role="Estate" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_Roofings" Association="RealtorWebDBModel.FK_Estates_Roofings">
+            <End Role="Roofing" EntitySet="Roofings" />
+            <End Role="Estate" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_SignificanceOfTheUses" Association="RealtorWebDBModel.FK_Estates_SignificanceOfTheUses">
+            <End Role="SignificanceOfTheUs" EntitySet="SignificanceOfTheUses" />
+            <End Role="Estate" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_States" Association="RealtorWebDBModel.FK_Estates_States">
+            <End Role="State" EntitySet="States" />
+            <End Role="Estate" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estates_Streets" Association="RealtorWebDBModel.FK_Estates_Streets">
+            <End Role="Street" EntitySet="Streets" />
+            <End Role="Estate" EntitySet="Estates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TopEstates_Estates" Association="RealtorWebDBModel.FK_TopEstates_Estates">
+            <End Role="Estate" EntitySet="Estates" />
+            <End Role="TopEstate" EntitySet="TopEstates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SignificanceOfTheUses_EstateTypes" Association="RealtorWebDBModel.FK_SignificanceOfTheUses_EstateTypes">
+            <End Role="EstateType" EntitySet="EstateTypes" />
+            <End Role="SignificanceOfTheUs" EntitySet="SignificanceOfTheUses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OperationalSignificances_SignificanceOfTheUses" Association="RealtorWebDBModel.FK_OperationalSignificances_SignificanceOfTheUses">
+            <End Role="SignificanceOfTheUs" EntitySet="SignificanceOfTheUses" />
+            <End Role="OperationalSignificance" EntitySet="OperationalSignificances" />
+          </AssociationSet>
+          <AssociationSet Name="EstateConvenients" Association="RealtorWebDBModel.EstateConvenients">
+            <End Role="Convenient" EntitySet="Convenients" />
+            <End Role="Estate" EntitySet="Estates" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="aspnet_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Type="Guid" Name="ApplicationId" Nullable="false" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="PasswordFormat" Nullable="false" />
+          <Property Type="String" Name="PasswordSalt" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MobilePIN" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LoweredEmail" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PasswordQuestion" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PasswordAnswer" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsApproved" Nullable="false" />
+          <Property Type="Boolean" Name="IsLockedOut" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="LastLoginDate" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="LastPasswordChangedDate" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="LastLockoutDate" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="FailedPasswordAttemptCount" Nullable="false" />
+          <Property Type="DateTime" Name="FailedPasswordAttemptWindowStart" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="FailedPasswordAnswerAttemptCount" Nullable="false" />
+          <Property Type="DateTime" Name="FailedPasswordAnswerAttemptWindowStart" Nullable="false" Precision="3" />
+          <Property Type="String" Name="Comment" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="aspnet_Users" Relationship="RealtorWebDBModel.FK__aspnet_Me__UserI__1AD3FDA4" FromRole="aspnet_Membership" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="aspnet_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Type="Guid" Name="ApplicationId" Nullable="false" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LoweredUserName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MobileAlias" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsAnonymous" Nullable="false" />
+          <Property Type="DateTime" Name="LastActivityDate" Nullable="false" Precision="3" />
+          <NavigationProperty Name="aspnet_Membership" Relationship="RealtorWebDBModel.FK__aspnet_Me__UserI__1AD3FDA4" FromRole="aspnet_Users" ToRole="aspnet_Membership" />
+        </EntityType>
+        <EntityType Name="BuildingType">
+          <Key>
+            <PropertyRef Name="BuildingTypeID" />
+          </Key>
+          <Property Type="Int32" Name="BuildingTypeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="NameAm" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SortIndex" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <Property Type="String" Name="NameRu" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameEn" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameCz" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameKz" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedDate" Precision="3" />
+          <Property Type="Int32" Name="OriginalID" />
+          <NavigationProperty Name="Estates" Relationship="RealtorWebDBModel.FK_Estates_BuildingTypes" FromRole="BuildingType" ToRole="Estate" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Type="Int32" Name="CityID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="NameAm" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="StateID" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <Property Type="String" Name="NameRu" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameEn" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameCz" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameKz" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedDate" Precision="3" />
+          <Property Type="Int32" Name="OriginalID" />
+          <NavigationProperty Name="State" Relationship="RealtorWebDBModel.FK_Cities_States" FromRole="City" ToRole="State" />
+          <NavigationProperty Name="Estates" Relationship="RealtorWebDBModel.FK_Estates_Cities" FromRole="City" ToRole="Estate" />
+          <NavigationProperty Name="Regions" Relationship="RealtorWebDBModel.FK_Regions_Cities" FromRole="City" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="Convenient">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="NameAm" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameEn" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameRu" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameCz" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameKz" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedDate" Precision="3" />
+          <Property Type="Int32" Name="OriginalID" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <NavigationProperty Name="Estates" Relationship="RealtorWebDBModel.EstateConvenients" FromRole="Convenient" ToRole="Estate" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="CurrencyID" />
+          </Key>
+          <Property Type="Int32" Name="CurrencyID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="NameAm" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ValueInAMD" Nullable="false" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <Property Type="String" Name="NameRu" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameEn" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameCz" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameKz" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedDate" Precision="3" />
+          <Property Type="Int32" Name="OriginalID" />
+          <NavigationProperty Name="Estates" Relationship="RealtorWebDBModel.FK_Estates_Currencies" FromRole="Currency" ToRole="Estate" />
+        </EntityType>
+        <EntityType Name="EstateImage">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Type="Int32" Name="ImageID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="EstateID" Nullable="false" />
+          <Property Type="Int32" Name="ImageTypeID" />
+          <Property Type="DateTime" Name="LastModifiedDate" Precision="3" />
+          <Property Type="Int32" Name="OriginalID" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <Property Type="Boolean" Name="IsMain" />
+          <Property Type="Int32" Name="OrderIndex" />
+          <NavigationProperty Name="Estate" Relationship="RealtorWebDBModel.FK_EstateImages_Estates" FromRole="EstateImage" ToRole="Estate" />
+        </EntityType>
+        <EntityType Name="Estate">
+          <Key>
+            <PropertyRef Name="EstateID" />
+          </Key>
+          <Property Type="Int32" Name="EstateID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="EstateTypeID" Nullable="false" />
+          <Property Type="Int32" Name="RoomCount" />
+          <Property Type="Int32" Name="BrokerID" />
+          <Property Type="Single" Name="TotalSquare" />
+          <Property Type="Int32" Name="Floor" />
+          <Property Type="Int64" Name="Price" />
+          <Property Type="Int32" Name="CurrencyID" />
+          <Property Type="Int32" Name="RegionID" />
+          <Property Type="Int32" Name="RemontID" />
+          <Property Type="Single" Name="Height" />
+          <Property Type="Boolean" Name="HasGarage" />
+          <Property Type="String" Name="SellerNameArm" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PhonePrimary" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PhoneSecondary" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="HasEuroWindows" />
+          <Property Type="Int32" Name="AddressID" />
+          <Property Type="Boolean" Name="IsHasCanalisationPosibility" />
+          <Property Type="String" Name="AdditionalInformationAm" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Canalisation" />
+          <Property Type="Boolean" Name="IsWoterAlways" />
+          <Property Type="Boolean" Name="IsHasGas" />
+          <Property Type="Int32" Name="ProjectID" />
+          <Property Type="Boolean" Name="ExpandingPosibility" />
+          <Property Type="Int32" Name="BuildingTypeID" />
+          <Property Type="Int32" Name="OrderTypeID" />
+          <Property Type="Boolean" Name="HasPadval" />
+          <Property Type="Int32" Name="BuildingFloorsCount" />
+          <Property Type="Int32" Name="PadvalSquare" />
+          <Property Type="Boolean" Name="IsHasGarden" />
+          <Property Type="Int32" Name="GardenSquare" />
+          <Property Type="Boolean" Name="IsOutDoorFromSteel" />
+          <Property Type="Boolean" Name="GasPosibility" />
+          <Property Type="DateTime" Name="AddDate" Precision="3" />
+          <Property Type="Int32" Name="CityID" />
+          <Property Type="Int32" Name="StreetID" />
+          <Property Type="String" Name="HomeNumber" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AptNumber" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="EarthPlaceTypeID" />
+          <Property Type="Int32" Name="StateID" />
+          <Property Type="Int32" Name="GarageTypeID" />
+          <Property Type="Int32" Name="PriceTypeID" />
+          <Property Type="Int32" Name="Rating" />
+          <Property Type="String" Name="PlaceNameAm" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="OfficePlaceTypeID" />
+          <Property Type="Boolean" Name="Electricity" />
+          <Property Type="Int32" Name="PricePerDay" />
+          <Property Type="Int64" Name="PriceInAMD" />
+          <Property Type="Boolean" Name="IsChecked" />
+          <Property Type="Boolean" Name="IsHasDrinkWater" />
+          <Property Type="Boolean" Name="IsHasVoroqmanJur" />
+          <Property Type="Boolean" Name="IsHasElectricityPosibility" />
+          <Property Type="DateTime" Name="LastModifiedDate" Precision="3" />
+          <Property Type="Int32" Name="SignificanceOfTheUseID" />
+          <Property Type="Int32" Name="OperationalSignificanceID" />
+          <Property Type="String" Name="Code" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="RoofingID" />
+          <Property Type="Boolean" Name="IsExchangePossible" />
+          <Property Type="String" Name="ExchangeWithAm" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsInNewBuilding" />
+          <Property Type="Boolean" Name="IsHasFurniture" />
+          <Property Type="Boolean" Name="IsHasConditioner" />
+          <Property Type="Boolean" Name="IsHasWasher" />
+          <Property Type="String" Name="InformationSource" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="PricePerDayInAMD" />
+          <Property Type="Boolean" Name="IsHasWarmingSystem" />
+          <Property Type="Boolean" Name="IsHasInternet" />
+          <Property Type="Boolean" Name="IsHasAntena" />
+          <Property Type="Boolean" Name="IsHasTechnique" />
+          <Property Type="Boolean" Name="OpenBalcony" />
+          <Property Type="Boolean" Name="ClosedBalcony" />
+          <Property Type="Boolean" Name="Nisha" />
+          <Property Type="Boolean" Name="FrontBalcony" />
+          <Property Type="Boolean" Name="Arevkox" />
+          <Property Type="Boolean" Name="Xordanoc" />
+          <Property Type="Boolean" Name="IsEmpty" />
+          <Property Type="Boolean" Name="IsHasTV" />
+          <Property Type="Boolean" Name="IsHasDVD" />
+          <Property Type="Boolean" Name="IsHasJakuzi" />
+          <Property Type="Boolean" Name="IsHasRefrigerator" />
+          <Property Type="Boolean" Name="IsHasAriston" />
+          <Property Type="Boolean" Name="IsHasGeyser" />
+          <Property Type="Boolean" Name="IsHasWaterContainer" />
+          <Property Type="Boolean" Name="IsHasPool" />
+          <Property Type="Boolean" Name="IsHasGasHeater" />
+          <Property Type="Boolean" Name="IsHasOfficeRoom" />
+          <Property Type="Boolean" Name="IsHasShowerCab" />
+          <Property Type="Boolean" Name="IsHasBed" />
+          <Property Type="Boolean" Name="IsHasGate" />
+          <Property Type="Boolean" Name="IsHasTrees" />
+          <Property Type="Boolean" Name="IsHasPlayRoom" />
+          <Property Type="Boolean" Name="IsHasService" />
+          <Property Type="Boolean" Name="IsHasHeatedFloors" />
+          <Property Type="Boolean" Name="IsHasLodgeBalcony" />
+          <Property Type="Boolean" Name="IsHasIntercome" />
+          <Property Type="Boolean" Name="IsInElitarBuilding" />
+          <Property Type="Boolean" Name="IsHasSecuritySystem" />
+          <Property Type="Boolean" Name="IsHasParking" />
+          <Property Type="Boolean" Name="IsHasKitchen" />
+          <Property Type="Boolean" Name="InFirstLine" />
+          <Property Type="Boolean" Name="InNullableFloor" />
+          <Property Type="Boolean" Name="IsHasWC" />
+          <Property Type="Boolean" Name="IsHasThreePhaseElectricity" />
+          <Property Type="Boolean" Name="IsHasFencing" />
+          <Property Type="String" Name="AdditionalConvenientsAm" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Lat" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Lng" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="EuroDesign" />
+          <Property Type="Boolean" Name="Dishwasher" />
+          <Property Type="Boolean" Name="Tile" />
+          <Property Type="Boolean" Name="Metlax" />
+          <Property Type="Boolean" Name="LodgeBalcony" />
+          <Property Type="Boolean" Name="Domophone" />
+          <Property Type="Boolean" Name="Lift" />
+          <Property Type="Boolean" Name="NotPopulated" />
+          <Property Type="Boolean" Name="SeparateRooms" />
+          <Property Type="Single" Name="Square" />
+          <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="MakedRooms" />
+          <Property Type="Double" Name="LandFront" />
+          <Property Type="Int32" Name="FloorAdditional" />
+          <Property Type="String" Name="LandNumber" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsElectricityCablesChanged" />
+          <Property Type="Boolean" Name="IsPipesChanged" />
+          <Property Type="Boolean" Name="IsCeilingRepaired" />
+          <Property Type="Int32" Name="OriginalID" />
+          <Property Type="Boolean" Name="IsHasSauna" />
+          <Property Type="Boolean" Name="IsHasSomething" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <Property Type="String" Name="BrokerNameAm" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BrokerPhone" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AdditionalInformationEn" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AdditionalInformationRu" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AdditionalInformationIr" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PlaceNameEn" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PlaceNameRu" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PlaceNameIr" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ExchangeWithEn" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ExchangeWithRu" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ExchangeWithIr" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AdditionalConvenientsEn" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AdditionalConvenientsRu" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AdditionalConvenientsIr" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BrokerNameEn" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BrokerNameRu" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BrokerNameIr" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsUrgently" />
+          <Property Type="Boolean" Name="IsDaylyRent" />
+          <Property Type="String" Name="SellerNameRus" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SellerNameEng" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SellerNamePers" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BuildingType" Relationship="RealtorWebDBModel.FK_Estates_BuildingTypes" FromRole="Estate" ToRole="BuildingType" />
+          <NavigationProperty Name="City" Relationship="RealtorWebDBModel.FK_Estates_Cities" FromRole="Estate" ToRole="City" />
+          <NavigationProperty Name="Currency" Relationship="RealtorWebDBModel.FK_Estates_Currencies" FromRole="Estate" ToRole="Currency" />
+          <NavigationProperty Name="EstateImages" Relationship="RealtorWebDBModel.FK_EstateImages_Estates" FromRole="Estate" ToRole="EstateImage" />
+          <NavigationProperty Name="EstateType" Relationship="RealtorWebDBModel.FK_Estates_EstateTypes" FromRole="Estate" ToRole="EstateType" />
+          <NavigationProperty Name="OperationalSignificance" Relationship="RealtorWebDBModel.FK_Estates_OperationalSignificances" FromRole="Estate" ToRole="OperationalSignificance" />
+          <NavigationProperty Name="OrderType" Relationship="RealtorWebDBModel.FK_Estates_OrderTypes" FromRole="Estate" ToRole="OrderType" />
+          <NavigationProperty Name="Project" Relationship="RealtorWebDBModel.FK_Estates_Projects" FromRole="Estate" ToRole="Project" />
+          <NavigationProperty Name="Region" Relationship="RealtorWebDBModel.FK_Estates_Regions" FromRole="Estate" ToRole="Region" />
+          <NavigationProperty Name="Remont" Relationship="RealtorWebDBModel.FK_Estates_Remonts" FromRole="Estate" ToRole="Remont" />
+          <NavigationProperty Name="Roofing" Relationship="RealtorWebDBModel.FK_Estates_Roofings" FromRole="Estate" ToRole="Roofing" />
+          <NavigationProperty Name="SignificanceOfTheUs" Relationship="RealtorWebDBModel.FK_Estates_SignificanceOfTheUses" FromRole="Estate" ToRole="SignificanceOfTheUs" />
+          <NavigationProperty Name="State" Relationship="RealtorWebDBModel.FK_Estates_States" FromRole="Estate" ToRole="State" />
+          <NavigationProperty Name="Street" Relationship="RealtorWebDBModel.FK_Estates_Streets" FromRole="Estate" ToRole="Street" />
+          <NavigationProperty Name="TopEstates" Relationship="RealtorWebDBModel.FK_TopEstates_Estates" FromRole="Estate" ToRole="TopEstate" />
+          <NavigationProperty Name="Convenients" Relationship="RealtorWebDBModel.EstateConvenients" FromRole="Estate" ToRole="Convenient" />
+        </EntityType>
+        <EntityType Name="EstateType">
+          <Key>
+            <PropertyRef Name="EstateTypeID" />
+          </Key>
+          <Property Type="Int32" Name="EstateTypeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="TypeNameAm" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SortIndex" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <Property Type="String" Name="TypeNameEn" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TypeNameRu" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TypeNameCz" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TypeNameKz" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Estates" Relationship="RealtorWebDBModel.FK_Estates_EstateTypes" FromRole="EstateType" ToRole="Estate" />
+          <NavigationProperty Name="SignificanceOfTheUses" Relationship="RealtorWebDBModel.FK_SignificanceOfTheUses_EstateTypes" FromRole="EstateType" ToRole="SignificanceOfTheUs" />
+        </EntityType>
+        <EntityType Name="NewItem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="TitleAm" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TitleRu" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TitleEn" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TitleIr" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DescriptionAm" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DescriptionRu" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DescriptionEn" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DescriptionIr" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NewBodyAm" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NewBodyRu" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NewBodyEn" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NewBodyIr" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="AddDate" Precision="3" />
+        </EntityType>
+        <EntityType Name="OperationalSignificance">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="NameAm" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SignificanceOfTheUseID" Nullable="false" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <Property Type="String" Name="NameRu" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameEn" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameCz" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameKz" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedDate" Precision="3" />
+          <Property Type="Int32" Name="OriginalID" />
+          <NavigationProperty Name="Estates" Relationship="RealtorWebDBModel.FK_Estates_OperationalSignificances" FromRole="OperationalSignificance" ToRole="Estate" />
+          <NavigationProperty Name="SignificanceOfTheUs" Relationship="RealtorWebDBModel.FK_OperationalSignificances_SignificanceOfTheUses" FromRole="OperationalSignificance" ToRole="SignificanceOfTheUs" />
+        </EntityType>
+        <EntityType Name="OrderType">
+          <Key>
+            <PropertyRef Name="OrderTypeID" />
+          </Key>
+          <Property Type="Int32" Name="OrderTypeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="NameAm" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SortIndex" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <Property Type="String" Name="NameEn" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameRu" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameCz" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameKz" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Estates" Relationship="RealtorWebDBModel.FK_Estates_OrderTypes" FromRole="OrderType" ToRole="Estate" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Type="Int32" Name="ProjectID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="NameAm" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SortIndex" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <Property Type="String" Name="NameRu" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameEn" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameCz" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameKz" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedDate" Precision="3" />
+          <Property Type="Int32" Name="OriginalID" />
+          <NavigationProperty Name="Estates" Relationship="RealtorWebDBModel.FK_Estates_Projects" FromRole="Project" ToRole="Estate" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="RegionID" />
+          </Key>
+          <Property Type="Int32" Name="RegionID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="NameAm" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CityID" Nullable="false" />
+          <Property Type="Int32" Name="SortIndex" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <Property Type="String" Name="NameEn" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameRu" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameCz" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameKz" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedDate" Precision="3" />
+          <Property Type="Int32" Name="OriginalID" />
+          <NavigationProperty Name="City" Relationship="RealtorWebDBModel.FK_Regions_Cities" FromRole="Region" ToRole="City" />
+          <NavigationProperty Name="Estates" Relationship="RealtorWebDBModel.FK_Estates_Regions" FromRole="Region" ToRole="Estate" />
+        </EntityType>
+        <EntityType Name="Remont">
+          <Key>
+            <PropertyRef Name="RemontID" />
+          </Key>
+          <Property Type="Int32" Name="RemontID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="NameAm" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SortIndex" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <Property Type="String" Name="NameRu" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameKz" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameEn" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameCz" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedDate" Precision="3" />
+          <Property Type="Int32" Name="OriginalID" />
+          <NavigationProperty Name="Estates" Relationship="RealtorWebDBModel.FK_Estates_Remonts" FromRole="Remont" ToRole="Estate" />
+        </EntityType>
+        <EntityType Name="Roofing">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="NameAm" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <Property Type="String" Name="NameEn" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameRu" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameCz" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameKz" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedDate" Precision="3" />
+          <Property Type="Int32" Name="OriginalID" />
+          <NavigationProperty Name="Estates" Relationship="RealtorWebDBModel.FK_Estates_Roofings" FromRole="Roofing" ToRole="Estate" />
+        </EntityType>
+        <EntityType Name="SignificanceOfTheUs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="NameAm" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="EstateTypeID" Nullable="false" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <Property Type="String" Name="NameRu" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameEn" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameCz" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameKz" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedDate" Precision="3" />
+          <Property Type="Int32" Name="OriginalID" />
+          <NavigationProperty Name="Estates" Relationship="RealtorWebDBModel.FK_Estates_SignificanceOfTheUses" FromRole="SignificanceOfTheUs" ToRole="Estate" />
+          <NavigationProperty Name="EstateType" Relationship="RealtorWebDBModel.FK_SignificanceOfTheUses_EstateTypes" FromRole="SignificanceOfTheUs" ToRole="EstateType" />
+          <NavigationProperty Name="OperationalSignificances" Relationship="RealtorWebDBModel.FK_OperationalSignificances_SignificanceOfTheUses" FromRole="SignificanceOfTheUs" ToRole="OperationalSignificance" />
+        </EntityType>
+        <EntityType Name="SiteParam">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Value" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PublicCode" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="NameAm" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <Property Type="String" Name="NameEn" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameRu" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameCz" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameKz" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedDate" Precision="3" />
+          <Property Type="Int32" Name="OriginalID" />
+          <NavigationProperty Name="Cities" Relationship="RealtorWebDBModel.FK_Cities_States" FromRole="State" ToRole="City" />
+          <NavigationProperty Name="Estates" Relationship="RealtorWebDBModel.FK_Estates_States" FromRole="State" ToRole="Estate" />
+        </EntityType>
+        <EntityType Name="Street">
+          <Key>
+            <PropertyRef Name="StreetID" />
+          </Key>
+          <Property Type="Int32" Name="StreetID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="NameAm" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="RegionID" />
+          <Property Type="Boolean" Name="IsDeleted" />
+          <Property Type="String" Name="NameRu" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameEn" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameCz" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NameKz" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastModifiedDate" Precision="3" />
+          <Property Type="Int32" Name="OriginalID" />
+          <NavigationProperty Name="Estates" Relationship="RealtorWebDBModel.FK_Estates_Streets" FromRole="Street" ToRole="Estate" />
+        </EntityType>
+        <EntityType Name="TextContent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ContentEng" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContentRus" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContentArm" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContentIr" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TitleEng" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TitleRus" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TitleArm" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TitleIr" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ControlName" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TopEstate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="EstateID" Nullable="false" />
+          <Property Type="DateTime" Name="AddDate" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Estate" Relationship="RealtorWebDBModel.FK_TopEstates_Estates" FromRole="TopEstate" ToRole="Estate" />
+          <Property Type="String" Name="TitleArm" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TitleRus" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TitleEng" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TitlePers" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__aspnet_Me__UserI__1AD3FDA4">
+          <End Type="RealtorWebDBModel.aspnet_Users" Role="aspnet_Users" Multiplicity="1" />
+          <End Type="RealtorWebDBModel.aspnet_Membership" Role="aspnet_Membership" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_Membership">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_BuildingTypes">
+          <End Type="RealtorWebDBModel.BuildingType" Role="BuildingType" Multiplicity="0..1" />
+          <End Type="RealtorWebDBModel.Estate" Role="Estate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BuildingType">
+              <PropertyRef Name="BuildingTypeID" />
+            </Principal>
+            <Dependent Role="Estate">
+              <PropertyRef Name="BuildingTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cities_States">
+          <End Type="RealtorWebDBModel.State" Role="State" Multiplicity="0..1" />
+          <End Type="RealtorWebDBModel.City" Role="City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_Cities">
+          <End Type="RealtorWebDBModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="RealtorWebDBModel.Estate" Role="Estate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="Estate">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Regions_Cities">
+          <End Type="RealtorWebDBModel.City" Role="City" Multiplicity="1" />
+          <End Type="RealtorWebDBModel.Region" Role="Region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="Region">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_Currencies">
+          <End Type="RealtorWebDBModel.Currency" Role="Currency" Multiplicity="0..1" />
+          <End Type="RealtorWebDBModel.Estate" Role="Estate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="CurrencyID" />
+            </Principal>
+            <Dependent Role="Estate">
+              <PropertyRef Name="CurrencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EstateImages_Estates">
+          <End Type="RealtorWebDBModel.Estate" Role="Estate" Multiplicity="1" />
+          <End Type="RealtorWebDBModel.EstateImage" Role="EstateImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estate">
+              <PropertyRef Name="EstateID" />
+            </Principal>
+            <Dependent Role="EstateImage">
+              <PropertyRef Name="EstateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_EstateTypes">
+          <End Type="RealtorWebDBModel.EstateType" Role="EstateType" Multiplicity="1" />
+          <End Type="RealtorWebDBModel.Estate" Role="Estate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstateType">
+              <PropertyRef Name="EstateTypeID" />
+            </Principal>
+            <Dependent Role="Estate">
+              <PropertyRef Name="EstateTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_OperationalSignificances">
+          <End Type="RealtorWebDBModel.OperationalSignificance" Role="OperationalSignificance" Multiplicity="0..1" />
+          <End Type="RealtorWebDBModel.Estate" Role="Estate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperationalSignificance">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Estate">
+              <PropertyRef Name="OperationalSignificanceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_OrderTypes">
+          <End Type="RealtorWebDBModel.OrderType" Role="OrderType" Multiplicity="0..1" />
+          <End Type="RealtorWebDBModel.Estate" Role="Estate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderType">
+              <PropertyRef Name="OrderTypeID" />
+            </Principal>
+            <Dependent Role="Estate">
+              <PropertyRef Name="OrderTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_Projects">
+          <End Type="RealtorWebDBModel.Project" Role="Project" Multiplicity="0..1" />
+          <End Type="RealtorWebDBModel.Estate" Role="Estate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Estate">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_Regions">
+          <End Type="RealtorWebDBModel.Region" Role="Region" Multiplicity="0..1" />
+          <End Type="RealtorWebDBModel.Estate" Role="Estate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="RegionID" />
+            </Principal>
+            <Dependent Role="Estate">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_Remonts">
+          <End Type="RealtorWebDBModel.Remont" Role="Remont" Multiplicity="0..1" />
+          <End Type="RealtorWebDBModel.Estate" Role="Estate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Remont">
+              <PropertyRef Name="RemontID" />
+            </Principal>
+            <Dependent Role="Estate">
+              <PropertyRef Name="RemontID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_Roofings">
+          <End Type="RealtorWebDBModel.Roofing" Role="Roofing" Multiplicity="0..1" />
+          <End Type="RealtorWebDBModel.Estate" Role="Estate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roofing">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Estate">
+              <PropertyRef Name="RoofingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_SignificanceOfTheUses">
+          <End Type="RealtorWebDBModel.SignificanceOfTheUs" Role="SignificanceOfTheUs" Multiplicity="0..1" />
+          <End Type="RealtorWebDBModel.Estate" Role="Estate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SignificanceOfTheUs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Estate">
+              <PropertyRef Name="SignificanceOfTheUseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_States">
+          <End Type="RealtorWebDBModel.State" Role="State" Multiplicity="0..1" />
+          <End Type="RealtorWebDBModel.Estate" Role="Estate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Estate">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estates_Streets">
+          <End Type="RealtorWebDBModel.Street" Role="Street" Multiplicity="0..1" />
+          <End Type="RealtorWebDBModel.Estate" Role="Estate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Street">
+              <PropertyRef Name="StreetID" />
+            </Principal>
+            <Dependent Role="Estate">
+              <PropertyRef Name="StreetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TopEstates_Estates">
+          <End Type="RealtorWebDBModel.Estate" Role="Estate" Multiplicity="1" />
+          <End Type="RealtorWebDBModel.TopEstate" Role="TopEstate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estate">
+              <PropertyRef Name="EstateID" />
+            </Principal>
+            <Dependent Role="TopEstate">
+              <PropertyRef Name="EstateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SignificanceOfTheUses_EstateTypes">
+          <End Type="RealtorWebDBModel.EstateType" Role="EstateType" Multiplicity="1" />
+          <End Type="RealtorWebDBModel.SignificanceOfTheUs" Role="SignificanceOfTheUs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstateType">
+              <PropertyRef Name="EstateTypeID" />
+            </Principal>
+            <Dependent Role="SignificanceOfTheUs">
+              <PropertyRef Name="EstateTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OperationalSignificances_SignificanceOfTheUses">
+          <End Type="RealtorWebDBModel.SignificanceOfTheUs" Role="SignificanceOfTheUs" Multiplicity="1" />
+          <End Type="RealtorWebDBModel.OperationalSignificance" Role="OperationalSignificance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SignificanceOfTheUs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OperationalSignificance">
+              <PropertyRef Name="SignificanceOfTheUseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EstateConvenients">
+          <End Type="RealtorWebDBModel.Convenient" Role="Convenient" Multiplicity="*" />
+          <End Type="RealtorWebDBModel.Estate" Role="Estate" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RealtorWebDBModelStoreContainer" CdmEntityContainer="RealtorWebDBEntities">
+          <EntitySetMapping Name="aspnet_Membership">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.aspnet_Membership">
+              <MappingFragment StoreEntitySet="aspnet_Membership">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptWindowStart" ColumnName="FailedPasswordAnswerAttemptWindowStart" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
+                <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
+                <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+                <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
+                <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+                <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+                <ScalarProperty Name="LoweredEmail" ColumnName="LoweredEmail" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MobilePIN" ColumnName="MobilePIN" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Users">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.aspnet_Users">
+              <MappingFragment StoreEntitySet="aspnet_Users">
+                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+                <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+                <ScalarProperty Name="MobileAlias" ColumnName="MobileAlias" />
+                <ScalarProperty Name="LoweredUserName" ColumnName="LoweredUserName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BuildingTypes">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.BuildingType">
+              <MappingFragment StoreEntitySet="BuildingTypes">
+                <ScalarProperty Name="OriginalID" ColumnName="OriginalID" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="NameKz" ColumnName="NameKz" />
+                <ScalarProperty Name="NameCz" ColumnName="NameCz" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="NameRu" ColumnName="NameRu" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="SortIndex" ColumnName="SortIndex" />
+                <ScalarProperty Name="NameAm" ColumnName="NameAm" />
+                <ScalarProperty Name="BuildingTypeID" ColumnName="BuildingTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="OriginalID" ColumnName="OriginalID" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="NameKz" ColumnName="NameKz" />
+                <ScalarProperty Name="NameCz" ColumnName="NameCz" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="NameRu" ColumnName="NameRu" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="NameAm" ColumnName="NameAm" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Convenients">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.Convenient">
+              <MappingFragment StoreEntitySet="Convenients">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="OriginalID" ColumnName="OriginalID" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="NameKz" ColumnName="NameKz" />
+                <ScalarProperty Name="NameCz" ColumnName="NameCz" />
+                <ScalarProperty Name="NameRu" ColumnName="NameRu" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="NameAm" ColumnName="NameAm" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currencies">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.Currency">
+              <MappingFragment StoreEntitySet="Currencies">
+                <ScalarProperty Name="OriginalID" ColumnName="OriginalID" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="NameKz" ColumnName="NameKz" />
+                <ScalarProperty Name="NameCz" ColumnName="NameCz" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="NameRu" ColumnName="NameRu" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ValueInAMD" ColumnName="ValueInAMD" />
+                <ScalarProperty Name="NameAm" ColumnName="NameAm" />
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstateImages">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.EstateImage">
+              <MappingFragment StoreEntitySet="EstateImages">
+                <ScalarProperty Name="OrderIndex" ColumnName="OrderIndex" />
+                <ScalarProperty Name="IsMain" ColumnName="IsMain" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="OriginalID" ColumnName="OriginalID" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="ImageTypeID" ColumnName="ImageTypeID" />
+                <ScalarProperty Name="EstateID" ColumnName="EstateID" />
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estates">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.Estate">
+              <MappingFragment StoreEntitySet="Estates">
+                <ScalarProperty Name="SellerNamePers" ColumnName="SellerNamePers" />
+                <ScalarProperty Name="SellerNameEng" ColumnName="SellerNameEng" />
+                <ScalarProperty Name="SellerNameRus" ColumnName="SellerNameRus" />
+                <ScalarProperty Name="IsDaylyRent" ColumnName="IsDaylyRent" />
+                <ScalarProperty Name="IsUrgently" ColumnName="IsUrgently" />
+                <ScalarProperty Name="BrokerNameIr" ColumnName="BrokerNameIr" />
+                <ScalarProperty Name="BrokerNameRu" ColumnName="BrokerNameRu" />
+                <ScalarProperty Name="BrokerNameEn" ColumnName="BrokerNameEn" />
+                <ScalarProperty Name="AdditionalConvenientsIr" ColumnName="AdditionalConvenientsIr" />
+                <ScalarProperty Name="AdditionalConvenientsRu" ColumnName="AdditionalConvenientsRu" />
+                <ScalarProperty Name="AdditionalConvenientsEn" ColumnName="AdditionalConvenientsEn" />
+                <ScalarProperty Name="ExchangeWithIr" ColumnName="ExchangeWithIr" />
+                <ScalarProperty Name="ExchangeWithRu" ColumnName="ExchangeWithRu" />
+                <ScalarProperty Name="ExchangeWithEn" ColumnName="ExchangeWithEn" />
+                <ScalarProperty Name="PlaceNameIr" ColumnName="PlaceNameIr" />
+                <ScalarProperty Name="PlaceNameRu" ColumnName="PlaceNameRu" />
+                <ScalarProperty Name="PlaceNameEn" ColumnName="PlaceNameEn" />
+                <ScalarProperty Name="AdditionalInformationIr" ColumnName="AdditionalInformationIr" />
+                <ScalarProperty Name="AdditionalInformationRu" ColumnName="AdditionalInformationRu" />
+                <ScalarProperty Name="AdditionalInformationEn" ColumnName="AdditionalInformationEn" />
+                <ScalarProperty Name="BrokerPhone" ColumnName="BrokerPhone" />
+                <ScalarProperty Name="BrokerNameAm" ColumnName="BrokerNameAm" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsHasSomething" ColumnName="IsHasSomething" />
+                <ScalarProperty Name="IsHasSauna" ColumnName="IsHasSauna" />
+                <ScalarProperty Name="OriginalID" ColumnName="OriginalID" />
+                <ScalarProperty Name="IsCeilingRepaired" ColumnName="IsCeilingRepaired" />
+                <ScalarProperty Name="IsPipesChanged" ColumnName="IsPipesChanged" />
+                <ScalarProperty Name="IsElectricityCablesChanged" ColumnName="IsElectricityCablesChanged" />
+                <ScalarProperty Name="LandNumber" ColumnName="LandNumber" />
+                <ScalarProperty Name="FloorAdditional" ColumnName="FloorAdditional" />
+                <ScalarProperty Name="LandFront" ColumnName="LandFront" />
+                <ScalarProperty Name="MakedRooms" ColumnName="MakedRooms" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Square" ColumnName="Square" />
+                <ScalarProperty Name="SeparateRooms" ColumnName="SeparateRooms" />
+                <ScalarProperty Name="NotPopulated" ColumnName="NotPopulated" />
+                <ScalarProperty Name="Lift" ColumnName="Lift" />
+                <ScalarProperty Name="Domophone" ColumnName="Domophone" />
+                <ScalarProperty Name="LodgeBalcony" ColumnName="LodgeBalcony" />
+                <ScalarProperty Name="Metlax" ColumnName="Metlax" />
+                <ScalarProperty Name="Tile" ColumnName="Tile" />
+                <ScalarProperty Name="Dishwasher" ColumnName="Dishwasher" />
+                <ScalarProperty Name="EuroDesign" ColumnName="EuroDesign" />
+                <ScalarProperty Name="Lng" ColumnName="Lng" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="AdditionalConvenientsAm" ColumnName="AdditionalConvenientsAm" />
+                <ScalarProperty Name="IsHasFencing" ColumnName="IsHasFencing" />
+                <ScalarProperty Name="IsHasThreePhaseElectricity" ColumnName="IsHasThreePhaseElectricity" />
+                <ScalarProperty Name="IsHasWC" ColumnName="IsHasWC" />
+                <ScalarProperty Name="InNullableFloor" ColumnName="InNullableFloor" />
+                <ScalarProperty Name="InFirstLine" ColumnName="InFirstLine" />
+                <ScalarProperty Name="IsHasKitchen" ColumnName="IsHasKitchen" />
+                <ScalarProperty Name="IsHasParking" ColumnName="IsHasParking" />
+                <ScalarProperty Name="IsHasSecuritySystem" ColumnName="IsHasSecuritySystem" />
+                <ScalarProperty Name="IsInElitarBuilding" ColumnName="IsInElitarBuilding" />
+                <ScalarProperty Name="IsHasIntercome" ColumnName="IsHasIntercome" />
+                <ScalarProperty Name="IsHasLodgeBalcony" ColumnName="IsHasLodgeBalcony" />
+                <ScalarProperty Name="IsHasHeatedFloors" ColumnName="IsHasHeatedFloors" />
+                <ScalarProperty Name="IsHasService" ColumnName="IsHasService" />
+                <ScalarProperty Name="IsHasPlayRoom" ColumnName="IsHasPlayRoom" />
+                <ScalarProperty Name="IsHasTrees" ColumnName="IsHasTrees" />
+                <ScalarProperty Name="IsHasGate" ColumnName="IsHasGate" />
+                <ScalarProperty Name="IsHasBed" ColumnName="IsHasBed" />
+                <ScalarProperty Name="IsHasShowerCab" ColumnName="IsHasShowerCab" />
+                <ScalarProperty Name="IsHasOfficeRoom" ColumnName="IsHasOfficeRoom" />
+                <ScalarProperty Name="IsHasGasHeater" ColumnName="IsHasGasHeater" />
+                <ScalarProperty Name="IsHasPool" ColumnName="IsHasPool" />
+                <ScalarProperty Name="IsHasWaterContainer" ColumnName="IsHasWaterContainer" />
+                <ScalarProperty Name="IsHasGeyser" ColumnName="IsHasGeyser" />
+                <ScalarProperty Name="IsHasAriston" ColumnName="IsHasAriston" />
+                <ScalarProperty Name="IsHasRefrigerator" ColumnName="IsHasRefrigerator" />
+                <ScalarProperty Name="IsHasJakuzi" ColumnName="IsHasJakuzi" />
+                <ScalarProperty Name="IsHasDVD" ColumnName="IsHasDVD" />
+                <ScalarProperty Name="IsHasTV" ColumnName="IsHasTV" />
+                <ScalarProperty Name="IsEmpty" ColumnName="IsEmpty" />
+                <ScalarProperty Name="Xordanoc" ColumnName="Xordanoc" />
+                <ScalarProperty Name="Arevkox" ColumnName="Arevkox" />
+                <ScalarProperty Name="FrontBalcony" ColumnName="FrontBalcony" />
+                <ScalarProperty Name="Nisha" ColumnName="Nisha" />
+                <ScalarProperty Name="ClosedBalcony" ColumnName="ClosedBalcony" />
+                <ScalarProperty Name="OpenBalcony" ColumnName="OpenBalcony" />
+                <ScalarProperty Name="IsHasTechnique" ColumnName="IsHasTechnique" />
+                <ScalarProperty Name="IsHasAntena" ColumnName="IsHasAntena" />
+                <ScalarProperty Name="IsHasInternet" ColumnName="IsHasInternet" />
+                <ScalarProperty Name="IsHasWarmingSystem" ColumnName="IsHasWarmingSystem" />
+                <ScalarProperty Name="PricePerDayInAMD" ColumnName="PricePerDayInAMD" />
+                <ScalarProperty Name="InformationSource" ColumnName="InformationSource" />
+                <ScalarProperty Name="IsHasWasher" ColumnName="IsHasWasher" />
+                <ScalarProperty Name="IsHasConditioner" ColumnName="IsHasConditioner" />
+                <ScalarProperty Name="IsHasFurniture" ColumnName="IsHasFurniture" />
+                <ScalarProperty Name="IsInNewBuilding" ColumnName="IsInNewBuilding" />
+                <ScalarProperty Name="ExchangeWithAm" ColumnName="ExchangeWithAm" />
+                <ScalarProperty Name="IsExchangePossible" ColumnName="IsExchangePossible" />
+                <ScalarProperty Name="RoofingID" ColumnName="RoofingID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="OperationalSignificanceID" ColumnName="OperationalSignificanceID" />
+                <ScalarProperty Name="SignificanceOfTheUseID" ColumnName="SignificanceOfTheUseID" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="IsHasElectricityPosibility" ColumnName="IsHasElectricityPosibility" />
+                <ScalarProperty Name="IsHasVoroqmanJur" ColumnName="IsHasVoroqmanJur" />
+                <ScalarProperty Name="IsHasDrinkWater" ColumnName="IsHasDrinkWater" />
+                <ScalarProperty Name="IsChecked" ColumnName="IsChecked" />
+                <ScalarProperty Name="PriceInAMD" ColumnName="PriceInAMD" />
+                <ScalarProperty Name="PricePerDay" ColumnName="PricePerDay" />
+                <ScalarProperty Name="Electricity" ColumnName="Electricity" />
+                <ScalarProperty Name="OfficePlaceTypeID" ColumnName="OfficePlaceTypeID" />
+                <ScalarProperty Name="PlaceNameAm" ColumnName="PlaceNameAm" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="PriceTypeID" ColumnName="PriceTypeID" />
+                <ScalarProperty Name="GarageTypeID" ColumnName="GarageTypeID" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="EarthPlaceTypeID" ColumnName="EarthPlaceTypeID" />
+                <ScalarProperty Name="AptNumber" ColumnName="AptNumber" />
+                <ScalarProperty Name="HomeNumber" ColumnName="HomeNumber" />
+                <ScalarProperty Name="StreetID" ColumnName="StreetID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="GasPosibility" ColumnName="GasPosibility" />
+                <ScalarProperty Name="IsOutDoorFromSteel" ColumnName="IsOutDoorFromSteel" />
+                <ScalarProperty Name="GardenSquare" ColumnName="GardenSquare" />
+                <ScalarProperty Name="IsHasGarden" ColumnName="IsHasGarden" />
+                <ScalarProperty Name="PadvalSquare" ColumnName="PadvalSquare" />
+                <ScalarProperty Name="BuildingFloorsCount" ColumnName="BuildingFloorsCount" />
+                <ScalarProperty Name="HasPadval" ColumnName="HasPadval" />
+                <ScalarProperty Name="OrderTypeID" ColumnName="OrderTypeID" />
+                <ScalarProperty Name="BuildingTypeID" ColumnName="BuildingTypeID" />
+                <ScalarProperty Name="ExpandingPosibility" ColumnName="ExpandingPosibility" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="IsHasGas" ColumnName="IsHasGas" />
+                <ScalarProperty Name="IsWoterAlways" ColumnName="IsWoterAlways" />
+                <ScalarProperty Name="Canalisation" ColumnName="Canalisation" />
+                <ScalarProperty Name="AdditionalInformationAm" ColumnName="AdditionalInformationAm" />
+                <ScalarProperty Name="IsHasCanalisationPosibility" ColumnName="IsHasCanalisationPosibility" />
+                <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+                <ScalarProperty Name="HasEuroWindows" ColumnName="HasEuroWindows" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneSecondary" ColumnName="PhoneSecondary" />
+                <ScalarProperty Name="PhonePrimary" ColumnName="PhonePrimary" />
+                <ScalarProperty Name="SellerNameArm" ColumnName="SellerNameArm" />
+                <ScalarProperty Name="HasGarage" ColumnName="HasGarage" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="RemontID" ColumnName="RemontID" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="TotalSquare" ColumnName="TotalSquare" />
+                <ScalarProperty Name="BrokerID" ColumnName="BrokerID" />
+                <ScalarProperty Name="RoomCount" ColumnName="RoomCount" />
+                <ScalarProperty Name="EstateTypeID" ColumnName="EstateTypeID" />
+                <ScalarProperty Name="EstateID" ColumnName="EstateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstateTypes">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.EstateType">
+              <MappingFragment StoreEntitySet="EstateTypes">
+                <ScalarProperty Name="TypeNameKz" ColumnName="TypeNameKz" />
+                <ScalarProperty Name="TypeNameCz" ColumnName="TypeNameCz" />
+                <ScalarProperty Name="TypeNameRu" ColumnName="TypeNameRu" />
+                <ScalarProperty Name="TypeNameEn" ColumnName="TypeNameEn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="SortIndex" ColumnName="SortIndex" />
+                <ScalarProperty Name="TypeNameAm" ColumnName="TypeNameAm" />
+                <ScalarProperty Name="EstateTypeID" ColumnName="EstateTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewItems">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.NewItem">
+              <MappingFragment StoreEntitySet="NewItems">
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="NewBodyIr" ColumnName="NewBodyIr" />
+                <ScalarProperty Name="NewBodyEn" ColumnName="NewBodyEn" />
+                <ScalarProperty Name="NewBodyRu" ColumnName="NewBodyRu" />
+                <ScalarProperty Name="NewBodyAm" ColumnName="NewBodyAm" />
+                <ScalarProperty Name="DescriptionIr" ColumnName="DescriptionIr" />
+                <ScalarProperty Name="DescriptionEn" ColumnName="DescriptionEn" />
+                <ScalarProperty Name="DescriptionRu" ColumnName="DescriptionRu" />
+                <ScalarProperty Name="DescriptionAm" ColumnName="DescriptionAm" />
+                <ScalarProperty Name="TitleIr" ColumnName="TitleIr" />
+                <ScalarProperty Name="TitleEn" ColumnName="TitleEn" />
+                <ScalarProperty Name="TitleRu" ColumnName="TitleRu" />
+                <ScalarProperty Name="TitleAm" ColumnName="TitleAm" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OperationalSignificances">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.OperationalSignificance">
+              <MappingFragment StoreEntitySet="OperationalSignificances">
+                <ScalarProperty Name="OriginalID" ColumnName="OriginalID" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="NameKz" ColumnName="NameKz" />
+                <ScalarProperty Name="NameCz" ColumnName="NameCz" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="NameRu" ColumnName="NameRu" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="SignificanceOfTheUseID" ColumnName="SignificanceOfTheUseID" />
+                <ScalarProperty Name="NameAm" ColumnName="NameAm" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderTypes">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.OrderType">
+              <MappingFragment StoreEntitySet="OrderTypes">
+                <ScalarProperty Name="NameKz" ColumnName="NameKz" />
+                <ScalarProperty Name="NameCz" ColumnName="NameCz" />
+                <ScalarProperty Name="NameRu" ColumnName="NameRu" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="SortIndex" ColumnName="SortIndex" />
+                <ScalarProperty Name="NameAm" ColumnName="NameAm" />
+                <ScalarProperty Name="OrderTypeID" ColumnName="OrderTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.Project">
+              <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="OriginalID" ColumnName="OriginalID" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="NameKz" ColumnName="NameKz" />
+                <ScalarProperty Name="NameCz" ColumnName="NameCz" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="NameRu" ColumnName="NameRu" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="SortIndex" ColumnName="SortIndex" />
+                <ScalarProperty Name="NameAm" ColumnName="NameAm" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regions">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.Region">
+              <MappingFragment StoreEntitySet="Regions">
+                <ScalarProperty Name="OriginalID" ColumnName="OriginalID" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="NameKz" ColumnName="NameKz" />
+                <ScalarProperty Name="NameCz" ColumnName="NameCz" />
+                <ScalarProperty Name="NameRu" ColumnName="NameRu" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="SortIndex" ColumnName="SortIndex" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="NameAm" ColumnName="NameAm" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Remonts">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.Remont">
+              <MappingFragment StoreEntitySet="Remonts">
+                <ScalarProperty Name="OriginalID" ColumnName="OriginalID" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="NameCz" ColumnName="NameCz" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="NameKz" ColumnName="NameKz" />
+                <ScalarProperty Name="NameRu" ColumnName="NameRu" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="SortIndex" ColumnName="SortIndex" />
+                <ScalarProperty Name="NameAm" ColumnName="NameAm" />
+                <ScalarProperty Name="RemontID" ColumnName="RemontID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roofings">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.Roofing">
+              <MappingFragment StoreEntitySet="Roofings">
+                <ScalarProperty Name="OriginalID" ColumnName="OriginalID" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="NameKz" ColumnName="NameKz" />
+                <ScalarProperty Name="NameCz" ColumnName="NameCz" />
+                <ScalarProperty Name="NameRu" ColumnName="NameRu" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="NameAm" ColumnName="NameAm" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SignificanceOfTheUses">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.SignificanceOfTheUs">
+              <MappingFragment StoreEntitySet="SignificanceOfTheUses">
+                <ScalarProperty Name="OriginalID" ColumnName="OriginalID" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="NameKz" ColumnName="NameKz" />
+                <ScalarProperty Name="NameCz" ColumnName="NameCz" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="NameRu" ColumnName="NameRu" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="EstateTypeID" ColumnName="EstateTypeID" />
+                <ScalarProperty Name="NameAm" ColumnName="NameAm" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SiteParams">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.SiteParam">
+              <MappingFragment StoreEntitySet="SiteParams">
+                <ScalarProperty Name="PublicCode" ColumnName="PublicCode" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.State">
+              <MappingFragment StoreEntitySet="States">
+                <ScalarProperty Name="OriginalID" ColumnName="OriginalID" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="NameKz" ColumnName="NameKz" />
+                <ScalarProperty Name="NameCz" ColumnName="NameCz" />
+                <ScalarProperty Name="NameRu" ColumnName="NameRu" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="NameAm" ColumnName="NameAm" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Streets">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.Street">
+              <MappingFragment StoreEntitySet="Streets">
+                <ScalarProperty Name="OriginalID" ColumnName="OriginalID" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="NameKz" ColumnName="NameKz" />
+                <ScalarProperty Name="NameCz" ColumnName="NameCz" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="NameRu" ColumnName="NameRu" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="NameAm" ColumnName="NameAm" />
+                <ScalarProperty Name="StreetID" ColumnName="StreetID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TextContents">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.TextContent">
+              <MappingFragment StoreEntitySet="TextContents">
+                <ScalarProperty Name="ControlName" ColumnName="ControlName" />
+                <ScalarProperty Name="TitleIr" ColumnName="TitleIr" />
+                <ScalarProperty Name="TitleArm" ColumnName="TitleArm" />
+                <ScalarProperty Name="TitleRus" ColumnName="TitleRus" />
+                <ScalarProperty Name="TitleEng" ColumnName="TitleEng" />
+                <ScalarProperty Name="ContentIr" ColumnName="ContentIr" />
+                <ScalarProperty Name="ContentArm" ColumnName="ContentArm" />
+                <ScalarProperty Name="ContentRus" ColumnName="ContentRus" />
+                <ScalarProperty Name="ContentEng" ColumnName="ContentEng" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TopEstates">
+            <EntityTypeMapping TypeName="RealtorWebDBModel.TopEstate">
+              <MappingFragment StoreEntitySet="TopEstates">
+                <ScalarProperty Name="TitlePers" ColumnName="TitlePers" />
+                <ScalarProperty Name="TitleEng" ColumnName="TitleEng" />
+                <ScalarProperty Name="TitleRus" ColumnName="TitleRus" />
+                <ScalarProperty Name="TitleArm" ColumnName="TitleArm" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="EstateID" ColumnName="EstateID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="EstateConvenients" TypeName="RealtorWebDBModel.EstateConvenients" StoreEntitySet="EstateConvenients">
+            <EndProperty Name="Estate">
+              <ScalarProperty Name="EstateID" ColumnName="EstateID" />
+            </EndProperty>
+            <EndProperty Name="Convenient">
+              <ScalarProperty Name="ID" ColumnName="ConvenientID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="RealtorDataModel" ZoomLevel="102">
+        <EntityTypeShape EntityType="RealtorWebDBModel.aspnet_Membership" Width="1.5" PointX="2.25" PointY="23.75" />
+        <EntityTypeShape EntityType="RealtorWebDBModel.aspnet_Users" Width="1.5" PointX="11.94170295258132" PointY="7.6804987078907425" />
+        <EntityTypeShape EntityType="RealtorWebDBModel.BuildingType" Width="1.5" PointX="1.1685312358515949" PointY="16.073365025256464" />
+        <EntityTypeShape EntityType="RealtorWebDBModel.City" Width="1.5" PointX="8.6569982379009" PointY="21.391289139814344" />
+        <EntityTypeShape EntityType="RealtorWebDBModel.Convenient" Width="1.5" PointX="11.875" PointY="11.875" />
+        <EntityTypeShape EntityType="RealtorWebDBModel.Currency" Width="1.5" PointX="3.875" PointY="9.125" />
+        <EntityTypeShape EntityType="RealtorWebDBModel.EstateImage" Width="1.5" PointX="5.75" PointY="10" />
+        <EntityTypeShape EntityType="RealtorWebDBModel.Estate" Width="1.5" PointX="7.3751902297954963" PointY="7.2240048531554661" />
+        <EntityTypeShape EntityType="RealtorWebDBModel.EstateType" Width="1.5" PointX="5.875" PointY="16.125" />
+        <EntityTypeShape EntityType="RealtorWebDBModel.NewItem" Width="1.5" PointX="5.6415310826345957" PointY="30.941855072482422" />
+        <EntityTypeShape EntityType="RealtorWebDBModel.OperationalSignificance" Width="1.5" PointX="7.3079122804607781" PointY="27.160481763612704" />
+        <EntityTypeShape EntityType="RealtorWebDBModel.OrderType" Width="1.5" PointX="9.78619673372535" PointY="31.295976891785848" />
+        <EntityTypeShape EntityType="RealtorWebDBModel.Project" Width="1.5" PointX="4.5293098411193631" PointY="25.675840270554573" />
+        <EntityTypeShape EntityType="RealtorWebDBModel.Region" Width="1.5" PointX="0.29184537953317413" PointY="23.511651661019609" />
+        <EntityTypeShape EntityType="RealtorWebDBModel.Remont" Width="1.5" PointX="11.668929291734905" PointY="27.220022825161006" />
+        <EntityTypeShape EntityType="RealtorWebDBModel.Roofing" Width="1.5" PointX="4.125" PointY="18.375" />
+        <EntityTypeShape EntityType="RealtorWebDBModel.SignificanceOfTheUs" Width="1.5" PointX="11.197831565140668" PointY="17.219709791811049" />
+        <EntityTypeShape EntityType="RealtorWebDBModel.SiteParam" Width="1.5" PointX="9.5" PointY="10.875" />
+        <EntityTypeShape EntityType="RealtorWebDBModel.State" Width="1.5" PointX="3.3125706758874331" PointY="28.967387332100134" />
+        <EntityTypeShape EntityType="RealtorWebDBModel.Street" Width="1.5" PointX="1.6137789439474133" PointY="7.2525999728835187" />
+        <EntityTypeShape EntityType="RealtorWebDBModel.TextContent" Width="1.5" PointX="5.375" PointY="22.25" />
+        <EntityTypeShape EntityType="RealtorWebDBModel.TopEstate" Width="1.5" PointX="12.25" PointY="25.125" />
+        <AssociationConnector Association="RealtorWebDBModel.FK__aspnet_Me__UserI__1AD3FDA4" />
+        <AssociationConnector Association="RealtorWebDBModel.FK_Estates_BuildingTypes" />
+        <AssociationConnector Association="RealtorWebDBModel.FK_Cities_States" />
+        <AssociationConnector Association="RealtorWebDBModel.FK_Estates_Cities" />
+        <AssociationConnector Association="RealtorWebDBModel.FK_Regions_Cities" />
+        <AssociationConnector Association="RealtorWebDBModel.FK_Estates_Currencies" />
+        <AssociationConnector Association="RealtorWebDBModel.FK_EstateImages_Estates" />
+        <AssociationConnector Association="RealtorWebDBModel.FK_Estates_EstateTypes" />
+        <AssociationConnector Association="RealtorWebDBModel.FK_Estates_OperationalSignificances" />
+        <AssociationConnector Association="RealtorWebDBModel.FK_Estates_OrderTypes" />
+        <AssociationConnector Association="RealtorWebDBModel.FK_Estates_Projects" />
+        <AssociationConnector Association="RealtorWebDBModel.FK_Estates_Regions" />
+        <AssociationConnector Association="RealtorWebDBModel.FK_Estates_Remonts" />
+        <AssociationConnector Association="RealtorWebDBModel.FK_Estates_Roofings" />
+        <AssociationConnector Association="RealtorWebDBModel.FK_Estates_SignificanceOfTheUses" />
+        <AssociationConnector Association="RealtorWebDBModel.FK_Estates_States" />
+        <AssociationConnector Association="RealtorWebDBModel.FK_Estates_Streets" />
+        <AssociationConnector Association="RealtorWebDBModel.FK_TopEstates_Estates" />
+        <AssociationConnector Association="RealtorWebDBModel.FK_SignificanceOfTheUses_EstateTypes" />
+        <AssociationConnector Association="RealtorWebDBModel.FK_OperationalSignificances_SignificanceOfTheUses" />
+        <AssociationConnector Association="RealtorWebDBModel.EstateConvenients" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

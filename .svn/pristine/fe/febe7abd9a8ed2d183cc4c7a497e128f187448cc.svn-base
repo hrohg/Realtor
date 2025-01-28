@@ -1,0 +1,118 @@
+﻿<Window x:Class="RealEstateApp.SelledEstatesViewer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Controls="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit"
+        xmlns:UserControls="clr-namespace:UserControls;assembly=UserControls"
+        xmlns:Converters="clr-namespace:Shared.Converters;assembly=Shared" ShowInTaskbar="True" Title="{Binding Source={StaticResource CultureResources},Path=[SoldEstates]}" x:Name="selledEstatesForm" WindowStartupLocation="CenterScreen"
+        Icon="pack://application:,,,/Shared;component/Images/Application.png" Loaded="Window_Loaded" WindowState="Maximized" >
+    <Window.Resources>
+        <Converters:BoolToVisibilityInvertConverter x:Key="BoolToVisibilityInvertConverter" />
+        <Converters:EstateToEstateFullAddressStringWithoutRegionConverter x:Key="EstateToEstateFullAddressStringWithoutRegionConverter" />
+        <Converters:StringToOneRowStringConverter x:Key="StringToOneRowStringConverter" />
+    </Window.Resources>
+    <Grid Margin="3">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Border Width="Auto" Height="Auto" BorderThickness="1.3" CornerRadius="5" BorderBrush="{StaticResource NormalBorderBrush}">
+            <Expander Header="{Binding Source={StaticResource CultureResources},Path=[FilterList]}" Width="600" HorizontalAlignment="Left" Height="Auto" Margin="3">
+                <Grid Margin="3" Background="White" Height="160" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Source={StaticResource CultureResources},Path=[CodeP]}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Margin="4,0,0,0" Text="{Binding Path=SearchCriteria.Code, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=selledEstatesForm}"
+						  HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Source={StaticResource CultureResources},Path=[EstateTypeP]}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="1" Grid.Column="1" IsEditable="False" Margin="4,0,0,0" ItemsSource="{Binding Path=EstateTypes, ElementName=selledEstatesForm}"
+						  SelectedValue="{Binding Path=SearchCriteria.EstateTypeID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=selledEstatesForm}"
+						  SelectedValuePath="EstateTypeID" DisplayMemberPath="TypeName" HorizontalAlignment="Left" VerticalAlignment="Center" SelectionChanged="ComboBox_SelectionChanged"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Source={StaticResource CultureResources},Path=[RegionP]}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="1" Grid.Column="3" IsEditable="False" Margin="4,0,0,0" ItemsSource="{Binding Path=Regions, ElementName=selledEstatesForm}"
+						  SelectedValue="{Binding Path=SearchCriteria.RegionID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=selledEstatesForm}"
+						  SelectedValuePath="RegionID" DisplayMemberPath="Name" HorizontalAlignment="Left" VerticalAlignment="Center" SelectionChanged="ComboBox_SelectionChanged"/>
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Source={StaticResource CultureResources},Path=[PriceP]}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="4,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBox x:Name="txtPriceFrom" TextChanged="txtPriceFrom_TextChanged" Width="145"
+							 Text="{Binding Path=SearchCriteria.PriceFrom, Mode=TwoWay, ValidatesOnDataErrors=True, ElementName=selledEstatesForm}" VerticalAlignment="Center"/>
+                        <TextBlock Text=" - " VerticalAlignment="Center"/>
+                        <TextBox x:Name="txtPriceTo" TextChanged="txtPriceFrom_TextChanged" Width="145"
+							 Text="{Binding Path=SearchCriteria.PriceTo, Mode=TwoWay, ValidatesOnDataErrors=True, ElementName=selledEstatesForm}" VerticalAlignment="Center"/>
+                        <ComboBox Name="cbCurrencies" IsEditable="False" ItemsSource="{Binding Path=Currencies, ElementName=selledEstatesForm}" SelectionChanged="ComboBox_SelectionChanged" Width="50"
+							  SelectedValue="{Binding Path=SearchCriteria.CurrencyID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ElementName=selledEstatesForm}"
+							  SelectedValuePath="CurrencyID" DisplayMemberPath="Name"  Margin="5,0,0,0" />
+                    </StackPanel>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding Source={StaticResource CultureResources},Path=[IntervalP]}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="4,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <DatePicker x:Name="dpDateFrom" SelectedDateChanged="dpDateTo_SelectedDateChanged" Width="145"
+								SelectedDate="{Binding Path=SearchCriteria.DateFrom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ElementName=selledEstatesForm}" VerticalAlignment="Center"/>
+                        <TextBlock Text=" - " VerticalAlignment="Center"/>
+                        <DatePicker x:Name="dpDateTo" SelectedDateChanged="dpDateTo_SelectedDateChanged" Width="145"
+								SelectedDate="{Binding Path=SearchCriteria.DateTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ElementName=selledEstatesForm}" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="3">
+                        <Button x:Name="btnSearch" Content="{Binding Source={StaticResource CultureResources},Path=[Search]}" Click="btnSeach_Click" 
+                             Width="100"/>
+                        <Button x:Name="btnClearSeach" Content="{Binding Source={StaticResource CultureResources},Path=[Clear]}" Click="btnClearSeach_Click" 
+                             Width="100" Margin="5,0"/>
+                    </StackPanel>
+                </Grid>
+            </Expander>
+        </Border>
+        <Controls:DataGrid AutoGenerateColumns="False" CanUserResizeColumns="True" CanUserReorderColumns="True" CanUserSortColumns="True" 
+							Grid.Row="1" ItemsSource="{Binding Path=SelledEstates, ElementName=selledEstatesForm}"  IsReadOnly="True" Margin="0,3,0,0"
+							HorizontalAlignment="Stretch" VerticalAlignment="Top" x:Name="dgEstates" MouseDoubleClick="dgEstates_MouseDoubleClick" >
+            <Controls:DataGrid.ContextMenu>
+                <ContextMenu x:Name="menu">
+                    <MenuItem Header="{Binding Source={StaticResource CultureResources},Path=[Open]}" Click="mnuOpen_Click" />
+                    <MenuItem Header="{Binding Source={StaticResource CultureResources},Path=[Edit]}" Click="mnuEdit_Click" 
+							  Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=OfflineMode, Converter={StaticResource BoolToVisibilityInvertConverter}, ConverterParameter=!}"/>
+                    <MenuItem Header="{Binding Source={StaticResource CultureResources},Path=[ReturnToEstatesList]}" Click="mnuReturnToEstates"
+							  Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=OfflineMode, Converter={StaticResource BoolToVisibilityInvertConverter}, ConverterParameter=!}"/>
+                </ContextMenu>
+            </Controls:DataGrid.ContextMenu>
+            <Controls:DataGrid.Columns>
+                <Controls:DataGridTextColumn Binding="{Binding Path=Estate.Code, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Code]}" Width="Auto" SortMemberPath="Code"/>
+                <Controls:DataGridTextColumn Binding="{Binding Path=Estate.EstateType.TypeName, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[EstateType]}"
+                                             Width="Auto" SortMemberPath="EstateTypeID"/>
+                <Controls:DataGridTextColumn Binding="{Binding Path=Estate, Mode=OneWay, Converter={StaticResource EstateToEstateFullAddressStringWithoutRegionConverter}}" 
+                                             Header="{Binding Source={StaticResource CultureResources},Path=[Address]}" Width="Auto" CanUserSort="False"/>
+                <Controls:DataGridTextColumn Binding="{Binding Path=Estate.Street.Name, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Street]}" 
+                                             Width="Auto" SortMemberPath="Estate.Street.Name"/>
+                <Controls:DataGridTextColumn Binding="{Binding Path=Price, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Price]}" Width="Auto"/>
+                <Controls:DataGridTextColumn Binding="{Binding Path=Currency.Name, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Currency]}" Width="Auto" SortMemberPath="CurrencyID"/>
+                <Controls:DataGridTextColumn Binding="{Binding Path=SellDate, Mode=OneWay, StringFormat=\{0:dd.MM.yyyy\}}" Header="{Binding Source={StaticResource CultureResources},Path=[SellDate]}" Width="Auto"/>
+                <Controls:DataGridTextColumn Binding="{Binding Path=User.FullName, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Broker]}" Width="Auto"/>
+                <Controls:DataGridTemplateColumn Header="{Binding Source={StaticResource CultureResources},Path=[AdditionalDetails]}" Width="Auto" 
+												 Visibility="{Binding Source={x:Static UserControls:Session.Inst}, Path=ApplicationSettings.ShowingColumns[16].Show, Converter={StaticResource BoolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+                    <Controls:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Estate.AdditionalInformation, Mode=OneWay, Converter={StaticResource StringToOneRowStringConverter}}" ToolTipService.ToolTip="{Binding Path=AdditionalInformation}"/>
+                        </DataTemplate>
+                    </Controls:DataGridTemplateColumn.CellTemplate>
+                </Controls:DataGridTemplateColumn>
+            </Controls:DataGrid.Columns>
+        </Controls:DataGrid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,0">
+            <TextBlock Text="{Binding Source={StaticResource CultureResources},Path=[Count]}" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding Path=Items.Count, ElementName=dgEstates}" FontWeight="Bold" VerticalAlignment="Center" />
+        </StackPanel>
+    </Grid>
+</Window>

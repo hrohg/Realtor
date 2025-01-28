@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="UserControls.FavoriteClients"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             xmlns:Controls="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit" Loaded="demands_Loaded" Foreground="Black"
+	        xmlns:Converters="clr-namespace:Shared.Converters;assembly=Shared" xmlns:UserControls="clr-namespace:UserControls" x:Name="demands">
+    <UserControl.Resources>
+        <Converters:NeededEstateTypesToStringConverter x:Key="NeededEstateTypesToStringConverter"/>
+        <Converters:NeededRegionsToStringConverter x:Key="NeededRegionsToStringConverter"/>
+        <Converters:UserToTranslatedUserConverter x:Key="UserToTranslatedUserConverter"/>
+        <Converters:IsRentToStringConverter x:Key="IsRentToStringConverter" />
+        <Converters:StringEmptyToNullConverter x:Key="NullToStringEmptyConverter" />
+        <Converters:StringToOneRowStringConverter x:Key="StringToOneRowStringConverter" />
+        <Converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <Converters:NeededRemontsToStringConverter x:Key="NeededRemontsToStringConverter" />
+        <Converters:NeededProjectsToStringConverter x:Key="NeededProjectsToStringConverter" />
+        <Converters:NeededBuildingTypesToStringConverter x:Key="NeededBuildingTypesToStringConverter" />
+        <Converters:IsAdminOrDirectorToObjectVisibilityConverter x:Key="IsAdminOrDirectorToObjectVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Margin="3">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <Controls:DataGrid AutoGenerateColumns="False" CanUserResizeColumns="True" CanUserReorderColumns="True" CanUserSortColumns="True" 
+		                   ItemsSource="{Binding Path=NeededEstates, ElementName=demands}"  IsReadOnly="True" SelectionMode="Extended" Grid.Row="2"
+		                   HorizontalAlignment="Stretch" VerticalAlignment="Top" x:Name="dgNeededEstates" MouseDoubleClick="dgEstates_MouseDoubleClick">
+            <Controls:DataGrid.ContextMenu>
+                <ContextMenu x:Name="mnuDemands" Visibility="{DynamicResource ContextMenuVisibility}" ContextMenuOpening="mnuDemands_ContextMenuOpening">
+                    <MenuItem Header="{Binding Source={StaticResource CultureResources},Path=[Open]}" Click="mnuOpen_Click" />
+                    <MenuItem x:Name="mnuDelete" Header="{Binding Source={StaticResource CultureResources},Path=[RemoveFromThisList]}" Click="mnuDelete_Click" />
+                    <MenuItem x:Name="mnuShowResult" Header="{Binding Source={StaticResource CultureResources},Path=[SelectEstates]}" Click="mnuShowResult_Click" />
+                    <MenuItem x:Name="mnuSelectShowEstate" Header="{Binding Source={StaticResource CultureResources},Path=[ShowEstate]}" Click="mnuSelectShowEstate_Click" >
+                        <MenuItem.Visibility>
+                            <MultiBinding Converter="{StaticResource IsAdminOrDirectorToObjectVisibilityConverter}">
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="User.IsAdminOrDirector" />
+                                <Binding Source="{x:Static UserControls:Session.Inst}" Path="OfflineMode" />
+                            </MultiBinding>
+                        </MenuItem.Visibility>
+                    </MenuItem>
+                </ContextMenu>
+            </Controls:DataGrid.ContextMenu>
+            <Controls:DataGrid.Columns>
+                <Controls:DataGridTextColumn Binding="{Binding Path=Code, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Code]}" SortMemberPath="Code" Width="Auto" />
+                <Controls:DataGridTextColumn Binding="{Binding Path=User, Mode=OneWay, Converter={StaticResource UserToTranslatedUserConverter}}" Header="{Binding Source={StaticResource CultureResources},Path=[Broker]}" SortMemberPath="User.FullName" Width="Auto" />
+                <Controls:DataGridTextColumn Binding="{Binding Path=IsNeedForRent, Mode=OneWay, Converter={StaticResource IsRentToStringConverter}}" Header="{Binding Source={StaticResource CultureResources},Path=[OrdType]}" Width="Auto" />
+                <Controls:DataGridTextColumn Binding="{Binding Path=NeededEstateTypes, Mode=OneWay, Converter={StaticResource NeededEstateTypesToStringConverter}}" Header="{Binding Source={StaticResource CultureResources},Path=[EstateType]}" Width="Auto" CanUserSort="False" />
+                <Controls:DataGridTextColumn Binding="{Binding Path=RoomsCountInterval, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Room]}" Width="Auto"/>
+                <Controls:DataGridTextColumn Binding="{Binding Path=SquareInterval, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Square]}" Width="Auto"/>
+                <Controls:DataGridTextColumn Binding="{Binding Path=FloorInterval, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Floor]}" Width="Auto" />
+                <Controls:DataGridTextColumn Binding="{Binding Path=PriceInterval, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Price]}" Width="Auto"/>
+                <Controls:DataGridTextColumn Binding="{Binding Path=Currency.Name, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Currency]}" Width="Auto"/>
+                <Controls:DataGridTextColumn Binding="{Binding Path=NeededRegions, Mode=OneWay, Converter={StaticResource NeededRegionsToStringConverter}}" Header="{Binding Source={StaticResource CultureResources},Path=[StateOrRegion]}" Width="Auto" CanUserSort="False"/>
+                <Controls:DataGridTextColumn Binding="{Binding Path=BuyerInfo, Mode=OneWay}" Header="{Binding Source={StaticResource CultureResources},Path=[Client]}" Width="Auto"/>
+                <Controls:DataGridTextColumn Binding="{Binding Path=AddDate, Mode=OneWay, StringFormat=\{0:dd.MM.yyyy\}}" Header="{Binding Source={StaticResource CultureResources},Path=[Added]}" Width="Auto"/>
+                <Controls:DataGridTextColumn Binding="{Binding Path=LastModifiedDate, Mode=OneWay, Converter={StaticResource NullToStringEmptyConverter}, StringFormat=\{0:dd.MM.yyyy\}}" Header="{Binding Source={StaticResource CultureResources},Path=[Updated]}" Width="Auto"/>
+                <Controls:DataGridTemplateColumn Header="{Binding Source={StaticResource CultureResources},Path=[AdditData]}" Width="Auto" >
+                    <Controls:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=AdditionalDetails, Mode=OneWay, Converter={StaticResource StringToOneRowStringConverter}}" ToolTipService.ToolTip="{Binding Path=AdditionalDetails}"/>
+                        </DataTemplate>
+                    </Controls:DataGridTemplateColumn.CellTemplate>
+                </Controls:DataGridTemplateColumn>
+                <Controls:DataGridTextColumn Binding="{Binding Path=NeededRemonts, Mode=OneWay, Converter={StaticResource NeededRemontsToStringConverter}}" Header="{Binding Source={StaticResource CultureResources},Path=[TheRoomState]}" Width="Auto" CanUserSort="False" />
+                <Controls:DataGridTextColumn Binding="{Binding Path=NeededProjects, Mode=OneWay, Converter={StaticResource NeededProjectsToStringConverter}}" Header="{Binding Source={StaticResource CultureResources},Path=[BuildingProject]}" Width="Auto" CanUserSort="False" />
+                <Controls:DataGridTextColumn Binding="{Binding Path=NeededBuildingTypes, Mode=OneWay, Converter={StaticResource NeededBuildingTypesToStringConverter}}" Header="{Binding Source={StaticResource CultureResources},Path=[BuildingType]}" Width="Auto" CanUserSort="False" />
+            </Controls:DataGrid.Columns>
+        </Controls:DataGrid>
+
+    </Grid>
+</UserControl>

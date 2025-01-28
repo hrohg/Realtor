@@ -1,0 +1,34 @@
+﻿<Window x:Class="RealEstateApp.RoofingManagement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        Title="{Binding Source={StaticResource CultureResources},Path=[Roofing]}" ShowInTaskbar="True"
+        Icon="pack://application:,,,/Shared;component/Images/Application.png" KeyUp="roofingForm_KeyUp"
+        WindowState="Maximized"  x:Name="roofingForm" Loaded="roofingForm_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <DataGrid x:Name="dgRoofing" ItemsSource="{Binding Path=Roofings, ElementName=roofingForm}" 
+						   AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="False" CanUserSortColumns="True" 
+						   CanUserResizeRows="False" RowEditEnding="dgRoofing_RowEditEnding">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=NameAm, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Ծածկ" Width="170"/>
+                    <DataGridTextColumn Binding="{Binding Path=NameRu, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Покрытие" Width="170"/>
+                    <DataGridTextColumn Binding="{Binding Path=NameEn, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Roofing" Width="170"/>
+                    <!--<DataGridTextColumn Binding="{Binding Path=NameCz}" Header="Roofing cz" Width="170"/>-->
+                    <!--<DataGridTextColumn Binding="{Binding Path=NameKz}" Header="{Binding Source={StaticResource CultureResources},Path=[Roofing]}" Width="170"/>-->
+                    <DataGridTemplateColumn >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button CommandParameter="{Binding}" Content="{Binding Source={StaticResource CultureResources},Path=[Delete]}" Width="70" Click="ButtonDelete_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        <Button x:Name="btnOk" Content="{Binding Source={StaticResource CultureResources},Path=[Close]}" Grid.Row="1" Click="btnOk_Click" Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" />
+    </Grid>
+</Window>
